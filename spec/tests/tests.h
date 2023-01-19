@@ -11,4 +11,6 @@ void	test_complex_pow(void);
 
 void	test_repeated_complex_pow(void);
 
+void	test_repeated_complex_pow_v2(void);
+
 #endif
