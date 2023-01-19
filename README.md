@@ -2,11 +2,10 @@
 
 ## TODO:
 
-1. complex number calculation
-2. escape time algorithm to determine color of one pixel
+1. complex number calculation (Using De Moivre's Theorem to calculate positive interger power of a complex number)
+2. escape time algorithm + external distance estimation to determine color of one pixel
 3. border tracing to draw the borders.
-4. Fill the outside pixels using external distance estimation coloring.
-5. Translation and zooming in the hook
+4. Translation and zooming in the hook
 
 ```c
 // Compute a formula from a complex number input
