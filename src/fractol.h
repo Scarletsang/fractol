@@ -1,29 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   fractol.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/12 23:47:55 by htsang            #+#    #+#             */
-/*   Updated: 2023/01/19 16:09:03 by htsang           ###   ########.fr       */
+/*   Created: 2023/01/19 16:01:29 by htsang            #+#    #+#             */
+/*   Updated: 2023/01/19 16:04:01 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fractol.h"
+#ifndef FRACTOL_H
+# define FRACTOL_H
 
-int32_t	main(void)
-{
-	mlx_t		*mlx;
-	mlx_image_t	*fractal;
+# ifndef WINDOW_WIDTH
+#  define WINDOW_WIDTH 1920
+# endif
 
-	mlx = mlx_init(WINDOW_WIDTH, WINDOW_HEIGHT, "MLX42", true);
-	if (!mlx)
-		exit(EXIT_FAILURE);
-	fractal = mlx_new_image(mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
-	draw_fractal(fractal);
-	mlx_image_to_window(mlx, fractal, 0, 0);
-	mlx_loop(mlx);
-	mlx_terminate(mlx);
-	return (EXIT_SUCCESS);
-}
+# ifndef WINDOW_HEIGHT
+#  define WINDOW_HEIGHT 1080
+# endif
+
+# include <stdlib.h>
+# include "MLX42/MLX42.h"
+
+#endif
