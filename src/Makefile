@@ -1,11 +1,16 @@
 NAME:=fractol
+COMPLEX_SRC:= \
+	complex/arithematic.c \
+	complex/complex.c
 SRC:= main.c
-OBJS=${SRC:.c=.o} ${MLX}
+OBJS=${SRC:.c=.o} ${COMPLEX_SRC:.c=.o} ${MLX}
 
 GLFW:=glfw-3.3.8/lib-x86_64/libglfw3.a
 MLX:=MLX42/libmlx42.a
 
-INCLUDE:=MLX42/include
+INCLUDE:= \
+	MLX42/include \
+	complex
 
 CC=cc
 FLAGS= -Wall -Wextra -Werror
