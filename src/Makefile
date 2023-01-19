@@ -1,7 +1,9 @@
 NAME:=fractol
 COMPLEX_SRC:= \
 	complex/arithematic.c \
-	complex/complex.c
+	complex/complex.c \
+	complex/equation.c \
+	complex/dynamic.c
 SRC:= main.c
 OBJS=${SRC:.c=.o} ${COMPLEX_SRC:.c=.o} ${MLX}
 

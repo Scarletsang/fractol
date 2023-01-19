@@ -6,29 +6,37 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 19:41:07 by htsang            #+#    #+#             */
-/*   Updated: 2023/01/19 01:22:47 by htsang           ###   ########.fr       */
+/*   Updated: 2023/01/19 15:33:13 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol_complex.h"
 
-t_fractol_complex	*complex_pow(t_fractol_complex *complex, \
+static t_fractol_complex	*complex_odd_pow(t_fractol_complex *complex, \
 int power)
 {
 	t_fractol_complex	square;
+	
+	copy_complex_number(&square, complex);
+	complex_pow(&square, power / 2);
+	complex_multiply(&square, square.real, square.imaginary);
+	return (complex_multiply(complex, square.real, square.imaginary));
+}
 
+t_fractol_complex	*complex_pow(t_fractol_complex *complex, \
+int power)
+{
 	if (power == 1)
 	{
 		return (complex);
 	}
-	copy_complex_number(&square, complex);
-	complex_pow(&square, power / 2);
-	complex_multiply(&square, square.real, square.imaginary);
 	if (power % 2 == 0)
 	{
-		return (copy_complex_number(complex, &square));
+		complex_pow(complex, power / 2);
+		complex_multiply(complex, complex->real, complex->imaginary);
+		return (complex);
 	}
-	return (complex_multiply(complex, square.real, square.imaginary));
+	return (complex_odd_pow(complex, power));
 }
 
 t_fractol_complex	*complex_multiply(t_fractol_complex *complex, \

@@ -1,29 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   complex.c                                          :+:      :+:    :+:   */
+/*   dynamic.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/14 20:40:16 by htsang            #+#    #+#             */
-/*   Updated: 2023/01/19 15:54:59 by htsang           ###   ########.fr       */
+/*   Created: 2023/01/19 16:21:28 by htsang            #+#    #+#             */
+/*   Updated: 2023/01/19 16:29:45 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol_complex.h"
 
-t_fractol_complex	*copy_complex_number(t_fractol_complex *dest, \
-t_fractol_complex *src)
+t_fractol_complex	*mandelbrot_dynamic(t_fractol_complex *z, \
+t_fractol_complex *c, double escape_value, int iteration)
 {
-	dest->real = src->real;
-	dest->imaginary = src->imaginary;
-	return (dest);
-}
-
-t_fractol_complex	*set_complex_number(t_fractol_complex *complex, \
-double real, double imaginary)
-{
-	complex->real = real;
-	complex->imaginary = imaginary;
-	return (complex);
+	set_complex_number(z, 0, 0);
+	while (iteration > 0 && z->real <= escape_value)
+	{
+		mandelbrot_equation(z, c);
+		iteration--;
+	}
+	return (z);
 }
