@@ -1,28 +1,31 @@
 # Please only change the following line
-TARGET_NAMES=
 
-NAME=debug.out
-TARGET_DIR=../src
+NAME:=debug.out
+TARGET_DIR:=../src
 TESTS:=$(shell find tests -name '*.c')
 TARGETS=${addprefix ${TARGET_DIR},${TARGET_NAMES}}
+TARGETS_OBJ=${TARGETS:.c=.o}
 TESTS_OBJS=${TESTS:.c=.o}
-CC=cc
-CFLAGS=-Wall -Werror -Wextra -Wformat
+CC:=cc
+CFLAGS=-Wall -Wextra -Wformat
 CFLAGS+= -fsanitize=address -g3
 
-all: ${NAME}
+define create_test
+${1}: LIB=$${addprefix $${TARGET_DIR}, /${1}}
+${1}: TARGETS=$$(shell find $${LIB} -name '*.c')
+${1}: targetobjects $${TESTS_OBJS}
+	@$${CC} $${CFLAGS} -I $${LIB} main.c $${TESTS_OBJS} $${TARGETS_OBJ} -o $${NAME} && \
+	echo "Success compiling $${TARGETS}!"
+endef
 
-${NAME}: targetall ${TESTS_OBJS}
-ifeq ($(findstring .a, ${TARGETS}),)
-	@${CC} ${CFLAGS} main.c ${TESTS_OBJS} ${TARGETS:.c=.o} -o ${NAME} && \
-	echo "Success compiling with the target binary ${TARGET_NAMES}!"
-else
-	@${CC} ${CFLAGS} main.c ${TESTS_OBJS} -L./${TARGET_DIR} -l$(patsubst lib%.a,%,${TARGET_NAMES}) -o ${NAME} && \
-	echo "Success compiling with the target library ${TARGET_NAMES}!"
-endif
+# Test rules
+
+$(eval $(call create_test,complex))
+
+# Basic rules
 
 %.o: %.c
-	@${CC} ${CFLAGS} -c $< -o $@
+	@${CC} ${CFLAGS} -I ${LIB} -c $< -o $@
 
 clean: targetclean
 	@rm -f ${TESTS_OBJS}
@@ -34,8 +37,8 @@ re: fclean all
 
 # Target rules
 
-targetall:
-	@make CFLAGS=${CFLAGS} re -C ${TARGET_DIR}
+targetobjects:
+	@make CFLAGS="${CFLAGS}" ${TARGETS_OBJ} -C ${TARGET_DIR}
 
 targetclean:
 	@make clean -C ${TARGET_DIR}
