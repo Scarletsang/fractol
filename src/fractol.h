@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 16:01:29 by htsang            #+#    #+#             */
-/*   Updated: 2023/01/19 16:04:01 by htsang           ###   ########.fr       */
+/*   Updated: 2023/01/23 23:32:32 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,5 +23,7 @@
 
 # include <stdlib.h>
 # include "MLX42/MLX42.h"
+
+# include "fractol_painter.h"
 
 #endif
