@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 19:41:07 by htsang            #+#    #+#             */
-/*   Updated: 2023/01/19 15:33:13 by htsang           ###   ########.fr       */
+/*   Updated: 2023/01/23 22:36:18 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static t_fractol_complex	*complex_odd_pow(t_fractol_complex *complex, \
 int power)
 {
 	t_fractol_complex	square;
-	
+
 	copy_complex_number(&square, complex);
 	complex_pow(&square, power / 2);
 	complex_multiply(&square, square.real, square.imaginary);
@@ -52,11 +52,18 @@ double real, double imaginary)
 	return (complex);
 }
 
-t_fractol_complex	*complex_subtract(t_fractol_complex *complex, \
+t_fractol_complex	*complex_divide(t_fractol_complex *complex, \
 double real, double imaginary)
 {
-	complex->real -= real;
-	complex->imaginary -= imaginary;
+	double	denominator;
+	double	original_real;
+
+	denominator = (real * real) + (imaginary * imaginary);
+	original_real = complex->real;
+	complex->real = \
+		((complex->real * real) + (complex->imaginary * imaginary)) / denominator;
+	complex->imaginary = \
+		((complex->imaginary * real) - (original_real * imaginary)) / denominator;
 	return (complex);
 }
 

@@ -3,7 +3,7 @@ COMPLEX_SRC:= \
 	complex/arithematic.c \
 	complex/complex.c \
 	complex/equation.c \
-	complex/dynamic.c
+	complex/distance_estimator.c
 SRC:= main.c
 OBJS=${SRC:.c=.o} ${COMPLEX_SRC:.c=.o} ${MLX}
 

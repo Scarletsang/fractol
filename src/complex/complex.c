@@ -6,11 +6,23 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 20:40:16 by htsang            #+#    #+#             */
-/*   Updated: 2023/01/19 15:54:59 by htsang           ###   ########.fr       */
+/*   Updated: 2023/01/23 21:53:22 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol_complex.h"
+
+double	complex_magnitude_square(t_fractol_complex *complex)
+{
+	return (complex->imaginary * complex->imaginary \
+	+ complex->real * complex->real);
+}
+
+double	complex_magnitude(t_fractol_complex *complex)
+{
+	return (sqrt(complex->imaginary * complex->imaginary \
+	+ complex->real * complex->real));
+}
 
 t_fractol_complex	*copy_complex_number(t_fractol_complex *dest, \
 t_fractol_complex *src)
