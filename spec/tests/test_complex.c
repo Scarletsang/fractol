@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 22:26:02 by htsang            #+#    #+#             */
-/*   Updated: 2023/01/19 16:33:03 by htsang           ###   ########.fr       */
+/*   Updated: 2023/01/24 00:18:49 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,15 @@ void	test_complex_multiply(void)
 
 	set_complex_number(&complex, 1, 3.4);
 	complex_multiply(&complex, 2.1, 4);
+	printf("%f %f\n", complex.real, complex.imaginary);
+}
+
+void	test_complex_divide(void)
+{
+	t_fractol_complex	complex;
+
+	set_complex_number(&complex, 1, 3.4);
+	complex_divide(&complex, 2.1, 4);
 	printf("%f %f\n", complex.real, complex.imaginary);
 }
 
@@ -59,7 +68,7 @@ void	test_repeated_complex_pow(void)
 	}
 }
 
-void	test_repeated_complex_pow_v2(void)
+void	test_mandelbrot(void)
 {
 	int					i;
 	t_fractol_complex	z;
@@ -72,8 +81,7 @@ void	test_repeated_complex_pow_v2(void)
 		while (c.imaginary > -1)
 		{
 			i = 0;
-			printf("%f %f\n", c.real, c.imaginary);
-			mandelbrot_dynamic(&z, &c, 2, 1000);
+			printf("%f\n", mandelbrot_distance_estimator(&z, &c, 4, 1000));
 			c.imaginary -= 0.01;
 		}
 		c.real += 0.01;
