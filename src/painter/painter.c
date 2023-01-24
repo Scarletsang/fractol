@@ -6,12 +6,10 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 22:53:12 by htsang            #+#    #+#             */
-/*   Updated: 2023/01/24 17:40:56 by htsang           ###   ########.fr       */
+/*   Updated: 2023/01/24 23:37:00 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include "limits.h"
 #include "fractol_painter.h"
 
 uint32_t	distance_to_color(double value)
@@ -20,58 +18,41 @@ uint32_t	distance_to_color(double value)
 
 	if (value == BORDER_VALUE)
 	{
-		return (0);
+		return (0 | 255);
 	}
 	if (value == INSET_VALUE)
 	{
-		return (255);
+		return (0 | (255 & 0xFF));
 	}
-	scaled = fabs(value) * 10000;
-	return ((uint8_t) scaled << 24 | (uint8_t) scaled << 16 \
-		| (uint8_t) scaled << 8 | 255);
+	scaled = sin(value) * 100;
+	return (148 << 24 | (uint8_t) scaled << 16 \
+		| (uint8_t) scaled << 8 | (255 & 0xFF));
 }
 
-int	draw_mandelbrot(t_fractol_viewport *viewport, mlx_image_t *canvas)
+int	draw_mandelbrot(t_fractol_viewport *viewport)
 {
 	uint32_t			x;
 	uint32_t			y;
 	t_fractol_complex	z;
 	t_fractol_complex	c;
+	uint32_t			*pixels;
 
-	c.real = viewport->real_min;
-	x = 0;
-	while (x < canvas->width)
+	c.imaginary = viewport->imaginary_max;
+	y = viewport->canvas->height;
+	pixels = (uint32_t *) viewport->canvas->pixels;
+	while (y-- > 0)
 	{
-		c.imaginary = viewport->imaginary_max;
-		y = 0;
-		while (y < canvas->height)
+		c.real = viewport->real_min;
+		x = viewport->canvas->width;
+		while (x-- > 0)
 		{
-			mlx_put_pixel(canvas, x, y,
-				distance_to_color(
-					mandelbrot_distance_estimator(&z, &c, 4, 100)));
-			c.imaginary -= viewport->step;
-			y++;
+			*pixels = distance_to_color(
+					mandelbrot_distance_estimator(&z, &c, \
+						viewport->step * BORDER_THICKNESS, 100));
+			pixels++;
+			c.real += viewport->step;
 		}
-		c.real += viewport->step;
-		x++;
+		c.imaginary -= viewport->step;
 	}
 	return (0);
-}
-
-t_fractol_viewport	*init_mandelbrot(t_fractol_viewport *viewport)
-{
-	viewport->real_min = -1.5;
-	viewport->imaginary_max = 0.14;
-	viewport->step = 0.0002;
-	return (viewport);
-}
-
-t_fractol_viewport	*calc_range(t_fractol_viewport *viewport, \
-mlx_image_t *canvas)
-{
-	viewport->imaginary_min = viewport->imaginary_max - \
-		(viewport->step * canvas->height);
-	viewport->real_max = viewport->real_min + \
-		(viewport->step * canvas->width);
-	return (viewport);
 }
