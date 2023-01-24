@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 19:41:07 by htsang            #+#    #+#             */
-/*   Updated: 2023/01/24 17:25:28 by htsang           ###   ########.fr       */
+/*   Updated: 2023/01/24 21:41:43 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,18 +52,11 @@ double real, double imaginary)
 	return (complex);
 }
 
-t_fractol_complex	*complex_divide(t_fractol_complex *complex, \
-double real, double imaginary)
+t_fractol_complex	*complex_scalar_multiply(t_fractol_complex *complex, \
+double scalar)
 {
-	double	denominator;
-	double	original_real;
-
-	denominator = (real * real) + (imaginary * imaginary);
-	original_real = complex->real;
-	complex->real = ((complex->real * real) + \
-		(complex->imaginary * imaginary)) / denominator;
-	complex->imaginary = ((complex->imaginary * real) - \
-		(original_real * imaginary)) / denominator;
+	complex->real *= scalar;
+	complex->imaginary *= scalar;
 	return (complex);
 }
 

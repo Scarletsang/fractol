@@ -6,11 +6,18 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 16:16:54 by htsang            #+#    #+#             */
-/*   Updated: 2023/01/23 22:19:13 by htsang           ###   ########.fr       */
+/*   Updated: 2023/01/24 22:48:55 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol_complex.h"
+
+double	mandelbrot_border(t_fractol_complex *complex, double scalar)
+{
+	scalar *= scalar;
+	return ((complex->real * complex->real * scalar) \
+		+ (complex->imaginary * complex->imaginary * scalar));
+}
 
 t_fractol_complex	*mandelbrot_equation(t_fractol_complex *z, \
 t_fractol_complex *c)
