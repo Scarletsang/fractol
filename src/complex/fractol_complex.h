@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 19:41:10 by htsang            #+#    #+#             */
-/*   Updated: 2023/01/24 00:21:44 by htsang           ###   ########.fr       */
+/*   Updated: 2023/01/24 17:27:31 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,14 @@
 
 # include <stdlib.h>
 # include <math.h>
+
+# ifndef INSET_VALUE
+#  define INSET_VALUE 600
+# endif
+
+# ifndef BORDER_VALUE
+#  define BORDER_VALUE 700
+# endif
 
 typedef struct s_fractol_complex
 {
@@ -62,10 +70,7 @@ t_fractol_complex *c);
 t_fractol_complex	*mandelbrot_equation_derivative(t_fractol_complex *dz, \
 t_fractol_complex *z);
 
-t_fractol_complex	*mandelbrot_dynamic(t_fractol_complex *z, \
-t_fractol_complex *c, double escape_value, int iteration);
-
-double	mandelbrot_distance_estimator(t_fractol_complex *z, \
+double				mandelbrot_distance_estimator(t_fractol_complex *z, \
 t_fractol_complex *c, double escape_value, int iteration);
 
 #endif

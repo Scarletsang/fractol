@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 19:41:07 by htsang            #+#    #+#             */
-/*   Updated: 2023/01/23 22:36:18 by htsang           ###   ########.fr       */
+/*   Updated: 2023/01/24 17:25:28 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,10 +60,10 @@ double real, double imaginary)
 
 	denominator = (real * real) + (imaginary * imaginary);
 	original_real = complex->real;
-	complex->real = \
-		((complex->real * real) + (complex->imaginary * imaginary)) / denominator;
-	complex->imaginary = \
-		((complex->imaginary * real) - (original_real * imaginary)) / denominator;
+	complex->real = ((complex->real * real) + \
+		(complex->imaginary * imaginary)) / denominator;
+	complex->imaginary = ((complex->imaginary * real) - \
+		(original_real * imaginary)) / denominator;
 	return (complex);
 }
 
