@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 23:47:55 by htsang            #+#    #+#             */
-/*   Updated: 2023/01/24 00:45:47 by htsang           ###   ########.fr       */
+/*   Updated: 2023/01/24 17:54:35 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,9 @@ int32_t	main(void)
 		exit(EXIT_FAILURE);
 	}
 	init_mandelbrot(&viewport);
-	calc_steps(&viewport, canvas);
-	draw_mandelbrot(&viewport, canvas);
+	calc_range(&viewport, canvas);
 	mlx_image_to_window(mlx, canvas, 0, 0);
+	draw_mandelbrot(&viewport, canvas);
 	mlx_loop(mlx);
 	mlx_terminate(mlx);
 	return (EXIT_SUCCESS);
