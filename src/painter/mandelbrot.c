@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 15:51:49 by htsang            #+#    #+#             */
-/*   Updated: 2023/01/25 22:28:53 by htsang           ###   ########.fr       */
+/*   Updated: 2023/01/26 14:15:24 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,11 @@ uint32_t	distance_to_color(double value)
 int	draw_mandelbrot(t_fractol_viewport *viewport)
 {
 	viewport->math.c.imaginary = viewport->math.imaginary_max;
-	viewport->painter.y = viewport->canvas->height;
+	viewport->painter.y = viewport->painter.height;
 	while (viewport->painter.y-- > 0)
 	{
 		viewport->math.c.real = viewport->math.real_min;
-		viewport->painter.x = viewport->canvas->width;
+		viewport->painter.x = viewport->painter.width;
 		while (viewport->painter.x-- > 0)
 		{
 			*viewport->painter.pixels = distance_to_color(
@@ -51,11 +51,11 @@ int	draw_mandelbrot(t_fractol_viewport *viewport)
 	return (0);
 }
 
-t_fractol_viewport	*init_mandelbrot(t_fractol_viewport *viewport, \
-mlx_image_t *canvas)
+t_fractol_context	*init_mandelbrot(t_fractol_context *program)
 {
-	viewport->painter.pixel_size = 0.0002;
-	viewport->canvas = canvas;
-	set_viewport_boundaries(viewport, -1.4, 0);
-	return (set_painter_pixels(viewport, 0));
+	program->viewport.painter.pixel_size = 0.0002;
+	program->viewport.painter.height = program->canvas->height;
+	program->viewport.painter.width = program->canvas->width;
+	set_viewport_boundaries(program, -1.4, 0);
+	return (set_painter_pixels(program, 0));
 }

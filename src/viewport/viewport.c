@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 23:05:28 by htsang            #+#    #+#             */
-/*   Updated: 2023/01/26 01:38:08 by htsang           ###   ########.fr       */
+/*   Updated: 2023/01/26 14:08:03 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,13 +42,4 @@ uint32_t pixel_amount, int direction)
 			viewport->painter.pixel_size * pixel_amount;
 	}
 	return (viewport);
-}
-
-t_fractol_viewport	*resize_viewport(t_fractol_viewport *viewport, \
-int32_t width, int32_t height)
-{
-	mlx_resize_image(viewport->canvas, width, height);
-	viewport->painter.height = height;
-	viewport->painter.width = width;
-	return (set_painter_pixels(viewport, 0));
 }

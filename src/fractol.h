@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 16:01:29 by htsang            #+#    #+#             */
-/*   Updated: 2023/01/26 01:39:17 by htsang           ###   ########.fr       */
+/*   Updated: 2023/01/26 14:16:43 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,7 @@
 
 # include <stdlib.h>
 # include "MLX42/MLX42.h"
-
 # include "fractol_painter.h"
-
-typedef struct s_fractol_hook_ctx
-{
-	mlx_t				*mlx;
-	t_fractol_viewport	viewport;
-}				t_fractol_hook_ctx;
 
 void	fractol_key_hook(mlx_key_data_t keydata, void *hook_ctx);
 
