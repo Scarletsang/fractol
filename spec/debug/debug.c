@@ -6,12 +6,11 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 23:21:23 by htsang            #+#    #+#             */
-/*   Updated: 2023/01/26 01:10:39 by htsang           ###   ########.fr       */
+/*   Updated: 2023/01/26 13:03:40 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "debug.h"
-#include "fractol_painter.h"
 
 void	print_complex(t_fractol_complex *complex, char *title)
 {

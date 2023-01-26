@@ -71,7 +71,7 @@ function select_option {
 
 compile() {
   echo -e $BLUE"Compiling source..."$WHITE
-  make CFLAGS="-Wall -Werror -Wextra -g3 -fsanitize=address" -C $(dirname ${BASH_SOURCE:-$0})/../src re
+  make FSANITIZE=yes -C $(dirname ${BASH_SOURCE:-$0})/../src re
 }
 
 set-vscode-debugger() {

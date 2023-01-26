@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 01:10:20 by htsang            #+#    #+#             */
-/*   Updated: 2023/01/26 01:35:56 by htsang           ###   ########.fr       */
+/*   Updated: 2023/01/26 13:03:45 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define DEBUG_H
 
 # include <stdio.h>
+# include "fractol_painter.h"
 
 void	print_viewport(t_fractol_viewport *viewport);
 

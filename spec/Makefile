@@ -2,7 +2,9 @@ NAME:=debug.out
 
 CC:=cc
 CFLAGS=-Wall -Wextra -Wformat -Ofast
-# CFLAGS+= -fsanitize=address -g3
+ifdef FSANITIZE
+	CFLAGS+= -fsanitize=address -g3
+endif
 
 TARGET_DIR:=../src
 TARGETS=${addprefix ${TARGET_DIR},${TARGET_NAMES}}
@@ -14,7 +16,7 @@ TESTS_OBJS=${TESTS:.c=.o}
 ifneq (,$(findstring -g,$(CFLAGS)))
 	DEBUG_SRC:=${addprefix ${shell pwd}/,$(shell find debug -name '*.c')}
 	DEBUG_LIB:=${addprefix ${shell pwd}/,debug}
-	GFLAG:=yes
+	FSANITIZE:=yes
 endif
 
 define create_test
@@ -45,14 +47,14 @@ re: fclean all
 # Target rules
 
 fractol: targetall
-	${TARGET_DIR}/fractol
+	@${TARGET_DIR}/fractol
 
-targetall: LIB=${addprefix -I ${TARGET_DIR}, /painter/ /MLX42/include/ /complex/}
+targetall: LIB=${addprefix -I ${TARGET_DIR}, /painter /MLX42/include /complex /viewport}
 targetall: ${DEBUG_SRC:.c=.o}
-	@make GFLAG=${GFLAG} DEBUG_LIB="${DEBUG_LIB}" DEBUG_OBJS="${DEBUG_SRC:.c=.o}" -C ${TARGET_DIR}
+	@make FSANITIZE=${FSANITIZE} DEBUG_LIB="${DEBUG_LIB}" DEBUG_OBJS="${DEBUG_SRC:.c=.o}" -C ${TARGET_DIR}
 
 targetobjects: ${DEBUG_SRC:.c=.o}
-	@make GFLAG=${GFLAG} DEBUG_LIB="${DEBUG_LIB}" DEBUG_OBJS="${DEBUG_SRC:.c=.o}" ${TARGETS_OBJ} -C ${TARGET_DIR}
+	@make FSANITIZE=${FSANITIZE} DEBUG_LIB="${DEBUG_LIB}" DEBUG_OBJS="${DEBUG_SRC:.c=.o}" ${TARGETS_OBJ} -C ${TARGET_DIR}
 
 targetclean:
 	@make clean -C ${TARGET_DIR}
