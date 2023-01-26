@@ -6,26 +6,49 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 23:05:28 by htsang            #+#    #+#             */
-/*   Updated: 2023/01/24 23:55:45 by htsang           ###   ########.fr       */
+/*   Updated: 2023/01/26 01:38:08 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol_painter.h"
 
-static t_fractol_viewport	*set_viewport_boundaries( \
-t_fractol_viewport *viewport, double center_real, double center_imaginary)
+t_fractol_viewport	*move_real_axis_by(t_fractol_viewport *viewport, \
+uint32_t pixel_amount, int direction)
 {
-	viewport->real_min = center_real - \
-		(viewport->step * viewport->canvas->width / 2);
-	viewport->imaginary_max = center_imaginary + \
-		(viewport->step * viewport->canvas->height / 2);
+	if (direction <= 0)
+	{
+		viewport->math.real_min -= \
+			viewport->painter.pixel_size * pixel_amount;
+	}
+	else
+	{
+		viewport->math.real_min += \
+			viewport->painter.pixel_size * pixel_amount;
+	}
 	return (viewport);
 }
 
-t_fractol_viewport	*init_mandelbrot(t_fractol_viewport *viewport, \
-mlx_image_t *canvas)
+t_fractol_viewport	*move_imaginary_axis_by(t_fractol_viewport *viewport, \
+uint32_t pixel_amount, int direction)
 {
-	viewport->step = 0.0004;
-	viewport->canvas = canvas;
-	return (set_viewport_boundaries(viewport, -1.4, 0));
+	if (direction <= 0)
+	{
+		viewport->math.imaginary_max -= \
+			viewport->painter.pixel_size * pixel_amount;
+	}
+	else
+	{
+		viewport->math.imaginary_max += \
+			viewport->painter.pixel_size * pixel_amount;
+	}
+	return (viewport);
+}
+
+t_fractol_viewport	*resize_viewport(t_fractol_viewport *viewport, \
+int32_t width, int32_t height)
+{
+	mlx_resize_image(viewport->canvas, width, height);
+	viewport->painter.height = height;
+	viewport->painter.width = width;
+	return (set_painter_pixels(viewport, 0));
 }
