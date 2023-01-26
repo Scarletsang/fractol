@@ -45,7 +45,7 @@ void	fractol_key_hook(mlx_key_data_t keydata, void *hook_ctx)
 		return ;
 	if (keydata.key == MLX_KEY_ESCAPE)
 	{
-		mlx_terminate(((t_fractol_hook_ctx *)hook_ctx)->mlx);
+		mlx_close_window(((t_fractol_context *)hook_ctx)->mlx);
 		return ;
 	}
 	fractol_translation_control(keydata, (t_fractol_hook_ctx *)hook_ctx);
