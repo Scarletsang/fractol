@@ -19,9 +19,9 @@ COMPLEX_SRC:= \
 	complex/complex.c \
 	complex/equation.c \
 	complex/distance_estimator.c
-VIEWPORT_SRC:= \
-	viewport/viewport.c \
-	viewport/viewport_setter.c
+CANVAS_SRC:= \
+	canvas/canvas.c \
+	canvas/viewport.c
 PAINTER_SRC:= \
 	painter/translation.c \
 	painter/pixel_copier.c \
@@ -29,7 +29,7 @@ PAINTER_SRC:= \
 SRC:= \
 	main.c \
 	hooks.c
-OBJS=${COMPLEX_SRC:.c=.o} ${VIEWPORT_SRC:.c=.o} ${PAINTER_SRC:.c=.o} ${SRC:.c=.o}
+OBJS=${COMPLEX_SRC:.c=.o} ${CANVAS_SRC:.c=.o} ${PAINTER_SRC:.c=.o} ${SRC:.c=.o}
 
 ########################
 ####   debug files  ####
@@ -52,7 +52,7 @@ DEPS:= ${GLFW} ${MLX} ${OBJS}
 INCLUDE:= \
 	MLX42/include \
 	complex \
-	viewport \
+	canvas \
 	painter \
 	${DEBUG_LIB}
 
