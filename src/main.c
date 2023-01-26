@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 23:47:55 by htsang            #+#    #+#             */
-/*   Updated: 2023/01/25 00:03:19 by htsang           ###   ########.fr       */
+/*   Updated: 2023/01/25 22:28:35 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int32_t	main(void)
 {
 	mlx_t				*mlx;
 	mlx_image_t			*canvas;
-	t_fractol_viewport	viewport;
+	t_fractol_hook_ctx	hook_ctx;
 
 	mlx = mlx_init(WINDOW_WIDTH, WINDOW_HEIGHT, "fractol", true);
 	if (!mlx)
@@ -27,10 +27,11 @@ int32_t	main(void)
 		mlx_terminate(mlx);
 		exit(EXIT_FAILURE);
 	}
-	init_mandelbrot(&viewport, canvas);
-	draw_mandelbrot(&viewport);
+	init_mandelbrot(&hook_ctx.viewport, canvas);
+	draw_mandelbrot(&hook_ctx.viewport);
 	mlx_image_to_window(mlx, canvas, 0, 0);
-	mlx_key_hook(mlx, &fractol_key_hook, &viewport);
+	mlx_key_hook(mlx, &fractol_key_hook, &hook_ctx);
+	mlx_resize_hook(mlx, &fractol_resize_hook, &hook_ctx);
 	mlx_loop(mlx);
 	mlx_terminate(mlx);
 	return (EXIT_SUCCESS);

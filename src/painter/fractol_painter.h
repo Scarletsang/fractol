@@ -78,4 +78,20 @@ mlx_image_t *canvas);
 
 uint32_t			distance_to_color(double value);
 
+////////////////////////////////
+///////   translation   ////////
+////////////////////////////////
+
+void				copy_pixels_right(mlx_image_t *canvas, \
+uint32_t delta);
+
+void				copy_pixels_left(mlx_image_t *canvas, \
+uint32_t delta);
+
+void				copy_pixels_down(mlx_image_t *canvas, \
+uint32_t delta);
+
+void				copy_pixels_up(mlx_image_t *canvas, \
+uint32_t delta);
+
 #endif
