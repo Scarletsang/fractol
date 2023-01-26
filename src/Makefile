@@ -1,5 +1,15 @@
 NAME:=fractol
 
+##############################
+#### compilation settings ####
+##############################
+
+CC=cc
+CFLAGS= -Wall -Wextra -Werror -Ofast
+ifdef GFLAG
+	CFLAGS+= -g3 -fsanitize=address
+endif
+
 #######################
 #### project files ####
 #######################
@@ -10,12 +20,21 @@ COMPLEX_SRC:= \
 	complex/equation.c \
 	complex/distance_estimator.c
 PAINTER_SRC:= \
-	painter/painter.c \
-	painter/viewport.c
+	painter/viewport.c \
+	painter/viewport_setter.c \
+	painter/translation.c \
+	painter/pixel_copier.c \
+	painter/mandelbrot.c
 SRC:= \
 	main.c \
 	hooks.c
 OBJS=${SRC:.c=.o} ${COMPLEX_SRC:.c=.o} ${PAINTER_SRC:.c=.o}
+
+########################
+####   debug files  ####
+########################
+
+OBJS+=${if ${findstring -g3,${CFLAGS}},${DEBUG_OBJS},}
 
 ########################
 ####    libaries    ####
@@ -32,15 +51,8 @@ DEPS:= ${GLFW} ${MLX} ${OBJS}
 INCLUDE:= \
 	MLX42/include \
 	complex \
-	painter
-
-##############################
-#### compilation settings ####
-##############################
-
-CC=cc
-CFLAGS= -Wall -Wextra -Werror -Ofast
-# CFLAGS+= -g3 -fsanitize=address
+	painter \
+	${DEBUG_LIB}
 
 all: ${NAME}
 
@@ -49,10 +61,10 @@ ${NAME}: ${DEPS}
 		echo "Compilation successful"
 
 ${MLX}:
-	make ${if ${findstring -g3,${CFLAGS}},--debug,} HEADERS='-I ../glfw-3.3.8/include/' -C MLX42/
+	make ${if ${findstring -g3,${CFLAGS}},DEBUG=1,} HEADERS='-I ../glfw-3.3.8/include/' -C MLX42/
 
 %.o: %.c
-	@${CC} ${CFLAGS} ${addprefix -I ,${INCLUDE}} -c $< -o $@
+	${CC} ${CFLAGS} ${addprefix -I ,${INCLUDE}} -c $< -o $@
 
 clean:
 	@make clean -C MLX42/
