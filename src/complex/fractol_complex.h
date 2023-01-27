@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 19:41:10 by htsang            #+#    #+#             */
-/*   Updated: 2023/01/24 22:15:44 by htsang           ###   ########.fr       */
+/*   Updated: 2023/01/27 20:20:39 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,9 @@ typedef struct s_fractol_complex
 	double	real;
 	double	imaginary;
 }				t_fractol_complex;
+
+typedef double	(*t_fractol_func)(t_fractol_complex *constant, \
+t_fractol_complex *variable, double border_size, int iteration);
 
 ////////////////////////////////////
 ///////   Basic interface   ////////
@@ -75,5 +78,8 @@ t_fractol_complex *z);
 
 double				mandelbrot_distance_estimator(t_fractol_complex *z, \
 t_fractol_complex *c, double border_size, int iteration);
+
+double				julia_distance_estimator(t_fractol_complex *c, \
+t_fractol_complex *original_z, double border_size, int iteration);
 
 #endif
