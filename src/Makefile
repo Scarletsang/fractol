@@ -5,7 +5,7 @@ NAME:=fractol
 ##############################
 
 CC=cc
-CFLAGS= -Wall -Wextra -Werror -Ofast
+CFLAGS= -Wall -Wextra -Ofast
 ifdef FSANITIZE
 	CFLAGS+= -g3 -fsanitize=address
 endif
@@ -15,21 +15,23 @@ endif
 #######################
 
 COMPLEX_SRC:= \
-	complex/arithematic.c \
 	complex/complex.c \
+	complex/arithematic.c \
 	complex/equation.c \
 	complex/distance_estimator.c
 CANVAS_SRC:= \
 	canvas/canvas.c \
 	canvas/viewport.c
 PAINTER_SRC:= \
-	painter/translation.c \
-	painter/pixel_copier.c \
-	painter/mandelbrot.c
+	painter/painter.c \
+	painter/pixel_copier.c
+CONTEXT_SRC:= \
+	context/context.c \
+	context/translation.c
 SRC:= \
 	main.c \
 	hooks.c
-OBJS=${COMPLEX_SRC:.c=.o} ${CANVAS_SRC:.c=.o} ${PAINTER_SRC:.c=.o} ${SRC:.c=.o}
+OBJS=${COMPLEX_SRC:.c=.o} ${CANVAS_SRC:.c=.o} ${PAINTER_SRC:.c=.o} ${CONTEXT_SRC:.c=.o} ${SRC:.c=.o}
 
 ########################
 ####   debug files  ####
@@ -54,6 +56,7 @@ INCLUDE:= \
 	complex \
 	canvas \
 	painter \
+	context \
 	${DEBUG_LIB}
 
 all: ${NAME}
