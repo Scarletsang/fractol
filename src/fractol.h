@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 16:01:29 by htsang            #+#    #+#             */
-/*   Updated: 2023/01/27 00:52:59 by htsang           ###   ########.fr       */
+/*   Updated: 2023/01/27 22:20:25 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 # endif
 
 # include <stdlib.h>
-# include "fractol_painter.h"
+# include "fractol_context.h"
 
 void	fractol_key_hook(mlx_key_data_t keydata, void *hook_ctx);
 

@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 20:53:19 by htsang            #+#    #+#             */
-/*   Updated: 2023/01/26 23:55:16 by htsang           ###   ########.fr       */
+/*   Updated: 2023/01/27 22:29:38 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,26 +18,26 @@ t_fractol_context *program, uint32_t delta)
 	if (keydata.key == MLX_KEY_LEFT)
 	{
 		copy_pixels_right(program->image, delta);
-		translate_viewport_left(program, delta);
-		draw_mandelbrot(&program->canvas);
+		calculate_left_translation(program, delta);
+		paint_fractal(&program->canvas, program->fractal);
 	}
 	else if (keydata.key == MLX_KEY_RIGHT)
 	{
 		copy_pixels_left(program->image, delta);
-		translate_viewport_right(program, delta);
-		draw_mandelbrot(&program->canvas);
+		calculate_right_translation(program, delta);
+		paint_fractal(&program->canvas, program->fractal);
 	}
 	else if (keydata.key == MLX_KEY_DOWN)
 	{
 		copy_pixels_up(program->image, delta);
-		translate_viewport_down(program, delta);
-		draw_mandelbrot(&program->canvas);
+		calculate_down_translation(program, delta);
+		paint_fractal(&program->canvas, program->fractal);
 	}
 	else if (keydata.key == MLX_KEY_UP)
 	{
 		copy_pixels_down(program->image, delta);
-		translate_viewport_up(program, delta);
-		draw_mandelbrot(&program->canvas);
+		calculate_up_translation(program, delta);
+		paint_fractal(&program->canvas, program->fractal);
 	}
 }
 
@@ -56,5 +56,6 @@ void	fractol_key_hook(mlx_key_data_t keydata, void *hook_ctx)
 void	fractol_resize_hook(int32_t width, int32_t height, void *program)
 {
 	resize_canvas((t_fractol_context *) program, width, height);
-	draw_mandelbrot(&((t_fractol_context *) program)->canvas);
+	paint_fractal(&((t_fractol_context *) program)->canvas, \
+		((t_fractol_context *) program)->fractal);
 }
