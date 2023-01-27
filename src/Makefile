@@ -27,7 +27,8 @@ PAINTER_SRC:= \
 	painter/pixel_copier.c
 CONTEXT_SRC:= \
 	context/context.c \
-	context/translation.c
+	context/translation.c \
+	context/translation_calculator.c
 SRC:= \
 	main.c \
 	hooks.c

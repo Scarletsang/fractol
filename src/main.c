@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 23:47:55 by htsang            #+#    #+#             */
-/*   Updated: 2023/01/27 22:14:40 by htsang           ###   ########.fr       */
+/*   Updated: 2023/01/27 23:56:09 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,12 @@ int32_t	main(void)
 	init_fractal(program, &mandelbrot_distance_estimator, -1.4, 0);
 	paint_fractal(&program->canvas, program->fractal);
 	mlx_image_to_window(program->mlx, program->image, 0, 0);
-	mlx_key_hook(program->mlx, &fractol_key_hook, program);
-	mlx_resize_hook(program->mlx, &fractol_resize_hook, program);
+	program->arrow_keys = 0;
+	mlx_loop_hook(program->mlx, \
+		(void (*)(void *)) fractol_translation_hook, program);
+	mlx_key_hook(program->mlx, (mlx_keyfunc) fractol_key_hook, program);
+	mlx_resize_hook(program->mlx, (mlx_resizefunc) fractol_resize_hook, \
+		program);
 	mlx_loop(program->mlx);
 	mlx_terminate(program->mlx);
 	free(program);

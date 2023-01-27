@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 22:16:49 by htsang            #+#    #+#             */
-/*   Updated: 2023/01/27 22:29:40 by htsang           ###   ########.fr       */
+/*   Updated: 2023/01/28 00:37:54 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ typedef struct s_fractol_context
 	t_fractol_func		fractal;
 	t_fractol_complex	viewport;
 	t_fractol_canvas	canvas;
+	unsigned int		arrow_keys;
 }				t_fractol_context;
 
 t_fractol_context	*init_fractal(t_fractol_context *program, \
@@ -33,6 +34,12 @@ double center_real, double center_imaginary);
 ////////////////////////////////
 ///////   translation   ////////
 ////////////////////////////////
+
+void				translate_left_or_right(unsigned int arrow_keys, \
+t_fractol_context *program);
+
+void				translate_up_or_down(unsigned int arrow_keys, \
+t_fractol_context *program);
 
 t_fractol_context	*calculate_left_translation(t_fractol_context *program, \
 uint32_t delta);

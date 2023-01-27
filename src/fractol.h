@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 16:01:29 by htsang            #+#    #+#             */
-/*   Updated: 2023/01/27 22:20:25 by htsang           ###   ########.fr       */
+/*   Updated: 2023/01/27 23:55:14 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,11 @@
 # include <stdlib.h>
 # include "fractol_context.h"
 
-void	fractol_key_hook(mlx_key_data_t keydata, void *hook_ctx);
+void	fractol_translation_hook(t_fractol_context *program);
 
-void	fractol_resize_hook(int32_t width, int32_t height, void *hook_ctx);
+void	fractol_key_hook(mlx_key_data_t keydata, t_fractol_context *hook_ctx);
+
+void	fractol_resize_hook(int32_t width, int32_t height, \
+t_fractol_context *program);
 
 #endif
