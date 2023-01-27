@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 16:14:19 by htsang            #+#    #+#             */
-/*   Updated: 2023/01/26 22:50:15 by htsang           ###   ########.fr       */
+/*   Updated: 2023/01/27 22:31:35 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,35 +16,26 @@
 # include "fractol_canvas.h"
 # include "limits.h"
 
-# ifndef BORDER_THICKNESS
-#  define BORDER_THICKNESS 0.01
-# endif
+typedef struct s_fractol_painter
+{
+	uint32_t			x;
+	uint32_t			y;
+	t_fractol_complex	z;
+	t_fractol_complex	c;
+}				t_fractol_painter;
 
-/////////////////////////////////////
-///////   mandelbrot's set   ////////
-/////////////////////////////////////
+////////////////////////////
+///////   painter   ////////
+////////////////////////////
 
-int					draw_mandelbrot(t_fractol_canvas *viewport);
-
-t_fractol_context	*init_mandelbrot(t_fractol_context *program);
+int					paint_fractal(t_fractol_canvas *canvas, \
+t_fractol_func fractal);
 
 uint32_t			distance_to_color(double value);
 
-////////////////////////////////
-///////   translation   ////////
-////////////////////////////////
-
-t_fractol_context	*translate_viewport_left(t_fractol_context *program, \
-uint32_t delta);
-
-t_fractol_context	*translate_viewport_right(t_fractol_context *program, \
-uint32_t delta);
-
-t_fractol_context	*translate_viewport_down(t_fractol_context *program, \
-uint32_t delta);
-
-t_fractol_context	*translate_viewport_up(t_fractol_context *program, \
-uint32_t delta);
+//////////////////////////////////////
+///////   pixel translation   ////////
+//////////////////////////////////////
 
 void				copy_pixels_right(mlx_image_t *canvas, \
 uint32_t delta);

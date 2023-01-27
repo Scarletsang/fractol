@@ -6,12 +6,11 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 15:56:56 by htsang            #+#    #+#             */
-/*   Updated: 2023/01/26 22:45:17 by htsang           ###   ########.fr       */
+/*   Updated: 2023/01/27 22:31:09 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol_painter.h"
-#include <stdio.h>
 
 void	copy_pixels_right(mlx_image_t *image, uint32_t delta)
 {
