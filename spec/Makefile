@@ -49,7 +49,7 @@ re: fclean all
 fractol: targetall
 	@${TARGET_DIR}/fractol
 
-targetall: LIB=${addprefix -I ${TARGET_DIR}, /painter /MLX42/include /complex /viewport}
+targetall: LIB=${addprefix -I ${TARGET_DIR}, /painter /MLX42/include /complex /canvas}
 targetall: ${DEBUG_SRC:.c=.o}
 	@make FSANITIZE=${FSANITIZE} DEBUG_LIB="${DEBUG_LIB}" DEBUG_OBJS="${DEBUG_SRC:.c=.o}" -C ${TARGET_DIR}
 
