@@ -12,44 +12,34 @@
 
 #include "fractol_canvas.h"
 
-t_fractol_context	*set_viewport(t_fractol_context *program, \
-double center_real, double center_imaginary)
-{
-	program->viewport.real = center_real - \
-		(program->canvas.pixel_size * program->image->width / 2);
-	program->viewport.imaginary = center_imaginary + \
-		(program->canvas.pixel_size * program->image->height / 2);
-	return (program);
-}
-
-t_fractol_context	*move_viewport_real(t_fractol_context *program, \
-uint32_t pixel_amount, int direction)
+t_fractol_canvas	*move_viewport_real(t_fractol_canvas *canvas, \
+t_fractol_complex *viewport, uint32_t pixel_amount, int direction)
 {
 	if (direction <= 0)
 	{
-		program->viewport.real -= \
-			program->canvas.pixel_size * pixel_amount;
+		viewport->real -= \
+			canvas->settings.pixel_size * pixel_amount;
 	}
 	else
 	{
-		program->viewport.real += \
-			program->canvas.pixel_size * pixel_amount;
+		viewport->real += \
+			canvas->settings.pixel_size * pixel_amount;
 	}
-	return (program);
+	return (canvas);
 }
 
-t_fractol_context	*move_viewport_imaginary(t_fractol_context *program, \
-uint32_t pixel_amount, int direction)
+t_fractol_canvas	*move_viewport_imaginary(t_fractol_canvas *canvas, \
+t_fractol_complex *viewport, uint32_t pixel_amount, int direction)
 {
 	if (direction <= 0)
 	{
-		program->viewport.imaginary -= \
-			program->canvas.pixel_size * pixel_amount;
+		viewport->imaginary -= \
+			canvas->settings.pixel_size * pixel_amount;
 	}
 	else
 	{
-		program->viewport.imaginary += \
-			program->canvas.pixel_size * pixel_amount;
+		viewport->imaginary += \
+			canvas->settings.pixel_size * pixel_amount;
 	}
-	return (program);
+	return (canvas);
 }
