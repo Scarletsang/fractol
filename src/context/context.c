@@ -6,11 +6,20 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 22:19:34 by htsang            #+#    #+#             */
-/*   Updated: 2023/01/27 22:25:37 by htsang           ###   ########.fr       */
+/*   Updated: 2023/01/28 13:09:38 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol_context.h"
+
+void	set_controls(action_t *key_action, unsigned int *controls, \
+t_fractol_control control)
+{
+	if (*key_action == MLX_PRESS)
+		*controls |= control;
+	if (*key_action == MLX_RELEASE)
+		*controls &= ~control;
+}
 
 t_fractol_context	*set_viewport(t_fractol_context *program, \
 double center_real, double center_imaginary)
