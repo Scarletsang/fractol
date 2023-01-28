@@ -5,7 +5,7 @@ NAME:=fractol
 ##############################
 
 CC=cc
-CFLAGS= -Wall -Wextra -Ofast
+CFLAGS= -Wall -Wextra -Werror -Ofast
 ifdef FSANITIZE
 	CFLAGS+= -g3 -fsanitize=address
 endif
