@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 13:58:59 by htsang            #+#    #+#             */
-/*   Updated: 2023/01/27 22:22:33 by htsang           ###   ########.fr       */
+/*   Updated: 2023/01/28 10:51:44 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ typedef struct s_fractol_canvas
 	uint32_t					width;
 	uint32_t					height;
 	uint32_t					horizontal_offset;
-	uint32_t					*pixels_start;
+	int32_t						*pixels_start;
 	t_fractol_complex			complex_start;
 	t_fractol_canvas_setting	settings;
 }				t_fractol_canvas;

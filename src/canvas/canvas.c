@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 21:46:24 by htsang            #+#    #+#             */
-/*   Updated: 2023/01/27 21:45:41 by htsang           ###   ########.fr       */
+/*   Updated: 2023/01/28 11:00:24 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,7 @@ uint32_t offset)
 t_fractol_canvas	*set_canvas_pixels_start(t_fractol_canvas *canvas, \
 mlx_image_t *image, uint32_t offset)
 {
-	canvas->pixels_start = \
-		(uint32_t *)(image->pixels) + offset;
+	canvas->pixels_start = (int32_t *)(image->pixels) + offset;
 	return (canvas);
 }
 
