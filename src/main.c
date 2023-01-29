@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 23:47:55 by htsang            #+#    #+#             */
-/*   Updated: 2023/01/28 13:07:56 by htsang           ###   ########.fr       */
+/*   Updated: 2023/01/29 22:32:30 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,8 @@ int32_t	main(void)
 	mlx_loop_hook(program->mlx, \
 		(void (*)(void *)) fractol_translation_hook, program);
 	mlx_key_hook(program->mlx, (mlx_keyfunc) fractol_key_hook, program);
+	mlx_scroll_hook(program->mlx, (mlx_scrollfunc) fractol_scroll_hook, \
+		program);
 	mlx_resize_hook(program->mlx, (mlx_resizefunc) fractol_resize_hook, \
 		program);
 	mlx_loop(program->mlx);

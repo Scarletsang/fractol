@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 20:53:19 by htsang            #+#    #+#             */
-/*   Updated: 2023/01/28 13:13:41 by htsang           ###   ########.fr       */
+/*   Updated: 2023/01/29 22:31:46 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,21 @@ void	fractol_key_hook(mlx_key_data_t keydata, t_fractol_context *program)
 	if (keydata.key == MLX_KEY_UP)
 	{
 		set_controls(&keydata.action, &program->controls, TRANSLATE_UP);
+	}
+}
+
+void	fractol_scroll_hook(double xdelta, double ydelta, \
+t_fractol_context *program)
+{
+	if (ydelta)
+	{
+		zoom(program, ydelta);
+		paint_fractal(&program->canvas, program->fractal);
+	}
+	else if (xdelta)
+	{
+		zoom(program, xdelta);
+		paint_fractal(&program->canvas, program->fractal);
 	}
 }
 

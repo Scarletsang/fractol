@@ -76,4 +76,10 @@ uint32_t delta);
 t_fractol_context	*resize_canvas(t_fractol_context *program, \
 int32_t width, int32_t height);
 
+////////////////////////////////
+///////       zoom       ///////
+////////////////////////////////
+
+void				zoom(t_fractol_context *program, double ydelta);
+
 #endif
