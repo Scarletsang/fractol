@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 22:16:49 by htsang            #+#    #+#             */
-/*   Updated: 2023/01/29 22:38:21 by htsang           ###   ########.fr       */
+/*   Updated: 2023/01/30 11:03:04 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,6 @@ int32_t width, int32_t height);
 ///////       zoom       ///////
 ////////////////////////////////
 
-void				zoom(t_fractol_context *program, double ydelta);
+t_fractol_context	*calculate_zoom(t_fractol_context *program, double ydelta);
 
 #endif

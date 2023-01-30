@@ -29,7 +29,7 @@ CONTEXT_SRC:= \
 	context/context.c \
 	context/translation.c \
 	context/translation_calculator.c \
-	context/zoom.c
+	context/zoom_calculator.c
 SRC:= \
 	main.c \
 	hooks.c

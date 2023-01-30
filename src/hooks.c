@@ -50,12 +50,12 @@ t_fractol_context *program)
 {
 	if (ydelta)
 	{
-		zoom(program, ydelta);
+		calculate_zoom(program, ydelta);
 		paint_fractal(&program->canvas, program->fractal);
 	}
 	else if (xdelta)
 	{
-		zoom(program, xdelta);
+		calculate_zoom(program, xdelta);
 		paint_fractal(&program->canvas, program->fractal);
 	}
 }
