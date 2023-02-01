@@ -5,7 +5,7 @@ NAME:=fractol
 ##############################
 
 CC=cc
-CFLAGS= -Wall -Wextra -Werror -Ofast
+CFLAGS= -Wall -Wextra -march=nocona -flto -Ofast
 ifdef FSANITIZE
 	CFLAGS+= -g3 -fsanitize=address
 endif
@@ -45,7 +45,7 @@ OBJS+=${if ${findstring -g3,${CFLAGS}},${DEBUG_OBJS},}
 ####    libaries    ####
 ########################
 
-GLFW:=glfw-3.3.8/lib-universal/libglfw3.a
+GLFW:=glfw-3.3.8/lib-x86_64/libglfw3.a
 MLX:=MLX42/libmlx42.a
 
 ########################
