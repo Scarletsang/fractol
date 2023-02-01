@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 19:41:10 by htsang            #+#    #+#             */
-/*   Updated: 2023/01/27 20:20:39 by htsang           ###   ########.fr       */
+/*   Updated: 2023/02/01 02:05:25 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,10 @@ t_fractol_complex *variable, double border_size, int iteration);
 ///////   Basic interface   ////////
 ////////////////////////////////////
 
-t_fractol_complex	*copy_complex_number(t_fractol_complex *dest, \
+void				copy_complex_number(t_fractol_complex *dest, \
 t_fractol_complex *src);
 
-t_fractol_complex	*set_complex_number(t_fractol_complex *complex, \
+void				set_complex_number(t_fractol_complex *complex, \
 double real, double imaginary);
 
 double				complex_magnitude(t_fractol_complex *complex);
@@ -51,30 +51,29 @@ double				complex_magnitude_square(t_fractol_complex *complex);
 ///////   Complex Arithematic   ////////
 ////////////////////////////////////////
 
-t_fractol_complex	*complex_pow(t_fractol_complex *complex, \
+void				complex_pow(t_fractol_complex *complex, \
 int power);
 
-t_fractol_complex	*complex_multiply(t_fractol_complex *complex, \
+void				complex_multiply(t_fractol_complex *complex, \
 double real, double imaginary);
 
-t_fractol_complex	*complex_scalar_multiply(t_fractol_complex *complex, \
+void				complex_scalar_multiply(t_fractol_complex *complex, \
 double scalar);
 
-t_fractol_complex	*complex_add(t_fractol_complex *complex, \
+void				complex_add(t_fractol_complex *complex, \
 double real, double imaginary);
 
 ////////////////////////////////////////
 ///////        Equations        ////////
 ////////////////////////////////////////
 
-double				mandelbrot_border(t_fractol_complex *complex, \
-double scalar);
-
-t_fractol_complex	*mandelbrot_equation(t_fractol_complex *z, \
+void				mandelbrot_equation(t_fractol_complex *z, \
 t_fractol_complex *c);
 
-t_fractol_complex	*mandelbrot_equation_derivative(t_fractol_complex *dz, \
-t_fractol_complex *z);
+void				mandelbrot_equation_derivative(t_fractol_complex *dz, \
+t_fractol_complex *z, double dc);
+
+double				fractal_border(t_fractol_complex *complex, double border_size);
 
 double				mandelbrot_distance_estimator(t_fractol_complex *z, \
 t_fractol_complex *c, double border_size, int iteration);

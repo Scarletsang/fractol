@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 20:40:16 by htsang            #+#    #+#             */
-/*   Updated: 2023/01/23 21:53:22 by htsang           ###   ########.fr       */
+/*   Updated: 2023/02/01 00:05:08 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,18 +24,16 @@ double	complex_magnitude(t_fractol_complex *complex)
 	+ complex->real * complex->real));
 }
 
-t_fractol_complex	*copy_complex_number(t_fractol_complex *dest, \
+void	copy_complex_number(t_fractol_complex *dest, \
 t_fractol_complex *src)
 {
 	dest->real = src->real;
 	dest->imaginary = src->imaginary;
-	return (dest);
 }
 
-t_fractol_complex	*set_complex_number(t_fractol_complex *complex, \
+void	set_complex_number(t_fractol_complex *complex, \
 double real, double imaginary)
 {
 	complex->real = real;
 	complex->imaginary = imaginary;
-	return (complex);
 }

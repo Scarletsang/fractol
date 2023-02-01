@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 13:02:33 by htsang            #+#    #+#             */
-/*   Updated: 2023/01/27 22:32:17 by htsang           ###   ########.fr       */
+/*   Updated: 2023/02/01 02:07:40 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,22 +18,22 @@ t_fractol_complex *c, double border_size, int iteration)
 	t_fractol_complex	dz;
 	double				z_magnitude_square;
 
-	set_complex_number(z, 0, 0);
+	copy_complex_number(z, c);
 	set_complex_number(&dz, 1, 0);
 	while (iteration > 0)
 	{
-		mandelbrot_equation_derivative(&dz, z);
-		mandelbrot_equation(z, c);
 		z_magnitude_square = complex_magnitude_square(z);
-		if (z_magnitude_square < mandelbrot_border(&dz, border_size))
+		if (z_magnitude_square < fractal_border(&dz, border_size))
 		{
 			return (BORDER_VALUE);
 		}
-		if (z_magnitude_square > 4)
+		if (z_magnitude_square > 100)
 		{
 			return (log(z_magnitude_square) * \
 				sqrt(z_magnitude_square) / complex_magnitude(&dz));
 		}
+		mandelbrot_equation_derivative(&dz, z, 1);
+		mandelbrot_equation(z, c);
 		iteration--;
 	}
 	return (INSET_VALUE);
@@ -46,23 +46,23 @@ t_fractol_complex *original_z, double border_size, int iteration)
 	t_fractol_complex	z;
 	double				z_magnitude_square;
 
-	copy_complex_number(&z, original_z);
 	set_complex_number(c, -0.8, 0.16);
+	copy_complex_number(&z, original_z);
 	set_complex_number(&dz, 1, 0);
 	while (iteration > 0)
 	{
-		mandelbrot_equation_derivative(&dz, &z);
-		mandelbrot_equation(&z, c);
 		z_magnitude_square = complex_magnitude_square(&z);
-		if (z_magnitude_square < mandelbrot_border(&dz, border_size))
+		if (z_magnitude_square < fractal_border(&dz, border_size))
 		{
 			return (BORDER_VALUE);
 		}
-		if (z_magnitude_square > 4)
+		if (z_magnitude_square > 100)
 		{
 			return (log(z_magnitude_square) * \
 				sqrt(z_magnitude_square) / complex_magnitude(&dz));
 		}
+		mandelbrot_equation_derivative(&dz, &z, 1);
+		mandelbrot_equation(&z, c);
 		iteration--;
 	}
 	return (INSET_VALUE);
