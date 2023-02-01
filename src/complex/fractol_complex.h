@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 19:41:10 by htsang            #+#    #+#             */
-/*   Updated: 2023/02/01 02:05:25 by htsang           ###   ########.fr       */
+/*   Updated: 2023/02/01 15:54:11 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,8 @@ t_fractol_complex *c);
 void				mandelbrot_equation_derivative(t_fractol_complex *dz, \
 t_fractol_complex *z, double dc);
 
-double				fractal_border(t_fractol_complex *complex, double border_size);
+double				fractal_border(t_fractol_complex *complex, \
+double border_size);
 
 double				mandelbrot_distance_estimator(t_fractol_complex *z, \
 t_fractol_complex *c, double border_size, int iteration);

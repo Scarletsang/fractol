@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 13:02:33 by htsang            #+#    #+#             */
-/*   Updated: 2023/02/01 02:07:40 by htsang           ###   ########.fr       */
+/*   Updated: 2023/02/01 15:59:06 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ t_fractol_complex *original_z, double border_size, int iteration)
 	t_fractol_complex	z;
 	double				z_magnitude_square;
 
-	set_complex_number(c, -0.8, 0.16);
 	copy_complex_number(&z, original_z);
 	set_complex_number(&dz, 1, 0);
 	while (iteration > 0)
