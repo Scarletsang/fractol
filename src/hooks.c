@@ -6,18 +6,31 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 20:53:19 by htsang            #+#    #+#             */
-/*   Updated: 2023/02/01 02:14:18 by htsang           ###   ########.fr       */
+/*   Updated: 2023/02/01 15:52:45 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
+#include <stdio.h>
 
 void	fractol_translation_hook(t_fractol_context *program)
 {
+	int	painted;
+
 	if (!program->controls)
 		return ;
-	translate_left_or_right(program->controls & 0b0011, program);
-	translate_up_or_down(program->controls >> 2, program);
+	update_cursor_pos(program);
+	if ((program->controls & CHANGE_Z) == CHANGE_Z)
+	{
+		convert_cursor_pos_to_complex(program, &program->canvas.z);
+	}
+	painted = translate_left_or_right(program->controls & 0b0011, program);
+	painted += translate_up_or_down(program->controls & 0b1100, program);
+	if (!painted)
+	{
+		refresh_fractal(program);
+		paint_fractal(&program->canvas, program->image, program->fractal);
+	}
 }
 
 void	fractol_key_hook(mlx_key_data_t keydata, t_fractol_context *program)
@@ -43,6 +56,10 @@ void	fractol_key_hook(mlx_key_data_t keydata, t_fractol_context *program)
 	{
 		set_controls(&keydata.action, &program->controls, TRANSLATE_UP);
 	}
+	if (keydata.key == MLX_KEY_Z)
+	{
+		set_controls(&keydata.action, &program->controls, CHANGE_Z);
+	}
 }
 
 void	fractol_scroll_hook(double xdelta, double ydelta, \
@@ -50,11 +67,13 @@ t_fractol_context *program)
 {
 	if (ydelta)
 	{
+		update_cursor_pos(program);
 		calculate_zoom(program, ydelta);
 		paint_fractal(&program->canvas, program->image, program->fractal);
 	}
 	else if (xdelta)
 	{
+		update_cursor_pos(program);
 		calculate_zoom(program, xdelta);
 		paint_fractal(&program->canvas, program->image, program->fractal);
 	}
