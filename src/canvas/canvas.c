@@ -6,32 +6,25 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 21:46:24 by htsang            #+#    #+#             */
-/*   Updated: 2023/01/31 23:44:44 by htsang           ###   ########.fr       */
+/*   Updated: 2023/02/01 14:08:09 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol_canvas.h"
 
-t_fractol_canvas	*set_canvas_dimension(t_fractol_canvas *canvas, \
-uint32_t width, uint32_t height)
+t_fractol_canvas	*set_canvas_end(t_fractol_canvas *canvas, \
+uint32_t end_x, uint32_t end_y)
 {
-	canvas->width = width;
-	canvas->height = height;
+	canvas->end_x = end_x;
+	canvas->end_y = end_y;
 	return (canvas);
 }
 
-t_fractol_canvas	*set_canvas_offsets(t_fractol_canvas *canvas, \
-uint32_t horizontal, uint32_t vertical)
+t_fractol_canvas	*set_canvas_start(t_fractol_canvas *canvas, \
+uint32_t start_x, uint32_t start_y)
 {
-	canvas->horizontal_offset = horizontal;
-	canvas->vertical_offset = vertical;
-	return (canvas);
-}
-
-t_fractol_canvas	*set_canvas_vertical_offset(t_fractol_canvas *canvas, \
-uint32_t offset)
-{
-	canvas->vertical_offset = offset;
+	canvas->start_x = start_x;
+	canvas->start_y = start_y;
 	return (canvas);
 }
 

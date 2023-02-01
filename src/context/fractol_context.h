@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 22:16:49 by htsang            #+#    #+#             */
-/*   Updated: 2023/01/30 11:03:04 by htsang           ###   ########.fr       */
+/*   Updated: 2023/02/01 15:45:02 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ typedef struct s_fractol_context
 
 t_fractol_context	*init_fractal(t_fractol_context *program, \
 t_fractol_func fractal, double center_real, double center_complex);
+
+t_fractol_context	*refresh_fractal(t_fractol_context *program);
 
 t_fractol_context	*set_viewport_center(t_fractol_context *program, \
 double center_real, double center_imaginary);

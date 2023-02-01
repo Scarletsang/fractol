@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 13:58:59 by htsang            #+#    #+#             */
-/*   Updated: 2023/01/31 23:46:42 by htsang           ###   ########.fr       */
+/*   Updated: 2023/02/01 14:14:44 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,11 @@ typedef struct s_fractol_canvas_setting
 
 typedef struct s_fractol_canvas
 {
-	uint32_t					width;
-	uint32_t					height;
-	uint32_t					horizontal_offset;
-	uint32_t					vertical_offset;
+	uint32_t					start_x;
+	uint32_t					start_y;
+	uint32_t					end_x;
+	uint32_t					end_y;
+	t_fractol_complex			z;
 	t_fractol_complex			complex_start;
 	t_fractol_canvas_setting	settings;
 }				t_fractol_canvas;
@@ -37,11 +38,11 @@ typedef struct s_fractol_canvas
 ///////   canvas   ////////
 ///////////////////////////
 
-t_fractol_canvas	*set_canvas_dimension(t_fractol_canvas *canvas, \
-uint32_t width, uint32_t height);
+t_fractol_canvas	*set_canvas_end(t_fractol_canvas *canvas, \
+uint32_t end_x, uint32_t end_y);
 
-t_fractol_canvas	*set_canvas_offsets(t_fractol_canvas *canvas, \
-uint32_t horizontal, uint32_t vertical);
+t_fractol_canvas	*set_canvas_start(t_fractol_canvas *canvas, \
+uint32_t start_x, uint32_t start_y);
 
 t_fractol_canvas	*set_canvas_complex_start(t_fractol_canvas *canvas, \
 t_fractol_complex *viewport, double real_offset, double imaginary_offset);
