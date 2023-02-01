@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 23:28:11 by htsang            #+#    #+#             */
-/*   Updated: 2023/01/28 13:06:15 by htsang           ###   ########.fr       */
+/*   Updated: 2023/01/31 23:51:01 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ t_fractol_context *program)
 		copy_pixels_left(program->image, 20);
 		calculate_right_translation(program, 20);
 	}
-	paint_fractal(&program->canvas, program->fractal);
+	paint_fractal(&program->canvas, program->image, program->fractal);
 }
 
 void	translate_up_or_down(unsigned int controls, \
@@ -49,5 +49,5 @@ t_fractol_context *program)
 		copy_pixels_down(program->image, 20);
 		calculate_up_translation(program, 20);
 	}
-	paint_fractal(&program->canvas, program->fractal);
+	paint_fractal(&program->canvas, program->image, program->fractal);
 }

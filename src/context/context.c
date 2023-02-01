@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 22:19:34 by htsang            #+#    #+#             */
-/*   Updated: 2023/01/29 22:41:04 by htsang           ###   ########.fr       */
+/*   Updated: 2023/01/31 23:46:18 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,11 +38,10 @@ t_fractol_func fractal, double viewport_real, double viewport_imaginary)
 
 	canvas = &program->canvas;
 	program->fractal = fractal;
-	set_canvas_horizontal_offset(canvas, 0);
+	set_canvas_offsets(canvas, 0, 0);
 	set_complex_number(&program->viewport, viewport_real, viewport_imaginary);
 	set_canvas_dimension(canvas, program->image->width, \
 		program->image->height);
 	set_canvas_complex_start(canvas, &program->viewport, 0, 0);
-	set_canvas_pixels_start(canvas, program->image, 0);
 	return (program);
 }

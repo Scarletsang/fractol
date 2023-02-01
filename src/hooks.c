@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 20:53:19 by htsang            #+#    #+#             */
-/*   Updated: 2023/01/29 22:31:46 by htsang           ###   ########.fr       */
+/*   Updated: 2023/02/01 02:14:18 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,12 +51,12 @@ t_fractol_context *program)
 	if (ydelta)
 	{
 		calculate_zoom(program, ydelta);
-		paint_fractal(&program->canvas, program->fractal);
+		paint_fractal(&program->canvas, program->image, program->fractal);
 	}
 	else if (xdelta)
 	{
 		calculate_zoom(program, xdelta);
-		paint_fractal(&program->canvas, program->fractal);
+		paint_fractal(&program->canvas, program->image, program->fractal);
 	}
 }
 
@@ -64,5 +64,5 @@ void	fractol_resize_hook(int32_t width, int32_t height, \
 t_fractol_context *program)
 {
 	resize_canvas(program, width, height);
-	paint_fractal(&program->canvas, program->fractal);
+	paint_fractal(&program->canvas, program->image, program->fractal);
 }

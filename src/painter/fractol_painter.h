@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 16:14:19 by htsang            #+#    #+#             */
-/*   Updated: 2023/01/28 10:52:29 by htsang           ###   ########.fr       */
+/*   Updated: 2023/02/01 01:11:08 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ typedef struct s_fractol_painter
 ///////   painter   ////////
 ////////////////////////////
 
-int					paint_fractal(t_fractol_canvas *canvas, \
+int					paint_fractal(t_fractol_canvas *canvas, mlx_image_t *image, \
 t_fractol_func fractal);
 
 int32_t				distance_to_color(double value);
