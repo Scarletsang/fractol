@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 13:02:33 by htsang            #+#    #+#             */
-/*   Updated: 2023/02/01 15:59:06 by htsang           ###   ########.fr       */
+/*   Updated: 2023/02/01 21:40:44 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ t_fractol_complex *c, double border_size, int iteration)
 		{
 			return (BORDER_VALUE);
 		}
-		if (z_magnitude_square > 100)
+		if (z_magnitude_square > 1000)
 		{
 			return (log(z_magnitude_square) * \
 				sqrt(z_magnitude_square) / complex_magnitude(&dz));
@@ -55,7 +55,7 @@ t_fractol_complex *original_z, double border_size, int iteration)
 		{
 			return (BORDER_VALUE);
 		}
-		if (z_magnitude_square > 100)
+		if (z_magnitude_square > 1000)
 		{
 			return (log(z_magnitude_square) * \
 				sqrt(z_magnitude_square) / complex_magnitude(&dz));
