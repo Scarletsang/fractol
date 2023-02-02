@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 21:46:24 by htsang            #+#    #+#             */
-/*   Updated: 2023/02/01 14:08:09 by htsang           ###   ########.fr       */
+/*   Updated: 2023/02/02 21:33:09 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,5 +44,14 @@ uint32_t iteration, double pixel_size, double border_thickness)
 	canvas->settings.iteration = iteration;
 	canvas->settings.pixel_size = pixel_size;
 	canvas->settings.border_thickness = border_thickness;
+	return (canvas);
+}
+
+t_fractol_canvas	*init_canvas(t_fractol_canvas *canvas, \
+t_fractol_complex *viewport)
+{
+	set_canvas_start(canvas, 0, 0);
+	set_canvas_end(canvas, canvas->image->width, canvas->image->height);
+	set_canvas_complex_start(canvas, viewport, 0, 0);
 	return (canvas);
 }

@@ -5,7 +5,7 @@ NAME:=fractol
 ##############################
 
 CC=cc
-CFLAGS= -Wall -Wextra -mcpu=apple-m1 -flto -Ofast
+CFLAGS= -Wall -Wextra -march=nocona -flto -Ofast
 ifdef FSANITIZE
 	CFLAGS+= -g3 -fsanitize=address
 endif
@@ -21,15 +21,15 @@ COMPLEX_SRC:= \
 	complex/distance_estimator.c
 CANVAS_SRC:= \
 	canvas/canvas.c \
-	canvas/viewport.c
+	canvas/viewport.c \
+	canvas/translation.c \
+	canvas/translation_calculator.c
 PAINTER_SRC:= \
 	painter/painter.c \
 	painter/pixel_copier.c
 CONTEXT_SRC:= \
 	context/context.c \
 	context/controls.c \
-	context/translation.c \
-	context/translation_calculator.c \
 	context/zoom_calculator.c
 SRC:= \
 	main.c \
@@ -46,7 +46,7 @@ OBJS+=${if ${findstring -g3,${CFLAGS}},${DEBUG_OBJS},}
 ####    libaries    ####
 ########################
 
-GLFW:=glfw-3.3.8/lib-arm64/libglfw3.a
+GLFW:=glfw-3.3.8/lib-x86_64/libglfw3.a
 MLX:=MLX42/libmlx42.a
 
 ########################
