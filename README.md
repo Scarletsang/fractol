@@ -36,11 +36,11 @@ DRAW_MANDELBROT()
         current = BORDER_TRACE(current)
 
       if current = BOUNDARY/OUTSET && right = INSET
-        current++
         current = FILL_INSET(current)
 
 FILL_INSET(current)
-  while (left = EMPTY)
+  current++
+  while (current = EMPTY)
     fill INSET
     current++
 

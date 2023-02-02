@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 15:51:49 by htsang            #+#    #+#             */
-/*   Updated: 2023/02/01 14:15:40 by htsang           ###   ########.fr       */
+/*   Updated: 2023/02/02 19:39:34 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,17 +21,22 @@ int32_t	distance_to_color(double value)
 {
 	if (value == BORDER_VALUE)
 	{
-		return (get_rgba(255, 85, 85, 255));
+		return (BOUNDARY_COLOR);
 	}
 	if (value == INSET_VALUE)
 	{
-		return (0);
+		return (INSET_COLOR);
 	}
 	return (get_rgba(255 * value, 13, 152, 255));
 }
 
 void	init_painter(t_fractol_painter *painter, t_fractol_canvas *canvas)
 {
+	set_complex_number(&painter->complex_end, \
+		canvas->complex_start.imaginary - \
+		(canvas->settings.pixel_size * canvas->end_y), \
+		canvas->complex_start.real + \
+		(canvas->settings.pixel_size * canvas->end_x));
 	painter->c.imaginary = canvas->complex_start.imaginary;
 	painter->border_size = \
 		canvas->settings.pixel_size * canvas->settings.pixel_size * \

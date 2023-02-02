@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 20:53:19 by htsang            #+#    #+#             */
-/*   Updated: 2023/02/01 15:52:45 by htsang           ###   ########.fr       */
+/*   Updated: 2023/02/02 21:53:32 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,14 @@ void	fractol_translation_hook(t_fractol_context *program)
 	{
 		convert_cursor_pos_to_complex(program, &program->canvas.z);
 	}
-	painted = translate_left_or_right(program->controls & 0b0011, program);
-	painted += translate_up_or_down(program->controls & 0b1100, program);
+	painted = translate_left_or_right(&program->canvas, &program->viewport, \
+		program->fractal, program->controls & 0b0011);
+	painted += translate_up_or_down(&program->canvas, &program->viewport, \
+		program->fractal, program->controls & 0b1100);
 	if (!painted)
 	{
-		refresh_fractal(program);
-		paint_fractal(&program->canvas, program->image, program->fractal);
+		init_canvas(&program->canvas, &program->viewport);
+		border_trace_fractal(&program->canvas, program->fractal);
 	}
 }
 
@@ -69,19 +71,19 @@ t_fractol_context *program)
 	{
 		update_cursor_pos(program);
 		calculate_zoom(program, ydelta);
-		paint_fractal(&program->canvas, program->image, program->fractal);
+		border_trace_fractal(&program->canvas, program->fractal);
 	}
 	else if (xdelta)
 	{
 		update_cursor_pos(program);
 		calculate_zoom(program, xdelta);
-		paint_fractal(&program->canvas, program->image, program->fractal);
+		border_trace_fractal(&program->canvas, program->fractal);
 	}
 }
 
 void	fractol_resize_hook(int32_t width, int32_t height, \
 t_fractol_context *program)
 {
-	resize_canvas(program, width, height);
-	paint_fractal(&program->canvas, program->image, program->fractal);
+	resize_canvas(&program->canvas, &program->viewport, width, height);
+	border_trace_fractal(&program->canvas, program->fractal);
 }
