@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 23:28:11 by htsang            #+#    #+#             */
-/*   Updated: 2023/02/02 21:17:24 by htsang           ###   ########.fr       */
+/*   Updated: 2023/02/04 01:05:51 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,15 +21,15 @@ t_fractol_complex *viewport, t_fractol_func fractal, unsigned int controls)
 	}
 	if ((controls & TRANSLATE_LEFT) == TRANSLATE_LEFT)
 	{
-		copy_pixels_right(&canvas->image, 20);
+		copy_pixels_right(canvas->image, 20);
 		calculate_left_translation(canvas, viewport, 20);
 	}
 	else
 	{
-		copy_pixels_left(&canvas->image, 20);
+		copy_pixels_left(canvas->image, 20);
 		calculate_right_translation(canvas, viewport, 20);
 	}
-	paint_fractal(canvas, &canvas->image, fractal);
+	paint_fractal(canvas, fractal);
 	return (1);
 }
 
@@ -42,14 +42,14 @@ t_fractol_complex *viewport, t_fractol_func fractal, unsigned int controls)
 	}
 	if ((controls & TRANSLATE_DOWN) == TRANSLATE_DOWN)
 	{
-		copy_pixels_up(&canvas->image, 20);
+		copy_pixels_up(canvas->image, 20);
 		calculate_down_translation(canvas, viewport, 20);
 	}
 	else
 	{
-		copy_pixels_down(&canvas->image, 20);
+		copy_pixels_down(canvas->image, 20);
 		calculate_up_translation(canvas, viewport, 20);
 	}
-	paint_fractal(canvas, &canvas->image, fractal);
+	paint_fractal(canvas, fractal);
 	return (1);
 }

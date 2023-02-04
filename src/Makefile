@@ -21,11 +21,15 @@ COMPLEX_SRC:= \
 	complex/distance_estimator.c
 CANVAS_SRC:= \
 	canvas/canvas.c \
+	canvas/canvas_setters.c \
 	canvas/viewport.c \
 	canvas/translation.c \
 	canvas/translation_calculator.c
 PAINTER_SRC:= \
 	painter/painter.c \
+	painter/border_tracer.c \
+	painter/tracer.c \
+	painter/color.c \
 	painter/pixel_copier.c
 CONTEXT_SRC:= \
 	context/context.c \

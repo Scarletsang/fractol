@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 23:47:55 by htsang            #+#    #+#             */
-/*   Updated: 2023/02/02 21:44:25 by htsang           ###   ########.fr       */
+/*   Updated: 2023/02/04 01:37:59 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,8 @@ int32_t	main(void)
 	}
 	set_canvas_settings(&program.canvas, 100, 0.003, 0.01);
 	set_complex_number(&program.canvas.z, -0.8, 0.16);
-	init_fractal(&program, &julia_distance_estimator, -1.4, 0);
-	border_trace_fractal(&program.canvas, program.fractal);
+	init_fractal(&program, &mandelbrot_distance_estimator, -1.4, 0);
+	paint_fractal(&program.canvas, program.fractal);
 	mlx_image_to_window(program.mlx, program.canvas.image, 0, 0);
 	program.controls = 0;
 	mlx_loop_hook(program.mlx, \

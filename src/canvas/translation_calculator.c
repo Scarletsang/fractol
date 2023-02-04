@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 18:10:43 by htsang            #+#    #+#             */
-/*   Updated: 2023/02/02 21:32:45 by htsang           ###   ########.fr       */
+/*   Updated: 2023/02/04 01:06:19 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ t_fractol_complex *viewport, uint32_t delta)
 t_fractol_canvas	*resize_canvas(t_fractol_canvas *canvas, \
 t_fractol_complex *viewport, int32_t width, int32_t height)
 {
-	mlx_resize_image(&canvas->image, width, height);
+	mlx_resize_image(canvas->image, width, height);
 	set_canvas_complex_start(canvas, viewport, 0, 0);
 	set_canvas_start(canvas, 0, 0);
 	set_canvas_end(canvas, width, height);
