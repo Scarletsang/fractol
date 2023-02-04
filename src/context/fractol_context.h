@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 22:16:49 by htsang            #+#    #+#             */
-/*   Updated: 2023/02/02 21:24:26 by htsang           ###   ########.fr       */
+/*   Updated: 2023/02/04 03:46:04 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ typedef struct s_fractol_context
 {
 	mlx_t				*mlx;
 	t_fractol_func		fractal;
-	t_fractol_complex	viewport;
 	t_fractol_canvas	canvas;
 	unsigned int		controls;
 	int32_t				mouse_x;

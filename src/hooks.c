@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 20:53:19 by htsang            #+#    #+#             */
-/*   Updated: 2023/02/04 00:13:53 by htsang           ###   ########.fr       */
+/*   Updated: 2023/02/04 03:55:24 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,13 @@ void	fractol_translation_hook(t_fractol_context *program)
 	{
 		convert_cursor_pos_to_complex(program, &program->canvas.z);
 	}
-	painted = translate_left_or_right(&program->canvas, &program->viewport, \
+	painted = translate_left_or_right(&program->canvas, \
 		program->fractal, program->controls & 0b0011);
-	painted += translate_up_or_down(&program->canvas, &program->viewport, \
+	painted += translate_up_or_down(&program->canvas, \
 		program->fractal, program->controls & 0b1100);
 	if (!painted)
 	{
-		init_canvas(&program->canvas, &program->viewport);
+		init_canvas(&program->canvas);
 		paint_fractal(&program->canvas, program->fractal);
 	}
 }
@@ -84,6 +84,6 @@ t_fractol_context *program)
 void	fractol_resize_hook(int32_t width, int32_t height, \
 t_fractol_context *program)
 {
-	resize_canvas(&program->canvas, &program->viewport, width, height);
+	resize_canvas(&program->canvas, width, height);
 	paint_fractal(&program->canvas, program->fractal);
 }

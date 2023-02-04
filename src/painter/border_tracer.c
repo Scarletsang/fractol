@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 14:57:24 by htsang            #+#    #+#             */
-/*   Updated: 2023/02/04 02:27:07 by htsang           ###   ########.fr       */
+/*   Updated: 2023/02/04 03:59:20 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ int	paint_fractal(t_fractol_canvas *canvas, t_fractol_func fractal)
 	t_fractol_painter	painter;
 	uint32_t			*current;
 
-	init_painter(&painter, canvas);
+	init_painter(canvas, &painter);
 	painter.y = canvas->start_y;
 	while (painter.y < canvas->end_y)
 	{
@@ -88,8 +88,8 @@ int	paint_fractal(t_fractol_canvas *canvas, t_fractol_func fractal)
 		while (painter.x < canvas->end_x)
 		{
 			current = get_pixel(canvas, painter.x, painter.y);
-			if (pixel_is_empty(current))
-				paint_pixel(canvas, &painter, fractal);
+			 if (pixel_is_empty(current))
+			 	paint_pixel(canvas, &painter, fractal);
 			// if (!(*current & INSET_COLOR) && (*safe_get_pixel_horizontal(\
 			// 	canvas, painter.x - 1, painter.y) & INSET_COLOR))
 			// 	{

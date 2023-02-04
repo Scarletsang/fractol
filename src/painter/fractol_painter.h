@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 16:14:19 by htsang            #+#    #+#             */
-/*   Updated: 2023/02/04 02:11:23 by htsang           ###   ########.fr       */
+/*   Updated: 2023/02/04 03:54:19 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ typedef struct s_fractol_painter
 	uint32_t			x;
 	uint32_t			y;
 	t_fractol_complex	c;
-	t_fractol_complex	complex_end;
 	double				border_size;
 	t_fractol_tracer	direction;
 }				t_fractol_painter;
@@ -46,8 +45,7 @@ t_fractol_painter *painter);
 void		paint_pixel(t_fractol_canvas *canvas, t_fractol_painter *painter, \
 t_fractol_func fractal);
 
-void		init_painter(t_fractol_painter *painter, \
-t_fractol_canvas *canvas);
+void		init_painter(t_fractol_canvas *canvas, t_fractol_painter *painter);
 
 int32_t		paint_fractal(t_fractol_canvas *canvas, t_fractol_func fractal);
 
