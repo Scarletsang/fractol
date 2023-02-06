@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/04 00:18:01 by htsang            #+#    #+#             */
-/*   Updated: 2023/02/04 03:47:24 by htsang           ###   ########.fr       */
+/*   Updated: 2023/02/06 16:17:25 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ t_fractol_canvas	*set_canvas_pixels_empty(t_fractol_canvas *canvas)
 		x = canvas->start_x;
 		while (x < canvas->end_x)
 		{
-			mlx_put_pixel(canvas->image, x, y, 0xff);
+			mlx_put_pixel(canvas->image, x, y, 0);
 			x++;
 		}
 		y++;

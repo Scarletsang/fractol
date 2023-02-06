@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 16:14:19 by htsang            #+#    #+#             */
-/*   Updated: 2023/02/04 05:26:26 by htsang           ###   ########.fr       */
+/*   Updated: 2023/02/06 19:46:47 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ typedef struct s_fractol_tracer
 	uint32_t					x;
 	uint32_t					y;
 	t_fractol_tracer_direction	direction;
+	uint32_t					step;
 }				t_fractol_tracer;
 
 typedef struct s_fractol_painter
@@ -55,16 +56,31 @@ void		init_painter(t_fractol_canvas *canvas, t_fractol_painter *painter);
 
 int32_t		paint_fractal(t_fractol_canvas *canvas, t_fractol_func fractal);
 
-//////////////////////////////
-///////   direction   ////////
-//////////////////////////////
+///////////////////////////////////
+///////   border tracing   ////////
+///////////////////////////////////
 
-int			move_painter(t_fractol_canvas *canvas, t_fractol_painter *painter, \
-t_fractol_tracer *tracer);
+int			moore_neighbours(t_fractol_canvas *canvas, \
+t_fractol_painter *painter, t_fractol_tracer *tracer, t_fractol_func fractal);
 
-void		flip_direction(t_fractol_tracer *tracer, uint32_t step);
+void		border_trace(t_fractol_canvas *canvas, \
+t_fractol_painter *painter, t_fractol_func fractal);
 
-void		turn_direction_clockwise(t_fractol_tracer *tracer, uint32_t step);
+/////////////////////////////////////////////////
+///////   moore neighbours calculators   ////////
+/////////////////////////////////////////////////
+
+int			prepare_trace_up(t_fractol_canvas *canvas, \
+t_fractol_painter *painter, t_fractol_tracer *tracer);
+
+int			prepare_trace_right(t_fractol_canvas *canvas, \
+t_fractol_painter *painter, t_fractol_tracer *tracer);
+
+int			prepare_trace_down(t_fractol_canvas *canvas, \
+t_fractol_painter *painter, t_fractol_tracer *tracer);
+
+int			prepare_trace_left(t_fractol_canvas *canvas, \
+t_fractol_painter *painter, t_fractol_tracer *tracer);
 
 //////////////////////////////
 ///////   checkers   /////////
@@ -73,9 +89,6 @@ void		turn_direction_clockwise(t_fractol_tracer *tracer, uint32_t step);
 int			pixel_is_inset(uint32_t *pixel);
 
 int			pixel_is_empty(uint32_t *pixel);
-
-int			peek_pixel_x_is_inset(t_fractol_canvas *canvas, \
-uint32_t x, uint32_t y);
 
 /////////////////////////////
 ///////   coloring   ////////

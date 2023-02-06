@@ -28,7 +28,7 @@ CANVAS_SRC:= \
 PAINTER_SRC:= \
 	painter/painter.c \
 	painter/border_tracer.c \
-	painter/tracer.c \
+	painter/moore_neighbours_calculator.c \
 	painter/color.c \
 	painter/checker.c \
 	painter/pixel_copier.c
@@ -51,7 +51,7 @@ OBJS+=${if ${findstring -g3,${CFLAGS}},${DEBUG_OBJS},}
 ####    libaries    ####
 ########################
 
-GLFW:=glfw-3.3.8/lib-arm64/libglfw3.a
+GLFW:=glfw-3.3.8/lib-universal/libglfw3.a
 MLX:=MLX42/libmlx42.a
 
 ########################
