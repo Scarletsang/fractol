@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 14:57:24 by htsang            #+#    #+#             */
-/*   Updated: 2023/02/04 03:59:20 by htsang           ###   ########.fr       */
+/*   Updated: 2023/02/04 06:37:25 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,9 @@
 static void	paint_inset_pixels(t_fractol_canvas *canvas, \
 t_fractol_painter *painter, t_fractol_func fractal)
 {
-	while (pixel_is_empty(safe_get_pixel_horizontal(canvas, \
-		painter->x, painter->y)))
+	painter->x++;
+	while ((painter->x < canvas->end_x) && \
+		pixel_is_empty(get_pixel(canvas, painter->x, painter->y)))
 	{
 		paint_pixel(canvas, painter, fractal);
 		painter->x++;
@@ -25,27 +26,32 @@ t_fractol_painter *painter, t_fractol_func fractal)
 }
 
 static int	moore_neighbors(t_fractol_canvas *canvas, \
-t_fractol_painter *painter, t_fractol_func fractal)
+t_fractol_painter *painter, t_fractol_tracer *tracer, t_fractol_func fractal)
 {
 	uint32_t	*current;
-	int32_t	step;
+	uint32_t	step;
 
 	step = 1;
 	while (step < 9)
 	{
-		move_painter(canvas, painter);
 		current = get_pixel(canvas, painter->x, painter->y);
 		if (pixel_is_empty(current))
 		{
 			paint_pixel(canvas, painter, fractal);
 		}
-		if ((*current & INSET_COLOR) == 0)
+		if (pixel_is_inset(current))
 		{
-			flip_tracer(painter);
+			flip_direction(tracer, step);
+			while (!move_painter(canvas, painter, tracer))
+			{
+				flip_direction(tracer, step);
+			}
 			return (0);
 		}
 		step++;
-		turn_tracer_clockwise(painter, step);
+		turn_direction_clockwise(tracer, step);
+		move_painter(canvas, painter, tracer);
+		printf("direction: %d\tx: %d\ty: %d\tstart_y: %d\n", tracer->direction, painter->x, painter->y, canvas->start_y);
 	}
 	return (1);
 }
@@ -53,26 +59,20 @@ t_fractol_painter *painter, t_fractol_func fractal)
 static void	border_trace(t_fractol_canvas *canvas, \
 t_fractol_painter *painter, t_fractol_func fractal)
 {
-	uint32_t	x;
-	uint32_t	y;
+	t_fractol_tracer	tracer;
 
-	painter->direction = TRACER_DOWN;
-	x = painter->x;
-	y = painter->y;
-	if (moore_neighbors(canvas, painter, fractal))
+	tracer.direction = TRACER_LEFT;
+	tracer.x = painter->x;
+	tracer.y = painter->y;
+	move_painter(canvas, painter, &tracer);
+	while ((tracer.x != painter->x) || (tracer.y != painter->y) \
+		|| (tracer.direction != TRACER_LEFT))
 	{
-		painter->x = x + 1;
-		painter->y = y;
-		return ;
-	}
-	while ((painter->x != x) || (painter->y != y) \
-		|| painter->direction != TRACER_DOWN)
-	{
-		if (moore_neighbors(canvas, painter, fractal))
+		if (moore_neighbors(canvas, painter, &tracer, fractal))
 			break ;
 	}
-	painter->x = x + 1;
-	painter->y = y;
+	painter->x = tracer.x + 1;
+	painter->y = tracer.y;
 }
 
 int	paint_fractal(t_fractol_canvas *canvas, t_fractol_func fractal)
@@ -88,20 +88,19 @@ int	paint_fractal(t_fractol_canvas *canvas, t_fractol_func fractal)
 		while (painter.x < canvas->end_x)
 		{
 			current = get_pixel(canvas, painter.x, painter.y);
-			 if (pixel_is_empty(current))
+			if (pixel_is_empty(current))
 			 	paint_pixel(canvas, &painter, fractal);
-			// if (!(*current & INSET_COLOR) && (*safe_get_pixel_horizontal(\
-			// 	canvas, painter.x - 1, painter.y) & INSET_COLOR))
-			// 	{
-			// 		border_trace(canvas, &painter, fractal);
-			// 	}
-			// else if (!(*safe_get_pixel_horizontal(canvas, painter.x, \
-			// 	painter.y) & INSET_COLOR))
-			// {
-			// 	painter.x++;
-			// 	paint_inset_pixels(canvas, &painter, fractal);
-			// 	break ;
-			// }
+			if (pixel_is_inset(current) && \
+				!peek_pixel_x_is_inset(canvas, painter.x - 1, painter.y))
+			{
+				border_trace(canvas, &painter, fractal);
+			}
+			else if (!pixel_is_inset(current) && \
+				peek_pixel_x_is_inset(canvas, painter.x + 1, painter.y))
+			{
+				paint_inset_pixels(canvas, &painter, fractal);
+				break ;
+			}
 			painter.x++;
 		}
 		painter.y++;

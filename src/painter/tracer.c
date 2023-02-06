@@ -6,55 +6,68 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 23:49:25 by htsang            #+#    #+#             */
-/*   Updated: 2023/02/04 01:59:43 by htsang           ###   ########.fr       */
+/*   Updated: 2023/02/04 06:32:33 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol_painter.h"
+#include <stdio.h>
 
-void	move_painter(t_fractol_canvas *canvas, t_fractol_painter *painter)
+int	move_painter(t_fractol_canvas *canvas, t_fractol_painter *painter, \
+t_fractol_tracer *tracer)
 {
-	if (painter->direction == TRACER_DOWN)
+	int	result;
+
+	if (tracer->direction == TRACER_DOWN)
 	{
-		painter->y += (painter->y + 1 < canvas->end_y);
+		result =  ((painter->y + 1) < canvas->end_y);
+		painter->y += result;
 	}
-	else if (painter->direction == TRACER_LEFT)
+	else if (tracer->direction == TRACER_LEFT)
 	{
-		painter->x -= (painter->x - 1 > canvas->start_x);
+		result = (painter->x > (canvas->start_x + 1));
+		painter->x -= result;
 	}
-	else if (painter->direction == TRACER_UP)
+	else if (tracer->direction == TRACER_UP)
 	{
-		painter->y -= (painter->y - 1 > canvas->start_y);
+		result = painter->y > (canvas->start_y + 1);
+		painter->y -= result;
 	}
 	else
 	{
-		painter->x += (painter->x + 1 < canvas->end_x);
+		result = ((painter->x + 1) < canvas->end_x);
+		painter->x += result;
 	}
+	return (result);
 }
 
-void	flip_tracer(t_fractol_painter *painter)
+void	flip_direction(t_fractol_tracer *tracer, uint32_t step)
 {
-	if (painter->direction == TRACER_UP || painter->direction == TRACER_RIGHT)
+	if (step == 1)
 	{
-		painter->direction += 2;
+		return ;
+	}
+	if (tracer->direction == TRACER_UP || tracer->direction == TRACER_RIGHT)
+	{
+		tracer->direction += 2;
 	}
 	else
 	{
-		painter->direction -= 2;
+		tracer->direction -= 2;
 	}
 }
 
-void	turn_tracer_clockwise(t_fractol_painter *painter, int32_t step)
+void	turn_direction_clockwise(t_fractol_tracer *tracer, uint32_t step)
 {
 	if (step == 1 || ((step & 1) == 0))
 	{
-		if (painter->direction == TRACER_LEFT)
+		if (tracer->direction == TRACER_LEFT)
 		{
-			painter->direction = TRACER_UP;
+			tracer->direction = TRACER_UP;
 		}
 		else
 		{
-			painter->direction++;
+			tracer->direction++;
 		}
 	}
 }
