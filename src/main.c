@@ -6,11 +6,13 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 23:47:55 by htsang            #+#    #+#             */
-/*   Updated: 2023/02/04 05:16:30 by htsang           ###   ########.fr       */
+/*   Updated: 2023/02/06 20:32:15 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
+
+void	fractol_debug_hook(t_fractol_context *program);
 
 t_fractol_context	*init_program(t_fractol_context *program)
 {
@@ -41,11 +43,13 @@ int32_t	main(void)
 	set_canvas_settings(&program.canvas, 100, 0.003, 0.01);
 	set_complex_number(&program.canvas.z, -1, 0.16);
 	init_fractal(&program, &mandelbrot_distance_estimator, -1.4, 0);
-	paint_fractal(&program.canvas, program.fractal);
 	mlx_image_to_window(program.mlx, program.canvas.image, 0, 0);
+	paint_fractal(&program.canvas, program.fractal);
 	program.controls = 0;
 	mlx_loop_hook(program.mlx, \
 		(void (*)(void *)) fractol_translation_hook, &program);
+	mlx_loop_hook(program.mlx, \
+		(void (*)(void *)) fractol_debug_hook, &program);
 	mlx_key_hook(program.mlx, (mlx_keyfunc) fractol_key_hook, &program);
 	mlx_scroll_hook(program.mlx, (mlx_scrollfunc) fractol_scroll_hook, \
 		&program);

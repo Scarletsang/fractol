@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 14:57:24 by htsang            #+#    #+#             */
-/*   Updated: 2023/02/06 19:55:53 by htsang           ###   ########.fr       */
+/*   Updated: 2023/02/06 20:40:44 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,11 +96,13 @@ t_fractol_painter *painter, t_fractol_func fractal)
 	tracer.direction = TRACER_RIGHT;
 	tracer.x = painter->x;
 	tracer.y = painter->y;
+	printf("bdirection: %d\tx: %d\ty: %d\tstart_y: %d\n", tracer.direction, painter->x, painter->y, canvas->start_y);
 	while (1)
 	{
 		if (!moore_neighbours(canvas, painter, &tracer, fractal))
 			break ;
 	}
+	printf("adirection: %d\tx: %d\ty: %d\tstart_y: %d\n", tracer.direction, painter->x, painter->y, canvas->start_y);
 	painter->x = tracer.x;
 	painter->y = tracer.y;
 }
@@ -135,7 +137,7 @@ int	paint_fractal(t_fractol_canvas *canvas, t_fractol_func fractal)
 
 	init_painter(canvas, &painter);
 	painter.y = canvas->start_y;
-	while (painter.y < canvas->end_y)
+	while (painter.y < 1)
 	{
 		painter.x = canvas->start_x;
 		while (painter.x < canvas->end_x)

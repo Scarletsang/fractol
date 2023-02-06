@@ -6,12 +6,24 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 20:53:19 by htsang            #+#    #+#             */
-/*   Updated: 2023/02/04 03:55:24 by htsang           ###   ########.fr       */
+/*   Updated: 2023/02/06 19:53:49 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 #include <stdio.h>
+
+int	debug_paint_fractal(t_fractol_canvas *canvas, uint32_t x, uint32_t y, t_fractol_func fractal);
+
+void	fractol_debug_hook(t_fractol_context *program)
+{
+	if (mlx_is_mouse_down(program->mlx, MLX_MOUSE_BUTTON_LEFT) &&!update_cursor_pos(program))
+	{
+		printf("cursor: x: %d\ty: %d\n", program->mouse_x, program->mouse_y);
+		fflush(stdout);
+		debug_paint_fractal(&program->canvas, program->mouse_x, program->mouse_y, program->fractal);
+	}
+}
 
 void	fractol_translation_hook(t_fractol_context *program)
 {
