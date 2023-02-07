@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 16:14:19 by htsang            #+#    #+#             */
-/*   Updated: 2023/02/06 19:46:47 by htsang           ###   ########.fr       */
+/*   Updated: 2023/02/07 16:24:19 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,10 @@
 
 typedef enum e_fractol_tracer_direction
 {
-	TRACER_UP,
-	TRACER_RIGHT,
-	TRACER_DOWN,
-	TRACER_LEFT
+	TRACER_NORTH,
+	TRACER_EAST,
+	TRACER_SOUTH,
+	TRACER_WEST
 }				t_fractol_tracer_direction;
 
 typedef struct s_fractol_tracer
@@ -70,16 +70,16 @@ t_fractol_painter *painter, t_fractol_func fractal);
 ///////   moore neighbours calculators   ////////
 /////////////////////////////////////////////////
 
-int			prepare_trace_up(t_fractol_canvas *canvas, \
+int			prepare_trace_north(t_fractol_canvas *canvas, \
 t_fractol_painter *painter, t_fractol_tracer *tracer);
 
-int			prepare_trace_right(t_fractol_canvas *canvas, \
+int			prepare_trace_east(t_fractol_canvas *canvas, \
 t_fractol_painter *painter, t_fractol_tracer *tracer);
 
-int			prepare_trace_down(t_fractol_canvas *canvas, \
+int			prepare_trace_south(t_fractol_canvas *canvas, \
 t_fractol_painter *painter, t_fractol_tracer *tracer);
 
-int			prepare_trace_left(t_fractol_canvas *canvas, \
+int			prepare_trace_west(t_fractol_canvas *canvas, \
 t_fractol_painter *painter, t_fractol_tracer *tracer);
 
 //////////////////////////////
