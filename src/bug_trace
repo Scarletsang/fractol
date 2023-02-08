@@ -1,5 +1,4 @@
-edirection: 3	x: 219	y: 56
-sdirection: 2	x: 219	y: 55
+edirection: 3	x: 219	y: 56	ori_x: 220	ori_y: 56
 sdirection: 0	x: 219	y: 54
 sdirection: 2	x: 219	y: 55
 sdirection: 0	x: 219	y: 54
@@ -9,20 +8,10 @@ sdirection: 2	x: 219	y: 55
 sdirection: 0	x: 219	y: 54
 sdirection: 2	x: 219	y: 55
 sdirection: 0	x: 219	y: 54
+sdirection: 2	x: 219	y: 55
 
-edirection: 3	x: 195	y: 57
-sdirection: 1	x: 328	y: 195
-sdirection: 1	x: 329	y: 195
-sdirection: 0	x: 329	y: 194
-sdirection: 1	x: 330	y: 194
-sdirection: 0	x: 330	y: 193
-sdirection: 0	x: 330	y: 192
+edirection: 3	x: 195	y: 62	ori_x: 196	ori_y: 62
 sdirection: 3	x: 329	y: 192
-sdirection: 0	x: 329	y: 191
-sdirection: 3	x: 328	y: 191
-sdirection: 3	x: 327	y: 191
-
-edirection: 3	x: 195	y: 62
 sdirection: 0	x: 329	y: 191
 sdirection: 3	x: 328	y: 191
 sdirection: 3	x: 327	y: 191
@@ -32,21 +21,9 @@ sdirection: 3	x: 326	y: 191
 sdirection: 3	x: 325	y: 191
 sdirection: 2	x: 325	y: 192
 sdirection: 0	x: 325	y: 191
-sdirection: 3	x: 324	y: 191
 
-edirection: 3	x: 165	y: 78
-sdirection: 2	x: 306	y: 198
-sdirection: 3	x: 305	y: 198
-sdirection: 2	x: 305	y: 199
-sdirection: 2	x: 305	y: 200
-sdirection: 1	x: 306	y: 200
-sdirection: 2	x: 306	y: 201
-sdirection: 2	x: 306	y: 202
-sdirection: 2	x: 306	y: 203
-sdirection: 3	x: 305	y: 203
-sdirection: 0	x: 305	y: 202
-
-edirection: 3	x: 443	y: 217
+edirection: 3	x: 443	y: 217	ori_x: 444	ori_y: 217
+sdirection: 1	x: 18	y: 0
 sdirection: 1	x: 19	y: 0
 sdirection: 1	x: 20	y: 0
 sdirection: 1	x: 21	y: 0
@@ -56,33 +33,33 @@ sdirection: 1	x: 24	y: 0
 sdirection: 1	x: 25	y: 0
 sdirection: 1	x: 26	y: 0
 sdirection: 1	x: 27	y: 0
-sdirection: 1	x: 28	y: 0
 
-edirection: 3	x: 456	y: 217
-sdirection: 1	x: 455	y: 217
-sdirection: 3	x: 454	y: 217
-sdirection: 1	x: 455	y: 217
-sdirection: 3	x: 454	y: 217
-sdirection: 1	x: 455	y: 217
-sdirection: 3	x: 454	y: 217
-sdirection: 1	x: 455	y: 217
-sdirection: 3	x: 454	y: 217
-sdirection: 1	x: 455	y: 217
-sdirection: 3	x: 454	y: 217
+edirection: 3	x: 379	y: 218	ori_x: 380	ori_y: 218
+sdirection: 3	x: 378	y: 217
+sdirection: 1	x: 379	y: 217
+sdirection: 3	x: 378	y: 217
+sdirection: 1	x: 379	y: 217
+sdirection: 3	x: 378	y: 217
+sdirection: 1	x: 379	y: 217
+sdirection: 3	x: 378	y: 217
+sdirection: 1	x: 379	y: 217
+sdirection: 3	x: 378	y: 217
+sdirection: 1	x: 379	y: 217
 
-edirection: 3	x: 379	y: 218
-sdirection: 1	x: 379	y: 217
-sdirection: 3	x: 378	y: 217
-sdirection: 1	x: 379	y: 217
-sdirection: 3	x: 378	y: 217
-sdirection: 1	x: 379	y: 217
-sdirection: 3	x: 378	y: 217
-sdirection: 1	x: 379	y: 217
-sdirection: 3	x: 378	y: 217
-sdirection: 1	x: 379	y: 217
-sdirection: 3	x: 378	y: 217
+edirection: 3	x: 455	y: 218	ori_x: 456	ori_y: 218
+sdirection: 3	x: 454	y: 217
+sdirection: 1	x: 455	y: 217
+sdirection: 3	x: 454	y: 217
+sdirection: 1	x: 455	y: 217
+sdirection: 3	x: 454	y: 217
+sdirection: 1	x: 455	y: 217
+sdirection: 3	x: 454	y: 217
+sdirection: 1	x: 455	y: 217
+sdirection: 3	x: 454	y: 217
+sdirection: 1	x: 455	y: 217
 
-edirection: 3	x: 401	y: 224
+edirection: 3	x: 401	y: 224	ori_x: 402	ori_y: 224
+sdirection: 1	x: 481	y: 0
 sdirection: 1	x: 482	y: 0
 sdirection: 1	x: 483	y: 0
 sdirection: 1	x: 484	y: 0
@@ -92,21 +69,9 @@ sdirection: 1	x: 487	y: 0
 sdirection: 1	x: 488	y: 0
 sdirection: 1	x: 489	y: 0
 sdirection: 1	x: 490	y: 0
-sdirection: 1	x: 491	y: 0
 
-edirection: 3	x: 447	y: 225
-sdirection: 1	x: 61	y: 0
-sdirection: 1	x: 62	y: 0
-sdirection: 1	x: 63	y: 0
-sdirection: 1	x: 64	y: 0
-sdirection: 1	x: 65	y: 0
-sdirection: 1	x: 66	y: 0
-sdirection: 1	x: 67	y: 0
+edirection: 3	x: 451	y: 227	ori_x: 452	ori_y: 227
 sdirection: 1	x: 68	y: 0
-sdirection: 1	x: 69	y: 0
-sdirection: 1	x: 70	y: 0
-
-edirection: 3	x: 451	y: 227
 sdirection: 1	x: 69	y: 0
 sdirection: 1	x: 70	y: 0
 sdirection: 1	x: 71	y: 0
@@ -116,17 +81,4 @@ sdirection: 1	x: 74	y: 0
 sdirection: 1	x: 75	y: 0
 sdirection: 1	x: 76	y: 0
 sdirection: 1	x: 77	y: 0
-sdirection: 1	x: 78	y: 0
-
-edirection: 3	x: 459	y: 261
-sdirection: 1	x: 153	y: 0
-sdirection: 1	x: 154	y: 0
-sdirection: 1	x: 155	y: 0
-sdirection: 1	x: 156	y: 0
-sdirection: 1	x: 157	y: 0
-sdirection: 1	x: 158	y: 0
-sdirection: 1	x: 159	y: 0
-sdirection: 1	x: 160	y: 0
-sdirection: 1	x: 161	y: 0
-sdirection: 1	x: 162	y: 0
 

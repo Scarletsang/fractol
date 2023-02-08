@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 16:14:19 by htsang            #+#    #+#             */
-/*   Updated: 2023/02/07 16:24:19 by htsang           ###   ########.fr       */
+/*   Updated: 2023/02/08 14:51:59 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ typedef struct s_fractol_tracer
 	uint32_t					x;
 	uint32_t					y;
 	t_fractol_tracer_direction	direction;
+	t_fractol_tracer_direction	start_direction;
 	uint32_t					step;
 }				t_fractol_tracer;
 

@@ -6,13 +6,12 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 14:57:24 by htsang            #+#    #+#             */
-/*   Updated: 2023/02/08 02:15:46 by htsang           ###   ########.fr       */
+/*   Updated: 2023/02/08 16:00:18 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol_painter.h"
 #include <stdio.h>
-#include <unistd.h>
 
 void	turn_tracer_clockwise(t_fractol_tracer *tracer)
 {
@@ -120,33 +119,37 @@ t_fractol_tracer *tracer, t_fractol_func fractal)
 		turn_tracer_clockwise(tracer);
 		i++;
 	}
-	move_painter(canvas, painter, tracer);
-	current = get_pixel(canvas, painter->x, painter->y);
-	if (pixel_is_empty(current))
-		paint_pixel(canvas, painter, fractal);
+	if (move_painter(canvas, painter, tracer))
+	{
+		if (pixel_is_empty(get_pixel(canvas, painter->x, painter->y)))
+			paint_pixel(canvas, painter, fractal);
+		return ;
+	}
+	flip_tracer_direction(tracer);
+	return ;
 }
 
 void	border_trace(t_fractol_canvas *canvas, \
 t_fractol_painter *painter, t_fractol_func fractal)
 {
 	t_fractol_tracer			tracer;
-	t_fractol_tracer_direction	original_direction;
+	int	x = painter->x, y = painter->y;
 
 	tracer.direction = TRACER_EAST;
 	tracer.step = 1;
 	almondbread_trace(canvas, painter, &tracer, fractal);
-	original_direction = tracer.direction;
 	tracer.x = painter->x;
 	tracer.y = painter->y;
-	almondbread_trace(canvas, painter, &tracer, fractal);
-	while ((painter->x != tracer.x) || (painter->y != tracer.y) \
-	|| (tracer.direction != original_direction))
+	tracer.start_direction = tracer.direction;
+	while (1)
 	{
 		almondbread_trace(canvas, painter, &tracer, fractal);
+		if ((painter->x == tracer.x) && (painter->y == tracer.y) && (tracer.direction == tracer.start_direction))
+			break ;
 		tracer.step++;
 		if (tracer.step == 50000)
 		{
-			printf("edirection: %d\tx: %d\ty: %d\n", original_direction, tracer.x, tracer.y);
+			printf("edirection: %d\tx: %d\ty: %d\tori_x: %d\tori_y: %d\n", tracer.start_direction, tracer.x, tracer.y, x, y);
 			int i = 0;
 			while (i < 10)
 			{
@@ -158,19 +161,27 @@ t_fractol_painter *painter, t_fractol_func fractal)
 			break ;
 		}
 	}
-	painter->x = tracer.x;
-	painter->y = tracer.y;
+	painter->x = x;
+	painter->y = y;
 }
 
 static void	paint_inset_pixels(t_fractol_canvas *canvas, \
 t_fractol_painter *painter, t_fractol_func fractal)
 {
-	painter->x++;
-	while ((painter->x < canvas->end_x) && \
-		pixel_is_empty(get_pixel(canvas, painter->x, painter->y)))
+	uint32_t	*current;
+	
+	while (++painter->x < canvas->end_x)
 	{
-		mlx_put_pixel(canvas->image, painter->x, painter->y, INSET_COLOR);
-		painter->x++;
+		current = get_pixel(canvas, painter->x, painter->y);
+		if (pixel_is_empty(current))
+		{
+			mlx_put_pixel(canvas->image, painter->x, painter->y, 0xff123456);
+		}
+		else if (!pixel_is_inset(current))
+		{
+			painter->x++;
+			return ;
+		}
 	}
 }
 
@@ -180,28 +191,43 @@ int	paint_fractal(t_fractol_canvas *canvas, t_fractol_func fractal)
 	uint32_t			*current;
 
 	init_painter(canvas, &painter);
-	painter.y = canvas->start_y;
-	while (painter.y < canvas->end_y)
-	{
-		painter.x = canvas->start_x;
-		while (painter.x < canvas->end_x)
-		{
-			current = get_pixel(canvas, painter.x, painter.y);
-			if (pixel_is_empty(current))
-			{
-				paint_pixel(canvas, &painter, fractal);
-				if (pixel_is_inset(current))
-				{
-					border_trace(canvas, &painter, fractal);
-				}
-			}
-			else if (pixel_is_inset(current))
-			{
-				paint_inset_pixels(canvas, &painter, fractal);
-			}
-			painter.x++;
-		}
-		painter.y++;
-	}
+	painter.y = 227;
+	painter.x = 452;
+	paint_pixel(canvas, &painter, fractal);
+	border_trace(canvas, &painter, fractal);
+	paint_inset_pixels(canvas, &painter, fractal);
 	return (0);
 }
+
+// int	paint_fractal(t_fractol_canvas *canvas, t_fractol_func fractal)
+// {
+// 	t_fractol_painter	painter;
+// 	uint32_t			*current;
+
+// 	init_painter(canvas, &painter);
+// 	painter.y = canvas->start_y;
+// 	while (painter.y < canvas->end_y)
+// 	{
+// 		painter.x = canvas->start_x;
+// 		while (painter.x < canvas->end_x)
+// 		{
+// 			current = get_pixel(canvas, painter.x, painter.y);
+// 			if (pixel_is_empty(current))
+// 			{
+// 				paint_pixel(canvas, &painter, fractal);
+// 				if (pixel_is_inset(current))
+// 				{
+// 					border_trace(canvas, &painter, fractal);
+// 					paint_inset_pixels(canvas, &painter, fractal);
+// 				}
+// 			}
+// 			else if (pixel_is_inset(current))
+// 			{
+// 				paint_inset_pixels(canvas, &painter, fractal);
+// 			}
+// 			painter.x++;
+// 		}
+// 		painter.y++;
+// 	}
+// 	return (0);
+// }
