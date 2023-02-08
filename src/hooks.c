@@ -6,41 +6,12 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 20:53:19 by htsang            #+#    #+#             */
-/*   Updated: 2023/02/08 02:02:14 by htsang           ###   ########.fr       */
+/*   Updated: 2023/02/08 23:17:20 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 #include <stdio.h>
-
-int	debug_paint_fractal(t_fractol_canvas *canvas, uint32_t x, uint32_t y, t_fractol_func fractal)
-{
-	t_fractol_painter	painter;
-	uint32_t			*current;
-
-	init_painter(canvas, &painter);
-	painter.x = x;
-	painter.y = y;
-	current = get_pixel(canvas, painter.x, painter.y);
-	fflush(stdout);
-	if (pixel_is_empty(current))
-	{
-		paint_pixel(canvas, &painter, fractal);
-		if (pixel_is_inset(current))
-			border_trace(canvas, &painter, fractal);
-	}
-	return (0);
-}
-
-void	fractol_debug_hook(t_fractol_context *program)
-{
-	if (mlx_is_mouse_down(program->mlx, MLX_MOUSE_BUTTON_LEFT) &&!update_cursor_pos(program))
-	{
-		printf("cursor: x: %d\ty: %d\n", program->mouse_x, program->mouse_y);
-		fflush(stdout);
-		debug_paint_fractal(&program->canvas, program->mouse_x, program->mouse_y, program->fractal);
-	}
-}
 
 void	fractol_translation_hook(t_fractol_context *program)
 {
@@ -54,13 +25,13 @@ void	fractol_translation_hook(t_fractol_context *program)
 		convert_cursor_pos_to_complex(program, &program->canvas.z);
 	}
 	painted = translate_left_or_right(&program->canvas, \
-		program->fractal, program->controls & 0b0011);
+		&program->painter, program->fractal, program->controls & 0b0011);
 	painted += translate_up_or_down(&program->canvas, \
-		program->fractal, program->controls & 0b1100);
+		&program->painter, program->fractal, program->controls & 0b1100);
 	if (!painted)
 	{
 		init_canvas(&program->canvas);
-		paint_fractal(&program->canvas, program->fractal);
+		paint_fractal(&program->canvas, &program->painter, program->fractal);
 	}
 }
 
@@ -69,6 +40,15 @@ void	fractol_key_hook(mlx_key_data_t keydata, t_fractol_context *program)
 	if (keydata.key == MLX_KEY_ESCAPE)
 	{
 		mlx_close_window(program->mlx);
+		return ;
+	}
+	if (keydata.key == MLX_KEY_D)
+	{
+		if (keydata.modifier == MLX_SHIFT)
+			program->painter.speed += 10;
+		else if (keydata.modifier == MLX_CONTROL)
+			program->painter.speed -= (10 * (program->painter.speed > 1));
+		paint_fractal_one_frame(&program->canvas, &program->painter, program->fractal);
 		return ;
 	}
 	if (keydata.key == MLX_KEY_LEFT)
@@ -100,19 +80,19 @@ t_fractol_context *program)
 	{
 		update_cursor_pos(program);
 		calculate_zoom(program, ydelta);
-		paint_fractal(&program->canvas, program->fractal);
+		paint_fractal(&program->canvas, &program->painter, program->fractal);
 	}
 	else if (xdelta)
 	{
 		update_cursor_pos(program);
 		calculate_zoom(program, xdelta);
-		paint_fractal(&program->canvas, program->fractal);
+		paint_fractal(&program->canvas, &program->painter, program->fractal);
 	}
 }
 
 void	fractol_resize_hook(int32_t width, int32_t height, \
 t_fractol_context *program)
 {
-	resize_canvas(&program->canvas, width, height);
-	paint_fractal(&program->canvas, program->fractal);
+	calculate_canvas_resize(&program->canvas, width, height);
+	paint_fractal(&program->canvas, &program->painter, program->fractal);
 }

@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 16:14:19 by htsang            #+#    #+#             */
-/*   Updated: 2023/02/08 14:51:59 by htsang           ###   ########.fr       */
+/*   Updated: 2023/02/08 23:36:26 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,14 @@ typedef struct s_fractol_tracer
 	uint32_t					y;
 	t_fractol_tracer_direction	direction;
 	t_fractol_tracer_direction	start_direction;
-	uint32_t					step;
 }				t_fractol_tracer;
 
 typedef struct s_fractol_painter
 {
 	uint32_t			x;
 	uint32_t			y;
+	uint32_t			speed;
+	t_fractol_tracer	tracer;
 	t_fractol_complex	c;
 	double				border_size;
 }				t_fractol_painter;
@@ -47,6 +48,10 @@ typedef struct s_fractol_painter
 ///////   painter   ////////
 ////////////////////////////
 
+int			pixel_is_inset(uint32_t *pixel);
+
+int			pixel_is_empty(uint32_t *pixel);
+
 void		calculate_painter_c(t_fractol_canvas *canvas, \
 t_fractol_painter *painter);
 
@@ -55,41 +60,22 @@ t_fractol_func fractal);
 
 void		init_painter(t_fractol_canvas *canvas, t_fractol_painter *painter);
 
-int32_t		paint_fractal(t_fractol_canvas *canvas, t_fractol_func fractal);
+////////////////////////////////////
+///////   fractal painter   ////////
+////////////////////////////////////
+
+int			paint_fractal(t_fractol_canvas *canvas, t_fractol_painter *painter, \
+t_fractol_func fractal);
+
+int			paint_fractal_one_frame(t_fractol_canvas *canvas, \
+t_fractol_painter *painter, t_fractol_func fractal);
 
 ///////////////////////////////////
 ///////   border tracing   ////////
 ///////////////////////////////////
 
-int			moore_neighbours(t_fractol_canvas *canvas, \
-t_fractol_painter *painter, t_fractol_tracer *tracer, t_fractol_func fractal);
-
 void		border_trace(t_fractol_canvas *canvas, \
 t_fractol_painter *painter, t_fractol_func fractal);
-
-/////////////////////////////////////////////////
-///////   moore neighbours calculators   ////////
-/////////////////////////////////////////////////
-
-int			prepare_trace_north(t_fractol_canvas *canvas, \
-t_fractol_painter *painter, t_fractol_tracer *tracer);
-
-int			prepare_trace_east(t_fractol_canvas *canvas, \
-t_fractol_painter *painter, t_fractol_tracer *tracer);
-
-int			prepare_trace_south(t_fractol_canvas *canvas, \
-t_fractol_painter *painter, t_fractol_tracer *tracer);
-
-int			prepare_trace_west(t_fractol_canvas *canvas, \
-t_fractol_painter *painter, t_fractol_tracer *tracer);
-
-//////////////////////////////
-///////   checkers   /////////
-//////////////////////////////
-
-int			pixel_is_inset(uint32_t *pixel);
-
-int			pixel_is_empty(uint32_t *pixel);
 
 /////////////////////////////
 ///////   coloring   ////////
@@ -97,9 +83,9 @@ int			pixel_is_empty(uint32_t *pixel);
 
 uint32_t	distance_to_color(double value);
 
-//////////////////////////////////////
-///////   pixel translation   ////////
-//////////////////////////////////////
+/////////////////////////////////
+///////    translation   ////////
+/////////////////////////////////
 
 void		copy_pixels_right(mlx_image_t *image, uint32_t delta);
 

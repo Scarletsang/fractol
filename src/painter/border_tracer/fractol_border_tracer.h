@@ -1,23 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   checker.c                                          :+:      :+:    :+:   */
+/*   fractol_border_tracer.h                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/04 04:15:56 by htsang            #+#    #+#             */
-/*   Updated: 2023/02/06 19:26:22 by htsang           ###   ########.fr       */
+/*   Created: 2023/02/08 23:33:50 by htsang            #+#    #+#             */
+/*   Updated: 2023/02/08 23:35:06 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fractol_painter.h"
+#ifndef FRACTOL_BORDER_TRACER_H
+# define FRACTOL_BORDER_TRACER_H
 
-int	pixel_is_inset(uint32_t *pixel)
-{
-	return (*pixel == (uint32_t) (INSET_COLOR << 24));
-}
+# include "fractol_painter.h"
 
-int	pixel_is_empty(uint32_t *pixel)
-{
-	return (*pixel == 0);
-}
+void	turn_tracer_clockwise(t_fractol_tracer *tracer);
+
+void	turn_tracer_anticlockwise(t_fractol_tracer *tracer);
+
+void	flip_tracer_direction(t_fractol_tracer *tracer);
+
+void	move_painter_backwards(t_fractol_painter *painter);
+
+int		move_painter(t_fractol_canvas *canvas, t_fractol_painter *painter);
+
+#endif

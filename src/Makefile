@@ -5,7 +5,7 @@ NAME:=fractol
 ##############################
 
 CC=cc
-CFLAGS= -Wall -Wextra
+CFLAGS= -Wall -Wextra -Werror -march=nocona -flto -O2
 ifdef FSANITIZE
 	CFLAGS+= -g3 -fsanitize=address
 endif
@@ -23,15 +23,16 @@ CANVAS_SRC:= \
 	canvas/canvas.c \
 	canvas/canvas_setters.c \
 	canvas/viewport.c \
-	canvas/translation.c \
 	canvas/translation_calculator.c
+BORDER_TRACER_SRC:= \
+	painter/border_tracer/border_tracer.c \
+	painter/border_tracer/tracer.c
 PAINTER_SRC:= \
 	painter/painter.c \
-	painter/almond_border_tracer.c \
-	painter/moore_neighbours_calculator.c \
+	painter/fractal_painter.c \
 	painter/color.c \
-	painter/checker.c \
-	painter/pixel_copier.c
+	painter/pixel_copier.c \
+	painter/translation.c
 CONTEXT_SRC:= \
 	context/context.c \
 	context/controls.c \
@@ -39,7 +40,7 @@ CONTEXT_SRC:= \
 SRC:= \
 	main.c \
 	hooks.c
-OBJS=${COMPLEX_SRC:.c=.o} ${CANVAS_SRC:.c=.o} ${PAINTER_SRC:.c=.o} ${CONTEXT_SRC:.c=.o} ${SRC:.c=.o}
+OBJS=${COMPLEX_SRC:.c=.o} ${CANVAS_SRC:.c=.o} ${BORDER_TRACER_SRC:.c=.o} ${PAINTER_SRC:.c=.o} ${CONTEXT_SRC:.c=.o} ${SRC:.c=.o}
 
 ########################
 ####   debug files  ####
@@ -64,6 +65,7 @@ INCLUDE:= \
 	complex \
 	canvas \
 	painter \
+	painter/border_tracer \
 	context \
 	${DEBUG_LIB}
 
