@@ -6,15 +6,15 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 16:01:29 by htsang            #+#    #+#             */
-/*   Updated: 2023/02/07 16:35:46 by htsang           ###   ########.fr       */
+/*   Updated: 2023/02/08 00:56:45 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FRACTOL_H
 # define FRACTOL_H
 
-# define WINDOW_WIDTH 100
-# define WINDOW_HEIGHT 100
+# define WINDOW_WIDTH 500
+# define WINDOW_HEIGHT 500
 
 # include <stdlib.h>
 # include "fractol_context.h"

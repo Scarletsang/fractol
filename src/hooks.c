@@ -6,14 +6,31 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 20:53:19 by htsang            #+#    #+#             */
-/*   Updated: 2023/02/06 19:53:49 by htsang           ###   ########.fr       */
+/*   Updated: 2023/02/08 02:02:14 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 #include <stdio.h>
 
-int	debug_paint_fractal(t_fractol_canvas *canvas, uint32_t x, uint32_t y, t_fractol_func fractal);
+int	debug_paint_fractal(t_fractol_canvas *canvas, uint32_t x, uint32_t y, t_fractol_func fractal)
+{
+	t_fractol_painter	painter;
+	uint32_t			*current;
+
+	init_painter(canvas, &painter);
+	painter.x = x;
+	painter.y = y;
+	current = get_pixel(canvas, painter.x, painter.y);
+	fflush(stdout);
+	if (pixel_is_empty(current))
+	{
+		paint_pixel(canvas, &painter, fractal);
+		if (pixel_is_inset(current))
+			border_trace(canvas, &painter, fractal);
+	}
+	return (0);
+}
 
 void	fractol_debug_hook(t_fractol_context *program)
 {

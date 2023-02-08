@@ -27,7 +27,7 @@ CANVAS_SRC:= \
 	canvas/translation_calculator.c
 PAINTER_SRC:= \
 	painter/painter.c \
-	painter/border_tracer.c \
+	painter/almond_border_tracer.c \
 	painter/moore_neighbours_calculator.c \
 	painter/color.c \
 	painter/checker.c \
