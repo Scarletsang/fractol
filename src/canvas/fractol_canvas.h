@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 13:58:59 by htsang            #+#    #+#             */
-/*   Updated: 2023/02/04 03:58:52 by htsang           ###   ########.fr       */
+/*   Updated: 2023/02/08 23:15:05 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,9 +45,6 @@ t_fractol_canvas	*init_canvas(t_fractol_canvas *canvas);
 uint32_t			*get_pixel(t_fractol_canvas *canvas, \
 uint32_t x, uint32_t y);
 
-uint32_t			*safe_get_pixel_horizontal(t_fractol_canvas *canvas, \
-uint32_t x, uint32_t y);
-
 t_fractol_canvas	*set_canvas_end(t_fractol_canvas *canvas, \
 uint32_t end_x, uint32_t end_y);
 
@@ -81,12 +78,6 @@ uint32_t pixel_amount, int direction);
 ///////   translation   ////////
 ////////////////////////////////
 
-int					translate_left_or_right(t_fractol_canvas *canvas, \
-t_fractol_func fractal, unsigned int controls);
-
-int					translate_up_or_down(t_fractol_canvas *canvas, \
-t_fractol_func fractal, unsigned int controls);
-
 t_fractol_canvas	*calculate_left_translation(t_fractol_canvas *canvas, \
 uint32_t delta);
 
@@ -99,7 +90,7 @@ uint32_t delta);
 t_fractol_canvas	*calculate_up_translation(t_fractol_canvas *canvas, \
 uint32_t delta);
 
-t_fractol_canvas	*resize_canvas(t_fractol_canvas *canvas, \
+t_fractol_canvas	*calculate_canvas_resize(t_fractol_canvas *canvas, \
 int32_t width, int32_t height);
 
 #endif

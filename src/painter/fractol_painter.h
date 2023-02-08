@@ -109,4 +109,10 @@ void		copy_pixels_down(mlx_image_t *image, uint32_t delta);
 
 void		copy_pixels_up(mlx_image_t *image, uint32_t delta);
 
+int			translate_left_or_right(t_fractol_canvas *canvas, \
+t_fractol_painter *painter, t_fractol_func fractal, unsigned int controls);
+
+int			translate_up_or_down(t_fractol_canvas *canvas, \
+t_fractol_painter *painter, t_fractol_func fractal, unsigned int controls);
+
 #endif

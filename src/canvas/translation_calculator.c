@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 18:10:43 by htsang            #+#    #+#             */
-/*   Updated: 2023/02/04 03:52:05 by htsang           ###   ########.fr       */
+/*   Updated: 2023/02/08 23:14:56 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ uint32_t delta)
 	return (canvas);
 }
 
-t_fractol_canvas	*resize_canvas(t_fractol_canvas *canvas, \
+t_fractol_canvas	*calculate_canvas_resize(t_fractol_canvas *canvas, \
 int32_t width, int32_t height)
 {
 	mlx_resize_image(canvas->image, width, height);
