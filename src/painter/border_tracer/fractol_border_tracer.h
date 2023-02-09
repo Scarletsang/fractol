@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 23:33:50 by htsang            #+#    #+#             */
-/*   Updated: 2023/02/08 23:35:06 by htsang           ###   ########.fr       */
+/*   Updated: 2023/02/09 15:57:06 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ void	turn_tracer_anticlockwise(t_fractol_tracer *tracer);
 
 void	flip_tracer_direction(t_fractol_tracer *tracer);
 
-void	move_painter_backwards(t_fractol_painter *painter);
+void	move_painter_backwards(t_fractol_tracer *tracer);
 
-int		move_painter(t_fractol_canvas *canvas, t_fractol_painter *painter);
+int		move_painter(t_fractol_canvas *canvas, t_fractol_tracer *tracer);
 
 #endif

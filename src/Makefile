@@ -30,6 +30,7 @@ BORDER_TRACER_SRC:= \
 PAINTER_SRC:= \
 	painter/painter.c \
 	painter/fractal_painter.c \
+	painter/animation.c \
 	painter/color.c \
 	painter/pixel_copier.c \
 	painter/translation.c

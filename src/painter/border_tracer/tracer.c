@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 23:20:24 by htsang            #+#    #+#             */
-/*   Updated: 2023/02/08 23:40:54 by htsang           ###   ########.fr       */
+/*   Updated: 2023/02/09 15:56:52 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,49 +48,49 @@ void	flip_tracer_direction(t_fractol_tracer *tracer)
 	}
 }
 
-void	move_painter_backwards(t_fractol_painter *painter)
+void	move_painter_backwards(t_fractol_tracer *tracer)
 {
-	if (painter->tracer.direction == TRACER_SOUTH)
+	if (tracer->direction == TRACER_SOUTH)
 	{
-		painter->y -= 1;
+		tracer->y -= 1;
 	}
-	else if (painter->tracer.direction == TRACER_WEST)
+	else if (tracer->direction == TRACER_WEST)
 	{
-		painter->x += 1;
+		tracer->x += 1;
 	}
-	else if (painter->tracer.direction == TRACER_NORTH)
+	else if (tracer->direction == TRACER_NORTH)
 	{
-		painter->y += 1;
+		tracer->y += 1;
 	}
 	else
 	{
-		painter->x -= 1;
+		tracer->x -= 1;
 	}
 }
 
-int	move_painter(t_fractol_canvas *canvas, t_fractol_painter *painter)
+int	move_painter(t_fractol_canvas *canvas, t_fractol_tracer *tracer)
 {
 	int	result;
 
-	if (painter->tracer.direction == TRACER_SOUTH)
+	if (tracer->direction == TRACER_SOUTH)
 	{
-		result = ((painter->y + 1) < canvas->end_y);
-		painter->y += result;
+		result = ((tracer->y + 1) < canvas->end_y);
+		tracer->y += result;
 	}
-	else if (painter->tracer.direction == TRACER_WEST)
+	else if (tracer->direction == TRACER_WEST)
 	{
-		result = (painter->x >= (canvas->start_x + 1));
-		painter->x -= result;
+		result = (tracer->x >= (canvas->start_x + 1));
+		tracer->x -= result;
 	}
-	else if (painter->tracer.direction == TRACER_NORTH)
+	else if (tracer->direction == TRACER_NORTH)
 	{
-		result = (painter->y >= (canvas->start_y + 1));
-		painter->y -= result;
+		result = (tracer->y >= (canvas->start_y + 1));
+		tracer->y -= result;
 	}
 	else
 	{
-		result = ((painter->x + 1) < canvas->end_x);
-		painter->x += result;
+		result = ((tracer->x + 1) < canvas->end_x);
+		tracer->x += result;
 	}
 	return (result);
 }
