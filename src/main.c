@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 23:47:55 by htsang            #+#    #+#             */
-/*   Updated: 2023/02/08 23:54:53 by htsang           ###   ########.fr       */
+/*   Updated: 2023/02/09 23:44:26 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,18 +40,15 @@ int32_t	main(void)
 	}
 	set_canvas_settings(&program.canvas, 100, 0.003, 0.01);
 	set_complex_number(&program.canvas.z, -1, 0.16);
-	init_fractal(&program, &mandelbrot_distance_estimator, -1.4, 0);
+	init_fractal(&program, &julia_distance_estimator, -1.4, 0);
 	mlx_image_to_window(program.mlx, program.canvas.image, 0, 0);
-	paint_fractal(&program.canvas, &program.painter, program.fractal);
 	program.controls = 0;
-	program.painter.border_size = \
-		program.canvas.settings.pixel_size * program.canvas.settings.pixel_size * \
-		program.canvas.settings.border_thickness * program.canvas.settings.border_thickness;
-	program.painter.x = 0;
-	program.painter.y = 0;
-	program.painter.speed = 101;
+	init_painter(&program.canvas, &program.painter);
+	program.painter.animation.speed = 10000;
+	program.painter.animation.border_trace_started = 0;
+	program.painter_func(&program.canvas, &program.painter, program.fractal);
 	mlx_loop_hook(program.mlx, \
-		(void (*)(void *)) fractol_translation_hook, &program);
+		(t_mlx_loop_func) fractol_translation_hook, &program);
 	mlx_key_hook(program.mlx, (mlx_keyfunc) fractol_key_hook, &program);
 	mlx_scroll_hook(program.mlx, (mlx_scrollfunc) fractol_scroll_hook, \
 		&program);

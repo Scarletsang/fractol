@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 16:01:29 by htsang            #+#    #+#             */
-/*   Updated: 2023/02/08 23:52:09 by htsang           ###   ########.fr       */
+/*   Updated: 2023/02/09 17:19:37 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,11 @@
 # include <stdlib.h>
 # include "fractol_context.h"
 
+typedef void	(*t_mlx_loop_func)(void *param);
+
 void	fractol_translation_hook(t_fractol_context *program);
+
+void	fractol_animation_hook(t_fractol_context *program);
 
 void	fractol_key_hook(mlx_key_data_t keydata, t_fractol_context *hook_ctx);
 

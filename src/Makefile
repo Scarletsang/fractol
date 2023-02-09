@@ -32,11 +32,12 @@ PAINTER_SRC:= \
 	painter/fractal_painter.c \
 	painter/animation.c \
 	painter/color.c \
-	painter/pixel_copier.c \
-	painter/translation.c
+	painter/pixel_copier.c
 CONTEXT_SRC:= \
 	context/context.c \
 	context/controls.c \
+	context/animation_controller.c \
+	context/translation.c \
 	context/zoom_calculator.c
 SRC:= \
 	main.c \
