@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 21:06:33 by htsang            #+#    #+#             */
-/*   Updated: 2023/02/10 13:02:40 by htsang           ###   ########.fr       */
+/*   Updated: 2023/02/10 13:07:33 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	init_animation(t_fractol_canvas *canvas, t_fractol_painter *painter)
 }
 
 static void	animate_fractal_internal(t_fractol_canvas *canvas, \
-t_fractol_painter *painter, t_fractol_func fractal, uint32_t *iteration)
+t_fractol_painter *painter, t_fractol_func fractal)
 {
 	uint32_t	*current;
 
@@ -30,7 +30,7 @@ t_fractol_painter *painter, t_fractol_func fractal, uint32_t *iteration)
 	{
 		paint_pixel(canvas, painter, fractal);
 		if (pixel_is_inset(current))
-			init_animate_border_trace(canvas, painter, fractal, iteration);
+			init_animate_border_trace(canvas, painter, fractal);
 	}
 	else if (pixel_is_inset(current))
 		paint_inset_pixels(canvas, painter);
@@ -53,7 +53,7 @@ t_fractol_painter *painter, t_fractol_func fractal)
 			return (EXIT_FAILURE);
 		if (painter->x < canvas->end_x)
 		{
-			animate_fractal_internal(canvas, painter, fractal, &i);
+			animate_fractal_internal(canvas, painter, fractal);
 			painter->x++;
 			continue ;
 		}

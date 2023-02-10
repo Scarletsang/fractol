@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 14:57:24 by htsang            #+#    #+#             */
-/*   Updated: 2023/02/10 12:57:23 by htsang           ###   ########.fr       */
+/*   Updated: 2023/02/10 13:06:54 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,21 +68,16 @@ t_fractol_func fractal, uint32_t *iteration)
 }
 
 void	init_animate_border_trace(t_fractol_canvas *canvas, \
-t_fractol_painter *painter, t_fractol_func fractal, uint32_t *iteration)
+t_fractol_painter *painter, t_fractol_func fractal)
 {
-	if (!painter->animation.border_trace_started)
-	{
-		painter->animation.border_trace_started = 1;
-		painter->tracer.x = painter->x;
-		painter->tracer.y = painter->y;
-		painter->tracer.direction = TRACER_EAST;
-		almondbread_trace(canvas, painter, fractal);
-		painter->tracer.start_x = painter->tracer.x;
-		painter->tracer.start_y = painter->tracer.y;
-		painter->tracer.start_direction = painter->tracer.direction;
-		return ;
-	}
-	animate_border_trace(canvas, painter, fractal, iteration);
+	painter->animation.border_trace_started = 1;
+	painter->tracer.x = painter->x;
+	painter->tracer.y = painter->y;
+	painter->tracer.direction = TRACER_EAST;
+	almondbread_trace(canvas, painter, fractal);
+	painter->tracer.start_x = painter->tracer.x;
+	painter->tracer.start_y = painter->tracer.y;
+	painter->tracer.start_direction = painter->tracer.direction;
 }
 
 void	border_trace(t_fractol_canvas *canvas, t_fractol_painter *painter, \
