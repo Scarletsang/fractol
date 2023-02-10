@@ -6,15 +6,20 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 15:51:49 by htsang            #+#    #+#             */
-/*   Updated: 2023/02/09 15:50:05 by htsang           ###   ########.fr       */
+/*   Updated: 2023/02/10 12:13:20 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol_painter.h"
+#include <stdio.h>
 
 int	pixel_is_inset(uint32_t *pixel)
 {
-	return (*pixel == (uint32_t)(INSET_COLOR << 24));
+	return (*pixel == (uint32_t)( \
+		((INSET_COLOR & 0xff000000) >> 24) | \
+		((INSET_COLOR & 0xff0000) >> 8) | \
+		((INSET_COLOR & 0xff00) << 8) | \
+		((INSET_COLOR & 0xff) << 24)));
 }
 
 int	pixel_is_empty(uint32_t *pixel)
