@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 14:57:24 by htsang            #+#    #+#             */
-/*   Updated: 2023/02/10 13:06:54 by htsang           ###   ########.fr       */
+/*   Updated: 2023/02/10 23:13:36 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,8 @@ t_fractol_func fractal)
 		move_painter_backwards(tracer);
 }
 
-void	animate_border_trace(t_fractol_canvas *canvas, t_fractol_painter *painter, \
-t_fractol_func fractal, uint32_t *iteration)
+void	animate_border_trace(t_fractol_canvas *canvas, \
+t_fractol_painter *painter, t_fractol_func fractal, uint32_t *iteration)
 {
 	while (++*iteration < painter->animation.speed)
 	{

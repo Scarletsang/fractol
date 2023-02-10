@@ -24,7 +24,7 @@ void	fractol_translation_hook(t_fractol_context *program)
 		update_cursor_pos(program);
 		convert_cursor_pos_to_complex(program, &program->canvas.z);
 	}
-	if ((program->controls & 0b1111 ) <= 0b1111)
+	if ((program->controls & 0b1111) <= 0b1111)
 		painted = translate(program);
 	if (is_triggered(&program->controls, ANIMATION))
 	{
@@ -33,7 +33,7 @@ void	fractol_translation_hook(t_fractol_context *program)
 	else if (!painted)
 	{
 		init_canvas(&program->canvas);
-		program->painter_func( \
+		program->painter_func(\
 			&program->canvas, &program->painter, program->fractal);
 	}
 }
@@ -72,12 +72,14 @@ t_fractol_context *program)
 	}
 	update_cursor_pos(program);
 	calculate_zoom(program, ydelta);
-	program->painter_func(&program->canvas, &program->painter, program->fractal);
+	program->painter_func(&program->canvas, &program->painter, \
+		program->fractal);
 }
 
 void	fractol_resize_hook(int32_t width, int32_t height, \
 t_fractol_context *program)
 {
 	calculate_canvas_resize(&program->canvas, width, height);
-	program->painter_func(&program->canvas, &program->painter, program->fractal);
+	program->painter_func(&program->canvas, &program->painter, \
+		program->fractal);
 }

@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 16:14:19 by htsang            #+#    #+#             */
-/*   Updated: 2023/02/10 13:07:03 by htsang           ###   ########.fr       */
+/*   Updated: 2023/02/10 23:12:33 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ typedef struct s_fractol_animation
 	uint32_t	speed;
 	bool		border_trace_started;
 }				t_fractol_animation;
-
 
 typedef struct s_fractol_painter
 {
@@ -92,7 +91,8 @@ t_fractol_painter *painter, t_fractol_func fractal);
 int			init_animate_fractal(t_fractol_canvas *canvas, \
 t_fractol_painter *painter, t_fractol_func fractal);
 
-void		init_animation(t_fractol_canvas *canvas, t_fractol_painter *painter);
+void		init_animation(t_fractol_canvas *canvas, \
+t_fractol_painter *painter);
 
 ///////////////////////////////////
 ///////   border tracing   ////////

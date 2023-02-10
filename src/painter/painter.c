@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 15:51:49 by htsang            #+#    #+#             */
-/*   Updated: 2023/02/10 12:13:20 by htsang           ###   ########.fr       */
+/*   Updated: 2023/02/10 23:13:17 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 int	pixel_is_inset(uint32_t *pixel)
 {
-	return (*pixel == (uint32_t)( \
+	return (*pixel == (uint32_t)(\
 		((INSET_COLOR & 0xff000000) >> 24) | \
 		((INSET_COLOR & 0xff0000) >> 8) | \
 		((INSET_COLOR & 0xff00) << 8) | \
