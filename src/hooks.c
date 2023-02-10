@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 20:53:19 by htsang            #+#    #+#             */
-/*   Updated: 2023/02/10 10:48:54 by htsang           ###   ########.fr       */
+/*   Updated: 2023/02/10 13:24:30 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,9 @@ void	fractol_key_hook(mlx_key_data_t keydata, t_fractol_context *program)
 		press_switch(&keydata.action, &program->controls, TRANSLATE_UP);
 	if (keydata.key == MLX_KEY_Z)
 		press_switch(&keydata.action, &program->controls, CHANGE_Z);
+	if (keydata.key == MLX_KEY_S && \
+		((keydata.action == MLX_PRESS) || (keydata.action == MLX_REPEAT)))
+		change_animation_speed(program, keydata.modifier != MLX_SHIFT);
 	if ((keydata.key == MLX_KEY_A) && (keydata.action == MLX_PRESS))
 		press_animation_lever(program);
 }
@@ -68,16 +71,9 @@ t_fractol_context *program)
 		write(STDERR_FILENO, "horizontal scrolling is not supported.", 39);
 		return ;
 	}
-	if (is_triggered(&program->controls, ANIMATION))
-	{
-		change_animation_speed(program, ydelta);
-	}
-	else
-	{
-		update_cursor_pos(program);
-		calculate_zoom(program, ydelta);
-		program->painter_func(&program->canvas, &program->painter, program->fractal);
-	}
+	update_cursor_pos(program);
+	calculate_zoom(program, ydelta);
+	program->painter_func(&program->canvas, &program->painter, program->fractal);
 }
 
 void	fractol_resize_hook(int32_t width, int32_t height, \

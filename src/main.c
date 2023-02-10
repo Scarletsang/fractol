@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 23:47:55 by htsang            #+#    #+#             */
-/*   Updated: 2023/02/09 23:44:26 by htsang           ###   ########.fr       */
+/*   Updated: 2023/02/10 13:25:24 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,8 @@ int32_t	main(void)
 	mlx_image_to_window(program.mlx, program.canvas.image, 0, 0);
 	program.controls = 0;
 	init_painter(&program.canvas, &program.painter);
-	program.painter.animation.speed = 10000;
+	program.painter_func = &paint_fractal;
+	program.painter.animation.speed = 100;
 	program.painter.animation.border_trace_started = 0;
 	program.painter_func(&program.canvas, &program.painter, program.fractal);
 	mlx_loop_hook(program.mlx, \

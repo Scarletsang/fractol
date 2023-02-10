@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 22:16:49 by htsang            #+#    #+#             */
-/*   Updated: 2023/02/10 00:22:28 by htsang           ###   ########.fr       */
+/*   Updated: 2023/02/10 13:21:43 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ void				press_animation_lever(t_fractol_context *program);
 void				control_animation(t_fractol_context *program);
 
 void				change_animation_speed(t_fractol_context *program, \
-double ydelta);
+int increase);
 
 ////////////////////////////////
 //////    translation    ///////
