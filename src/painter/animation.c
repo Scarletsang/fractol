@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 21:06:33 by htsang            #+#    #+#             */
-/*   Updated: 2023/02/10 00:03:28 by htsang           ###   ########.fr       */
+/*   Updated: 2023/02/10 11:30:29 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,6 @@ t_fractol_painter *painter, t_fractol_func fractal)
 	uint32_t	i;
 
 	i = 0;
-	if (painter->animation.border_trace_started)
-		animate_border_trace(canvas, painter, fractal, &i);
 	while (i++ < painter->animation.speed)
 	{
 		if (painter->y >= canvas->end_y)
