@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/04 00:18:01 by htsang            #+#    #+#             */
-/*   Updated: 2023/02/06 16:17:25 by htsang           ###   ########.fr       */
+/*   Updated: 2023/02/10 15:45:30 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,9 @@ double real_offset, double imaginary_offset)
 }
 
 t_fractol_canvas	*set_canvas_settings(t_fractol_canvas *canvas, \
-uint32_t iteration, double pixel_size, double border_thickness)
+uint32_t iteration, double border_thickness)
 {
 	canvas->settings.iteration = iteration;
-	canvas->settings.pixel_size = pixel_size;
 	canvas->settings.border_thickness = border_thickness;
 	return (canvas);
 }

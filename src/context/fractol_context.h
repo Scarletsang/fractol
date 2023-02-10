@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 22:16:49 by htsang            #+#    #+#             */
-/*   Updated: 2023/02/10 13:21:43 by htsang           ###   ########.fr       */
+/*   Updated: 2023/02/10 22:55:42 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ typedef struct s_fractol_context
 	unsigned int			controls;
 	int32_t					mouse_x;
 	int32_t					mouse_y;
-	uint32_t				clock;
+	const char				*program_name;
 }				t_fractol_context;
 
 t_fractol_context	*init_fractal(t_fractol_context *program, \

@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 13:58:59 by htsang            #+#    #+#             */
-/*   Updated: 2023/02/08 23:15:05 by htsang           ###   ########.fr       */
+/*   Updated: 2023/02/10 23:08:55 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ t_fractol_canvas	*set_canvas_complex_start(t_fractol_canvas *canvas, \
 double real_offset, double imaginary_offset);
 
 t_fractol_canvas	*set_canvas_settings(t_fractol_canvas *canvas, \
-uint32_t iteration, double pixel_size, double border_thickness);
+uint32_t iteration, double border_thickness);
 
 t_fractol_canvas	*set_canvas_pixels_empty(t_fractol_canvas *canvas);
 
@@ -64,9 +64,6 @@ int					pixel_is_empty(uint32_t *pixel);
 /////////////////////////////
 ///////   viewport   ////////
 /////////////////////////////
-
-void				set_viewport_center(t_fractol_canvas *canvas, \
-double center_real, double center_imaginary);
 
 void				move_viewport_real(t_fractol_canvas *canvas, \
 uint32_t pixel_amount, int direction);

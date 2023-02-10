@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 23:47:55 by htsang            #+#    #+#             */
-/*   Updated: 2023/02/10 13:25:24 by htsang           ###   ########.fr       */
+/*   Updated: 2023/02/10 22:59:34 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,23 +30,20 @@ t_fractol_context	*init_program(t_fractol_context *program)
 	return (program);
 }
 
-int32_t	main(void)
+int	main(int argc, const char **argv)
 {
 	t_fractol_context	program;
 
-	if (!init_program(&program))
+	if (!(!init_fractal_from_cli(&program, argc, argv) \
+		&& init_program(&program)))
 	{
 		exit(EXIT_FAILURE);
 	}
-	set_canvas_settings(&program.canvas, 100, 0.003, 0.01);
-	set_complex_number(&program.canvas.z, -1, 0.16);
-	init_fractal(&program, &julia_distance_estimator, -1.4, 0);
+	init_canvas(&program.canvas);
 	mlx_image_to_window(program.mlx, program.canvas.image, 0, 0);
 	program.controls = 0;
-	init_painter(&program.canvas, &program.painter);
 	program.painter_func = &paint_fractal;
 	program.painter.animation.speed = 100;
-	program.painter.animation.border_trace_started = 0;
 	program.painter_func(&program.canvas, &program.painter, program.fractal);
 	mlx_loop_hook(program.mlx, \
 		(t_mlx_loop_func) fractol_translation_hook, &program);

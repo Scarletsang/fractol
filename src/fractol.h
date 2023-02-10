@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 16:01:29 by htsang            #+#    #+#             */
-/*   Updated: 2023/02/09 17:19:37 by htsang           ###   ########.fr       */
+/*   Updated: 2023/02/10 22:44:26 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,10 @@
 
 typedef void	(*t_mlx_loop_func)(void *param);
 
-void	fractol_translation_hook(t_fractol_context *program);
+int		init_fractal_from_cli(t_fractol_context *program, \
+int argc, const char **argv);
 
-void	fractol_animation_hook(t_fractol_context *program);
+void	fractol_translation_hook(t_fractol_context *program);
 
 void	fractol_key_hook(mlx_key_data_t keydata, t_fractol_context *hook_ctx);
 
@@ -32,5 +33,12 @@ t_fractol_context *program);
 
 void	fractol_resize_hook(int32_t width, int32_t height, \
 t_fractol_context *program);
+
+int		print_program_usage(const char *program_name);
+
+int		print_invalid_option_msg(const char *program_name, \
+const char *fractal_name);
+
+int		print_unsupported_scroll_msg(const char *program_name);
 
 #endif

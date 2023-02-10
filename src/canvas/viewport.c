@@ -41,12 +41,3 @@ uint32_t pixel_amount, int direction)
 			canvas->settings.pixel_size * pixel_amount;
 	}
 }
-
-void	set_viewport_center(t_fractol_canvas *canvas, \
-double center_real, double center_imaginary)
-{
-	canvas->viewport.real = center_real - \
-		(canvas->settings.pixel_size * canvas->image->width / 2);
-	canvas->viewport.imaginary = center_imaginary + \
-		(canvas->settings.pixel_size * canvas->image->height / 2);
-}

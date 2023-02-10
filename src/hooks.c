@@ -6,12 +6,11 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 20:53:19 by htsang            #+#    #+#             */
-/*   Updated: 2023/02/10 13:24:30 by htsang           ###   ########.fr       */
+/*   Updated: 2023/02/10 23:06:13 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
-#include <unistd.h>
 
 void	fractol_translation_hook(t_fractol_context *program)
 {
@@ -68,7 +67,7 @@ t_fractol_context *program)
 {
 	if (xdelta)
 	{
-		write(STDERR_FILENO, "horizontal scrolling is not supported.", 39);
+		print_unsupported_scroll_msg(program->program_name);
 		return ;
 	}
 	update_cursor_pos(program);

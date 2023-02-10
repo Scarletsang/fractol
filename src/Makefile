@@ -5,7 +5,7 @@ NAME:=fractol
 ##############################
 
 CC=cc
-CFLAGS= -Wall -Wextra -Werror -march=nocona -flto -O2
+CFLAGS= -Wall -Wextra -Werror -march=nocona -flto -Ofast
 ifdef FSANITIZE
 	CFLAGS+= -g3 -fsanitize=address
 endif
@@ -41,7 +41,9 @@ CONTEXT_SRC:= \
 	context/zoom_calculator.c
 SRC:= \
 	main.c \
-	hooks.c
+	hooks.c \
+	cli.c \
+	error_printer.c
 OBJS=${COMPLEX_SRC:.c=.o} ${CANVAS_SRC:.c=.o} ${BORDER_TRACER_SRC:.c=.o} ${PAINTER_SRC:.c=.o} ${CONTEXT_SRC:.c=.o} ${SRC:.c=.o}
 
 ########################
