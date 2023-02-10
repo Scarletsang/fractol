@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 20:53:19 by htsang            #+#    #+#             */
-/*   Updated: 2023/02/10 00:23:11 by htsang           ###   ########.fr       */
+/*   Updated: 2023/02/10 10:48:54 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	fractol_translation_hook(t_fractol_context *program)
 		update_cursor_pos(program);
 		convert_cursor_pos_to_complex(program, &program->canvas.z);
 	}
-	if (program->controls <= 15)
+	if ((program->controls & 0b1111 ) <= 0b1111)
 		painted = translate(program);
 	if (is_triggered(&program->controls, ANIMATION))
 	{
