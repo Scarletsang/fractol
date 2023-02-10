@@ -6,11 +6,39 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 13:02:33 by htsang            #+#    #+#             */
-/*   Updated: 2023/02/01 21:40:44 by htsang           ###   ########.fr       */
+/*   Updated: 2023/02/10 16:30:05 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol_complex.h"
+
+double	newton_distance_estimator(t_fractol_complex *c, \
+t_fractol_complex *original_z, double border_size, int iteration)
+{
+	t_fractol_complex	dz;
+	t_fractol_complex	z;
+	double				z_magnitude_square;
+
+	copy_complex_number(&z, original_z);
+	set_complex_number(&dz, 1, 0);
+	while (iteration > 0)
+	{
+		z_magnitude_square = complex_magnitude_square(&z);
+		if (z_magnitude_square < fractal_border(&dz, border_size))
+		{
+			return (BORDER_VALUE);
+		}
+		if (z_magnitude_square > 1000)
+		{
+			return (log(z_magnitude_square) * \
+				sqrt(z_magnitude_square) / complex_magnitude(&dz));
+		}
+		newton_equation_derivative(&dz, &z, 1);
+		newton_equation(&z, c);
+		iteration--;
+	}
+	return (INSET_VALUE);
+}
 
 double	mandelbrot_distance_estimator(t_fractol_complex *z, \
 t_fractol_complex *c, double border_size, int iteration)

@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 19:41:10 by htsang            #+#    #+#             */
-/*   Updated: 2023/02/01 15:54:11 by htsang           ###   ########.fr       */
+/*   Updated: 2023/02/10 16:27:51 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,5 +81,13 @@ t_fractol_complex *c, double border_size, int iteration);
 
 double				julia_distance_estimator(t_fractol_complex *c, \
 t_fractol_complex *original_z, double border_size, int iteration);
+
+double				newton_distance_estimator(t_fractol_complex *z, \
+t_fractol_complex *c, double border_size, int iteration);
+
+void				newton_equation(t_fractol_complex *z, t_fractol_complex *c);
+
+void				newton_equation_derivative(t_fractol_complex *dz, \
+t_fractol_complex *z, double dc);
 
 #endif
