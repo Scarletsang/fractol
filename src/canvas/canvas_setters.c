@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/04 00:18:01 by htsang            #+#    #+#             */
-/*   Updated: 2023/02/10 15:45:30 by htsang           ###   ########.fr       */
+/*   Updated: 2023/02/12 23:41:15 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,15 +25,6 @@ uint32_t start_x, uint32_t start_y)
 {
 	canvas->start_x = start_x;
 	canvas->start_y = start_y;
-	return (canvas);
-}
-
-t_fractol_canvas	*set_canvas_complex_start(t_fractol_canvas *canvas, \
-double real_offset, double imaginary_offset)
-{
-	canvas->complex_start.real = canvas->viewport.real + real_offset;
-	canvas->complex_start.imaginary = \
-		canvas->viewport.imaginary - imaginary_offset;
 	return (canvas);
 }
 
