@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 16:14:19 by htsang            #+#    #+#             */
-/*   Updated: 2023/02/12 04:22:14 by htsang           ###   ########.fr       */
+/*   Updated: 2023/02/12 23:58:47 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,8 @@ typedef struct s_fractol_pixel_copier
 {
 	uint32_t	*dest;
 	uint32_t	*src;
-	int32_t		vertical_movement;
-	int32_t		horizontal_movement;
+	int32_t		up_movement;
+	int32_t		left_movement;
 }				t_fractol_pixel_copier;
 
 typedef int	(*t_fractol_painter_func)(t_fractol_canvas *canvas, \
@@ -126,8 +126,5 @@ uint32_t	distance_to_color(double value);
 /////////////////////////////////
 
 void		copy_pixels(mlx_image_t *image, t_fractol_pixel_copier *copier);
-
-int			init_pixel_copier(t_fractol_pixel_copier *copier, \
-int32_t vertical_movement, int32_t horizontal_movement);
 
 #endif

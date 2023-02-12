@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 22:16:49 by htsang            #+#    #+#             */
-/*   Updated: 2023/02/12 13:36:37 by htsang           ###   ########.fr       */
+/*   Updated: 2023/02/13 00:09:37 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,12 +74,6 @@ int increase);
 ////////////////////////////////
 //////    translation    ///////
 ////////////////////////////////
-
-void				translate_left_or_right(t_fractol_context *program, \
-int32_t horizontal_movement);
-
-void				translate_up_or_down(t_fractol_context *program, \
-int32_t vertical_movement);
 
 int					translate(t_fractol_context *program);
 

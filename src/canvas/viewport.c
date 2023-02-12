@@ -13,31 +13,15 @@
 #include "fractol_canvas.h"
 
 void	move_viewport_real(t_fractol_canvas *canvas, \
-uint32_t pixel_amount, int direction)
+int32_t pixel_amount)
 {
-	if (direction <= 0)
-	{
-		canvas->viewport.real -= \
-			canvas->settings.pixel_size * pixel_amount;
-	}
-	else
-	{
-		canvas->viewport.real += \
-			canvas->settings.pixel_size * pixel_amount;
-	}
+	canvas->viewport.real += \
+		canvas->settings.pixel_size * pixel_amount;
 }
 
 void	move_viewport_imaginary(t_fractol_canvas *canvas, \
-uint32_t pixel_amount, int direction)
+int32_t pixel_amount)
 {
-	if (direction <= 0)
-	{
-		canvas->viewport.imaginary -= \
-			canvas->settings.pixel_size * pixel_amount;
-	}
-	else
-	{
-		canvas->viewport.imaginary += \
-			canvas->settings.pixel_size * pixel_amount;
-	}
+	canvas->viewport.imaginary += \
+		canvas->settings.pixel_size * pixel_amount;
 }

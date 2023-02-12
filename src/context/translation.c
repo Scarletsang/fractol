@@ -6,83 +6,62 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 23:28:11 by htsang            #+#    #+#             */
-/*   Updated: 2023/02/12 13:40:35 by htsang           ###   ########.fr       */
+/*   Updated: 2023/02/13 00:09:48 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol_context.h"
-#include <stdio.h>
 
-void	translate_left_or_right(t_fractol_context *program, \
-int32_t horizontal_movement)
+static int	set_translation_vector(unsigned int *controls, int32_t *left_movement, \
+int32_t *up_movement, int speed)
 {
-	if (horizontal_movement > 0)
+	*left_movement = \
+		(speed * is_triggered(controls, TRANSLATE_LEFT)) \
+		+ (-speed * is_triggered(controls, TRANSLATE_RIGHT));
+	*up_movement = \
+		(speed * is_triggered(controls, TRANSLATE_UP)) \
+		+ (-speed * is_triggered(controls, TRANSLATE_DOWN));
+	if ((*up_movement == 0) && (*left_movement == 0))
 	{
-		calculate_left_translation(&program->canvas, horizontal_movement);
-		program->painter_func(\
-			&program->canvas, &program->painter, program->fractal);
+		return (EXIT_FAILURE);
 	}
-	else
-	{
-		calculate_right_translation(&program->canvas, \
-			horizontal_movement * -1);
-		program->painter_func(\
-			&program->canvas, &program->painter, program->fractal);
-	}
-}
-
-void	translate_up_or_down(t_fractol_context *program, \
-int32_t vertical_movement)
-{
-	if (vertical_movement > 0)
-	{
-		calculate_up_translation(&program->canvas, vertical_movement);
-		program->painter_func(\
-			&program->canvas, &program->painter, program->fractal);
-	}
-	else
-	{
-		calculate_down_translation(&program->canvas, \
-			vertical_movement * -1);
-		program->painter_func(\
-			&program->canvas, &program->painter, program->fractal);
-	}
+	return (EXIT_SUCCESS);
 }
 
 int	translate(t_fractol_context *program)
 {
 	t_fractol_pixel_copier	copier;
 
-	if (init_pixel_copier(&copier,\
-		(20 * is_triggered(&program->controls, TRANSLATE_UP)) \
-		+ (-20 * is_triggered(&program->controls, TRANSLATE_DOWN)),
-		(20 * is_triggered(&program->controls, TRANSLATE_LEFT)) \
-		+ (-20 * is_triggered(&program->controls, TRANSLATE_RIGHT))))
-	{
+	if (set_translation_vector(\
+		&program->controls, &copier.left_movement, &copier.up_movement, 20))
 		return (EXIT_FAILURE);
-	}
+	move_viewport_real(&program->canvas, copier.left_movement * -1);
+	move_viewport_imaginary(&program->canvas, copier.up_movement);
 	copy_pixels(program->canvas.image, &copier);
-	translate_up_or_down(program, copier.vertical_movement);
-	translate_left_or_right(program, copier.horizontal_movement);
+	if (!calculate_vertical_translation(&program->canvas, \
+		copier.up_movement))
+	{
+		adjust_vertical_translation(&program->canvas, \
+			copier.left_movement);
+		program->painter_func(\
+			&program->canvas, &program->painter, program->fractal);
+	}
+	if (!calculate_horizontal_translation(&program->canvas, \
+		copier.left_movement))
+		program->painter_func(\
+			&program->canvas, &program->painter, program->fractal);
 	return (EXIT_SUCCESS);
 }
 
 int	translate_viewport(t_fractol_context *program)
 {
-	int32_t	horizontal_movement;
-	int32_t	vertical_movement;
+	int32_t	left_movement;
+	int32_t	up_movement;
 
-	horizontal_movement = \
-		(-1 * is_triggered(&program->controls, TRANSLATE_LEFT)) \
-		+ (is_triggered(&program->controls, TRANSLATE_RIGHT));
-	vertical_movement = \
-		(-1 * is_triggered(&program->controls, TRANSLATE_UP)) \
-		+ (is_triggered(&program->controls, TRANSLATE_DOWN));
-	if ((vertical_movement == 0) && (horizontal_movement == 0))
-	{
+	if (set_translation_vector(\
+		&program->controls, &left_movement, &up_movement, 20))
 		return (EXIT_FAILURE);
-	}
-	move_viewport_real(&program->canvas, 20, horizontal_movement);
-	move_viewport_imaginary(&program->canvas, 20, vertical_movement);
+	move_viewport_real(&program->canvas, left_movement * -1);
+	move_viewport_imaginary(&program->canvas, up_movement);
 	return (EXIT_SUCCESS);
 }

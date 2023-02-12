@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 13:58:59 by htsang            #+#    #+#             */
-/*   Updated: 2023/02/10 23:08:55 by htsang           ###   ########.fr       */
+/*   Updated: 2023/02/12 23:40:58 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ typedef struct s_fractol_canvas
 	uint32_t					end_x;
 	uint32_t					end_y;
 	t_fractol_complex			z;
-	t_fractol_complex			complex_start;
 	t_fractol_complex			viewport;
 	t_fractol_canvas_setting	settings;
 	mlx_image_t					*image;
@@ -51,9 +50,6 @@ uint32_t end_x, uint32_t end_y);
 t_fractol_canvas	*set_canvas_start(t_fractol_canvas *canvas, \
 uint32_t start_x, uint32_t start_y);
 
-t_fractol_canvas	*set_canvas_complex_start(t_fractol_canvas *canvas, \
-double real_offset, double imaginary_offset);
-
 t_fractol_canvas	*set_canvas_settings(t_fractol_canvas *canvas, \
 uint32_t iteration, double border_thickness);
 
@@ -66,26 +62,22 @@ int					pixel_is_empty(uint32_t *pixel);
 /////////////////////////////
 
 void				move_viewport_real(t_fractol_canvas *canvas, \
-uint32_t pixel_amount, int direction);
+int32_t pixel_amount);
 
 void				move_viewport_imaginary(t_fractol_canvas *canvas, \
-uint32_t pixel_amount, int direction);
+int32_t pixel_amount);
 
 ////////////////////////////////
 ///////   translation   ////////
 ////////////////////////////////
 
-t_fractol_canvas	*calculate_left_translation(t_fractol_canvas *canvas, \
-uint32_t delta);
+int					calculate_horizontal_translation(t_fractol_canvas *canvas, \
+int32_t left_movement);	
 
-t_fractol_canvas	*calculate_right_translation(t_fractol_canvas *canvas, \
-uint32_t delta);
-
-t_fractol_canvas	*calculate_down_translation(t_fractol_canvas *canvas, \
-uint32_t delta);
-
-t_fractol_canvas	*calculate_up_translation(t_fractol_canvas *canvas, \
-uint32_t delta);
+int					calculate_vertical_translation(t_fractol_canvas *canvas, \
+int32_t up_movement);
+void				adjust_vertical_translation(t_fractol_canvas *canvas, \
+int32_t left_movement);
 
 t_fractol_canvas	*calculate_canvas_resize(t_fractol_canvas *canvas, \
 int32_t width, int32_t height);
