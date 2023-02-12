@@ -6,31 +6,47 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 20:53:19 by htsang            #+#    #+#             */
-/*   Updated: 2023/02/10 23:06:13 by htsang           ###   ########.fr       */
+/*   Updated: 2023/02/12 13:50:05 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
+#include <stdio.h>
 
 void	fractol_translation_hook(t_fractol_context *program)
 {
-	int	painted;
+	int	translated;
 
 	if (!program->controls)
 		return ;
+	translated = 0;
 	if (is_triggered(&program->controls, CHANGE_Z))
 	{
-		painted = 0;
 		update_cursor_pos(program);
 		convert_cursor_pos_to_complex(program, &program->canvas.z);
 	}
-	if ((program->controls & 0b1111) <= 0b1111)
-		painted = translate(program);
 	if (is_triggered(&program->controls, ANIMATION))
 	{
-		control_animation(program);
+		
+		if ((program->controls & 0b1111) <= 0b1111)
+			translate_viewport(program);
+		if (program->controls == ANIMATION)
+			control_animation(program);
+		else
+		{
+			init_canvas(&program->canvas);
+			program->painter_func(\
+				&program->canvas, &program->painter, program->fractal);
+		}
+		if (is_triggered(&program->controls, ZOOM))
+			program->controls &= ~ZOOM;
+		return ;
 	}
-	else if (!painted)
+	if (is_triggered(&program->controls, ZOOM))
+		program->controls &= ~ZOOM;
+	if ((program->controls & 0b1111) <= 0b1111)
+		translated = !translate(program);
+	if (!translated)
 	{
 		init_canvas(&program->canvas);
 		program->painter_func(\
@@ -72,8 +88,7 @@ t_fractol_context *program)
 	}
 	update_cursor_pos(program);
 	calculate_zoom(program, ydelta);
-	program->painter_func(&program->canvas, &program->painter, \
-		program->fractal);
+	program->controls |= ZOOM;
 }
 
 void	fractol_resize_hook(int32_t width, int32_t height, \

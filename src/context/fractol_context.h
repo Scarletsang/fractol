@@ -21,8 +21,9 @@ typedef enum e_fractol_control
 	TRANSLATE_RIGHT = 0b10,
 	TRANSLATE_DOWN = 0b100,
 	TRANSLATE_UP = 0b1000,
-	CHANGE_Z = 0b10000,
-	ANIMATION = 0b100000
+	ZOOM = 0b10000,
+	CHANGE_Z = 0b100000,
+	ANIMATION = 0b1000000
 }				t_fractol_control;
 
 typedef struct s_fractol_context

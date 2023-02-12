@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/29 21:46:35 by htsang            #+#    #+#             */
-/*   Updated: 2023/02/01 15:55:05 by htsang           ###   ########.fr       */
+/*   Updated: 2023/02/11 14:51:47 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,9 @@ t_fractol_context	*calculate_zoom(t_fractol_context *program, double ydelta)
 	if (ydelta < 0)
 		zoom_percentage *= -1;
 	program->canvas.settings.pixel_size += zoom_percentage;
-	return (init_fractal(program, program->fractal, \
+	set_complex_number(&program->canvas.viewport, \
 		mouse.real - (program->mouse_x * program->canvas.settings.pixel_size), \
 		mouse.imaginary + \
-		(program->mouse_y * program->canvas.settings.pixel_size)));
+			(program->mouse_y * program->canvas.settings.pixel_size));
+	return (program);
 }
