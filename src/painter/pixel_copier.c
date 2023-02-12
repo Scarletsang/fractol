@@ -6,84 +6,91 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 15:56:56 by htsang            #+#    #+#             */
-/*   Updated: 2023/01/27 22:31:09 by htsang           ###   ########.fr       */
+/*   Updated: 2023/02/12 04:24:17 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol_painter.h"
 
-void	copy_pixels_right(mlx_image_t *image, uint32_t delta)
+static void	copy_pixels_from_start(mlx_image_t *image, \
+t_fractol_pixel_copier *copier)
 {
 	uint32_t	x;
 	uint32_t	y;
-	uint32_t	*dest;
-	uint32_t	*src;
 
-	y = image->height;
-	dest = (uint32_t *) image->pixels + (image->width * image->height) - 1;
-	src = dest - delta;
+	if (copier->horizontal_movement < 0)
+	{
+		copier->horizontal_movement *= -1;
+		copier->src += copier->horizontal_movement;
+	}
+	else if (copier->horizontal_movement > 0)
+		copier->dest += copier->horizontal_movement;
+	y = image->height - copier->vertical_movement;
 	while (y-- > 0)
 	{
-		x = image->width;
-		while (x-- > delta)
+		x = image->width - copier->horizontal_movement;
+		while (x-- > 0)
 		{
-			*dest-- = *src--;
+			*copier->dest++ = *copier->src++;
 		}
-		dest -= delta;
-		src -= delta;
+		copier->dest += copier->horizontal_movement;
+		copier->src += copier->horizontal_movement;
 	}
 }
 
-void	copy_pixels_left(mlx_image_t *image, uint32_t delta)
+static void	copy_pixels_from_bottom(mlx_image_t *image, \
+t_fractol_pixel_copier *copier)
 {
 	uint32_t	x;
 	uint32_t	y;
-	uint32_t	*dest;
-	uint32_t	*src;
 
-	y = image->height;
-	dest = (uint32_t *) image->pixels;
-	src = dest + delta;
+	if (copier->horizontal_movement < 0)
+	{
+		copier->horizontal_movement *= -1;
+		copier->dest -= copier->horizontal_movement;
+	}
+	else if (copier->horizontal_movement > 0)
+		copier->src -= copier->horizontal_movement;
+	y = image->height - copier->vertical_movement;
 	while (y-- > 0)
 	{
-		x = image->width;
-		while (x-- > delta)
+		x = image->width - copier->horizontal_movement;
+		while (x-- > 0)
 		{
-			*dest++ = *src++;
+			*copier->dest-- = *copier->src--;
 		}
-		dest += delta;
-		src += delta;
+		copier->dest -= copier->horizontal_movement;
+		copier->src -= copier->horizontal_movement;
 	}
 }
 
-void	copy_pixels_down(mlx_image_t *image, uint32_t delta)
+void	copy_pixels(mlx_image_t *image, t_fractol_pixel_copier *copier)
 {
-	uint32_t	*first;
-	uint32_t	*dest;
-	uint32_t	*src;
-
-	first = (uint32_t *) image->pixels;
-	dest = first + (image->width * image->height) - 1;
-	src = dest - (image->width * delta);
-	while (src > first)
+	if (copier->vertical_movement > 0 || \
+		((copier->horizontal_movement > 0) && (copier->vertical_movement == 0)))
 	{
-		*dest-- = *src--;
+		copier->dest = (uint32_t *) image->pixels + \
+			(image->width * image->height) - 1;
+		copier->src = copier->dest - (image->width * copier->vertical_movement);
+		copy_pixels_from_bottom(image, copier);
 	}
-	*dest = *src;
+	else
+	{
+		copier->vertical_movement *= -1;
+		copier->dest = (uint32_t *) image->pixels;
+		copier->src = copier->dest + (image->width * copier->vertical_movement);
+		copy_pixels_from_start(image, copier);
+	}
 }
 
-void	copy_pixels_up(mlx_image_t *image, uint32_t delta)
+int	init_pixel_copier(t_fractol_pixel_copier *copier, int32_t vertical_movement, \
+int32_t horizontal_movement)
 {
-	uint32_t	*last;
-	uint32_t	*dest;
-	uint32_t	*src;
-
-	dest = (uint32_t *) image->pixels;
-	last = dest + (image->width * image->height) - 1;
-	src = dest + (image->width * delta);
-	while (src < last)
+	copier->vertical_movement = vertical_movement;
+	copier->horizontal_movement = horizontal_movement;
+	if ((vertical_movement == 0) && (horizontal_movement == 0))
 	{
-		*dest++ = *src++;
+		return (EXIT_FAILURE);
 	}
-	*dest = *src;
+	return (EXIT_SUCCESS);
 }
