@@ -6,12 +6,11 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 15:51:49 by htsang            #+#    #+#             */
-/*   Updated: 2023/02/10 23:13:17 by htsang           ###   ########.fr       */
+/*   Updated: 2023/02/13 00:26:29 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol_painter.h"
-#include <stdio.h>
 
 int	pixel_is_inset(uint32_t *pixel)
 {
