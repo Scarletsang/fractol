@@ -6,12 +6,27 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 20:53:19 by htsang            #+#    #+#             */
-/*   Updated: 2023/02/12 13:50:05 by htsang           ###   ########.fr       */
+/*   Updated: 2023/02/13 00:05:49 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
-#include <stdio.h>
+
+static void	animation_mode(t_fractol_context *program)
+{
+	if ((program->controls & 0b1111) <= 0b1111)
+		translate_viewport(program);
+	if (program->controls == ANIMATION)
+		control_animation(program);
+	else
+	{
+		init_canvas(&program->canvas);
+		program->painter_func(\
+			&program->canvas, &program->painter, program->fractal);
+	}
+	if (is_triggered(&program->controls, ZOOM))
+		program->controls &= ~ZOOM;
+}
 
 void	fractol_translation_hook(t_fractol_context *program)
 {
@@ -27,19 +42,7 @@ void	fractol_translation_hook(t_fractol_context *program)
 	}
 	if (is_triggered(&program->controls, ANIMATION))
 	{
-		
-		if ((program->controls & 0b1111) <= 0b1111)
-			translate_viewport(program);
-		if (program->controls == ANIMATION)
-			control_animation(program);
-		else
-		{
-			init_canvas(&program->canvas);
-			program->painter_func(\
-				&program->canvas, &program->painter, program->fractal);
-		}
-		if (is_triggered(&program->controls, ZOOM))
-			program->controls &= ~ZOOM;
+		animation_mode(program);
 		return ;
 	}
 	if (is_triggered(&program->controls, ZOOM))

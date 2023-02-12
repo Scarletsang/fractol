@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 00:16:30 by htsang            #+#    #+#             */
-/*   Updated: 2023/02/10 13:19:24 by htsang           ###   ########.fr       */
+/*   Updated: 2023/02/13 00:06:36 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	change_animation_speed(t_fractol_context *program, int increase)
 {
 	uint32_t	speed_delta;
 
-	speed_delta = program->canvas.image->width / 30;
+	speed_delta = program->canvas.image->width / 10;
 	if (increase)
 	{
 		program->painter.animation.speed += speed_delta;
