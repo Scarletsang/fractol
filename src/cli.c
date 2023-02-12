@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 15:06:45 by htsang            #+#    #+#             */
-/*   Updated: 2023/02/10 22:56:01 by htsang           ###   ########.fr       */
+/*   Updated: 2023/02/12 22:22:58 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,13 +49,13 @@ int argc, const char **argv)
 	else if (name_matches(argv[1], "julia"))
 	{
 		program->fractal = &julia_distance_estimator;
-		set_complex_number(&program->canvas.z, -0.8696, 0.26);
+		set_complex_number(&program->canvas.z, -0.73, 0.18);
 	}
 	else
 		return (print_invalid_option_msg(argv[0], argv[1]));
 	program->program_name = argv[0];
 	set_complex_number(&program->canvas.viewport, -1.5, 1);
-	set_canvas_settings(&program->canvas, 100, 0.01);
+	set_canvas_settings(&program->canvas, 200, 0.0005);
 	program->canvas.settings.pixel_size = \
 		calculate_pixel_size(&program->canvas.viewport, 1.5);
 	return (EXIT_SUCCESS);
