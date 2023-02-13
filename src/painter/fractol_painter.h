@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 16:14:19 by htsang            #+#    #+#             */
-/*   Updated: 2023/02/12 23:58:47 by htsang           ###   ########.fr       */
+/*   Updated: 2023/02/13 22:24:04 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,6 @@ typedef struct s_fractol_painter
 	uint32_t			y;
 	t_fractol_animation	animation;
 	t_fractol_tracer	tracer;
-	t_fractol_complex	c;
-	double				border_size;
 }				t_fractol_painter;
 
 typedef struct s_fractol_pixel_copier
@@ -67,12 +65,11 @@ t_fractol_painter *painter, t_fractol_func fractal);
 ///////   painter   ////////
 ////////////////////////////
 
-int			pixel_is_inset(uint32_t *pixel);
-
-int			pixel_is_empty(uint32_t *pixel);
-
-void		calculate_painter_c(t_fractol_canvas *canvas, \
+void		calculate_distance_estimator_c(t_fractol_canvas *canvas, \
 t_fractol_painter *painter, uint32_t x, uint32_t y);
+
+void		paint_on_distance_map(t_fractol_canvas *canvas, \
+t_fractol_painter *painter, t_fractol_func fractal);
 
 void		paint_pixel(t_fractol_canvas *canvas, t_fractol_painter *painter, \
 t_fractol_func fractal);
@@ -119,7 +116,8 @@ t_fractol_painter *painter, t_fractol_func fractal);
 ///////   coloring   ////////
 /////////////////////////////
 
-uint32_t	distance_to_color(double value);
+uint32_t	distance_to_color(t_fractol_distance *distance, \
+t_fractol_base_color *base_color);
 
 /////////////////////////////////
 ///////    translation   ////////

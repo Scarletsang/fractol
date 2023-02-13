@@ -6,55 +6,48 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 20:53:19 by htsang            #+#    #+#             */
-/*   Updated: 2023/02/13 00:05:49 by htsang           ###   ########.fr       */
+/*   Updated: 2023/02/13 22:33:26 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-static void	animation_mode(t_fractol_context *program)
+static int	animate(t_fractol_context *program)
 {
 	if ((program->controls & 0b1111) <= 0b1111)
 		translate_viewport(program);
 	if (program->controls == ANIMATION)
-		control_animation(program);
-	else
 	{
-		init_canvas(&program->canvas);
-		program->painter_func(\
-			&program->canvas, &program->painter, program->fractal);
+		control_animation(program);
+		return (EXIT_SUCCESS);
 	}
-	if (is_triggered(&program->controls, ZOOM))
-		program->controls &= ~ZOOM;
+	return (EXIT_FAILURE);
 }
 
 void	fractol_translation_hook(t_fractol_context *program)
 {
-	int	translated;
+	int	painted;
 
 	if (!program->controls)
 		return ;
-	translated = 0;
 	if (is_triggered(&program->controls, CHANGE_Z))
 	{
 		update_cursor_pos(program);
-		convert_cursor_pos_to_complex(program, &program->canvas.z);
+		convert_cursor_pos_to_complex(program, &program->canvas.estimator.z);
 	}
+	painted = 0;
 	if (is_triggered(&program->controls, ANIMATION))
-	{
-		animation_mode(program);
-		return ;
-	}
-	if (is_triggered(&program->controls, ZOOM))
-		program->controls &= ~ZOOM;
-	if ((program->controls & 0b1111) <= 0b1111)
-		translated = !translate(program);
-	if (!translated)
+		painted = !animate(program);
+	if (!painted && ((program->controls & 0b1111) <= 0b1111))
+		painted = !translate(program);
+	if (!painted)
 	{
 		init_canvas(&program->canvas);
 		program->painter_func(\
 			&program->canvas, &program->painter, program->fractal);
 	}
+	if (is_triggered(&program->controls, ZOOM))
+		program->controls &= ~ZOOM;
 }
 
 void	fractol_key_hook(mlx_key_data_t keydata, t_fractol_context *program)

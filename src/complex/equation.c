@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 16:16:54 by htsang            #+#    #+#             */
-/*   Updated: 2023/02/10 16:27:05 by htsang           ###   ########.fr       */
+/*   Updated: 2023/02/12 16:58:03 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ void	newton_equation(t_fractol_complex *z, t_fractol_complex *c)
 void	newton_equation_derivative(t_fractol_complex *dz, \
 t_fractol_complex *z, double dc)
 {
+	complex_multiply(dz, z->real, z->imaginary);
 	complex_multiply(dz, z->real, z->imaginary);
 	complex_multiply(dz, 3, 0);
 	complex_add(dz, -dc, 0);

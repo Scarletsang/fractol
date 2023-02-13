@@ -1,29 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   canvas_setters.c                                   :+:      :+:    :+:   */
+/*   fractol_color_shifter.h                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/04 00:18:01 by htsang            #+#    #+#             */
-/*   Updated: 2023/02/13 22:27:09 by htsang           ###   ########.fr       */
+/*   Created: 2023/02/13 15:51:32 by htsang            #+#    #+#             */
+/*   Updated: 2023/02/13 16:16:40 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fractol_canvas.h"
+#ifndef FRACTOL_COLOR_SHIFTER
+# define FRACTOL_COLOR_SHIFTER
 
-t_fractol_canvas	*set_canvas_end(t_fractol_canvas *canvas, \
-uint32_t end_x, uint32_t end_y)
-{
-	canvas->end_x = end_x;
-	canvas->end_y = end_y;
-	return (canvas);
-}
+# include "fractol_painter.h"
 
-t_fractol_canvas	*set_canvas_start(t_fractol_canvas *canvas, \
-uint32_t start_x, uint32_t start_y)
-{
-	canvas->start_x = start_x;
-	canvas->start_y = start_y;
-	return (canvas);
-}
+#endif

@@ -15,13 +15,11 @@
 void	move_viewport_real(t_fractol_canvas *canvas, \
 int32_t pixel_amount)
 {
-	canvas->viewport.real += \
-		canvas->settings.pixel_size * pixel_amount;
+	canvas->viewport.real += canvas->pixel_size * pixel_amount;
 }
 
 void	move_viewport_imaginary(t_fractol_canvas *canvas, \
 int32_t pixel_amount)
 {
-	canvas->viewport.imaginary += \
-		canvas->settings.pixel_size * pixel_amount;
+	canvas->viewport.imaginary += canvas->pixel_size * pixel_amount;
 }

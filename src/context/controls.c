@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 14:41:40 by htsang            #+#    #+#             */
-/*   Updated: 2023/02/10 00:18:24 by htsang           ###   ########.fr       */
+/*   Updated: 2023/02/13 21:33:38 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ t_fractol_complex *dest)
 {
 	set_complex_number(dest, \
 		program->canvas.viewport.real + \
-			(program->mouse_x * program->canvas.settings.pixel_size), \
+			(program->mouse_x * program->canvas.pixel_size), \
 		program->canvas.viewport.imaginary - \
-			(program->mouse_y * program->canvas.settings.pixel_size));
+			(program->mouse_y * program->canvas.pixel_size));
 }
 
 bool	update_cursor_pos(t_fractol_context *program)

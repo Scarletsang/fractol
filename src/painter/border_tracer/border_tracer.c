@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 14:57:24 by htsang            #+#    #+#             */
-/*   Updated: 2023/02/10 23:13:36 by htsang           ###   ########.fr       */
+/*   Updated: 2023/02/13 22:36:54 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,18 +15,22 @@
 static void	paint_pixel_from_tracer(t_fractol_canvas *canvas, \
 t_fractol_painter *painter, t_fractol_func fractal)
 {
-	calculate_painter_c(canvas, painter, painter->tracer.x, painter->tracer.y);
+	t_fractol_distance	*distance_point;
+
+	calculate_distance_estimator_c(canvas, painter, painter->tracer.x, \
+		painter->tracer.y);
+	distance_point = get_distance_map_point(canvas, painter->tracer.x, \
+		painter->tracer.y);
+	fractal(distance_point, &canvas->estimator);
 	mlx_put_pixel(canvas->image, painter->tracer.x, painter->tracer.y, \
-		distance_to_color(
-			fractal(&canvas->z, &painter->c, \
-				painter->border_size, canvas->settings.iteration)));
+		distance_to_color(distance_point, &canvas->base_color));
 }
 
 void	almondbread_trace(t_fractol_canvas *canvas, t_fractol_painter *painter, \
 t_fractol_func fractal)
 {
 	t_fractol_tracer	*tracer;
-	uint32_t			*current;
+	t_fractol_distance	*current;
 	int					i;
 
 	tracer = &painter->tracer;
@@ -36,10 +40,10 @@ t_fractol_func fractal)
 	{
 		if (move_painter(canvas, tracer))
 		{
-			current = get_pixel(canvas, tracer->x, tracer->y);
-			if (pixel_is_empty(current))
+			current = get_distance_map_point(canvas, tracer->x, tracer->y);
+			if (point_is_empty(current))
 				paint_pixel_from_tracer(canvas, painter, fractal);
-			if (pixel_is_inset(current))
+			if (point_is_inset(current))
 				return ;
 			move_painter_backwards(tracer);
 		}
@@ -47,7 +51,7 @@ t_fractol_func fractal)
 	}
 	if (!move_painter(canvas, tracer))
 		flip_tracer_direction(tracer);
-	else if (!pixel_is_inset(get_pixel(canvas, tracer->x, tracer->y)))
+	else if (!point_is_inset(get_pixel(canvas, tracer->x, tracer->y)))
 		move_painter_backwards(tracer);
 }
 

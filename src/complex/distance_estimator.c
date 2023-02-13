@@ -5,92 +5,43 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/23 13:02:33 by htsang            #+#    #+#             */
-/*   Updated: 2023/02/10 16:30:05 by htsang           ###   ########.fr       */
+/*   Created: 2023/02/13 20:06:04 by htsang            #+#    #+#             */
+/*   Updated: 2023/02/13 21:46:32 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol_complex.h"
 
-double	newton_distance_estimator(t_fractol_complex *c, \
-t_fractol_complex *original_z, double border_size, int iteration)
+void	set_distance_estimator_zc(t_fractol_distance_estimator *estimator, \
+t_fractol_complex *z, t_fractol_complex *c)
 {
-	t_fractol_complex	dz;
-	t_fractol_complex	z;
-	double				z_magnitude_square;
-
-	copy_complex_number(&z, original_z);
-	set_complex_number(&dz, 1, 0);
-	while (iteration > 0)
-	{
-		z_magnitude_square = complex_magnitude_square(&z);
-		if (z_magnitude_square < fractal_border(&dz, border_size))
-		{
-			return (BORDER_VALUE);
-		}
-		if (z_magnitude_square > 1000)
-		{
-			return (log(z_magnitude_square) * \
-				sqrt(z_magnitude_square) / complex_magnitude(&dz));
-		}
-		newton_equation_derivative(&dz, &z, 1);
-		newton_equation(&z, c);
-		iteration--;
-	}
-	return (INSET_VALUE);
+	estimator->z = *z;
+	estimator->c = *c;
 }
 
-double	mandelbrot_distance_estimator(t_fractol_complex *z, \
-t_fractol_complex *c, double border_size, int iteration)
+void	set_distance_estimator_settings(\
+t_fractol_distance_estimator *estimator, double border_size, int iteration)
 {
-	t_fractol_complex	dz;
-	double				z_magnitude_square;
-
-	copy_complex_number(z, c);
-	set_complex_number(&dz, 1, 0);
-	while (iteration > 0)
-	{
-		z_magnitude_square = complex_magnitude_square(z);
-		if (z_magnitude_square < fractal_border(&dz, border_size))
-		{
-			return (BORDER_VALUE);
-		}
-		if (z_magnitude_square > 1000)
-		{
-			return (log(z_magnitude_square) * \
-				sqrt(z_magnitude_square) / complex_magnitude(&dz));
-		}
-		mandelbrot_equation_derivative(&dz, z, 1);
-		mandelbrot_equation(z, c);
-		iteration--;
-	}
-	return (INSET_VALUE);
+	estimator->border_size = border_size;
+	estimator->iteration = iteration;
 }
 
-double	julia_distance_estimator(t_fractol_complex *c, \
-t_fractol_complex *original_z, double border_size, int iteration)
+t_fractol_distance	*set_distance(t_fractol_distance *distance, \
+t_fractol_distance_estimator *estimator)
 {
-	t_fractol_complex	dz;
-	t_fractol_complex	z;
-	double				z_magnitude_square;
+	double	magnitude;
 
-	copy_complex_number(&z, original_z);
-	set_complex_number(&dz, 1, 0);
-	while (iteration > 0)
-	{
-		z_magnitude_square = complex_magnitude_square(&z);
-		if (z_magnitude_square < fractal_border(&dz, border_size))
-		{
-			return (BORDER_VALUE);
-		}
-		if (z_magnitude_square > 1000)
-		{
-			return (log(z_magnitude_square) * \
-				sqrt(z_magnitude_square) / complex_magnitude(&dz));
-		}
-		mandelbrot_equation_derivative(&dz, &z, 1);
-		mandelbrot_equation(&z, c);
-		iteration--;
-	}
-	return (INSET_VALUE);
+	magnitude = sqrt(estimator->magnitude_square);
+	distance->distance = log(estimator->magnitude_square) * \
+				magnitude / complex_magnitude(&estimator->derivative);
+	distance->potential = log(log(magnitude) / pow(2, estimator->iteration));
+	return (distance);
+}
+
+t_fractol_distance	*set_constant_distance(t_fractol_distance *distance, \
+int value)
+{
+	distance->distance = value;
+	distance->potential = 0;
+	return (distance);
 }

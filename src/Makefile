@@ -5,9 +5,11 @@ NAME:=fractol
 ##############################
 
 CC=cc
-CFLAGS= -Wall -Wextra -Werror -march=nocona -flto -Ofast
+CFLAGS= -Wall -Wextra -Werror
 ifdef FSANITIZE
 	CFLAGS+= -g3 -fsanitize=address
+else
+	CFLAGS+= -flto -O3
 endif
 
 #######################
@@ -23,7 +25,8 @@ CANVAS_SRC:= \
 	canvas/canvas.c \
 	canvas/canvas_setters.c \
 	canvas/viewport.c \
-	canvas/translation_calculator.c
+	canvas/translation_calculator.c \
+	canvas/distance_map.c
 BORDER_TRACER_SRC:= \
 	painter/border_tracer/border_tracer.c \
 	painter/border_tracer/tracer.c

@@ -6,12 +6,11 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 15:06:45 by htsang            #+#    #+#             */
-/*   Updated: 2023/02/12 22:22:58 by htsang           ###   ########.fr       */
+/*   Updated: 2023/02/13 15:49:49 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
-#include <unistd.h>
 
 int	name_matches(const char *fractal_name, char *expected)
 {
