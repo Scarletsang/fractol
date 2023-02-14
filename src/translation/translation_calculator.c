@@ -6,11 +6,11 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 18:10:43 by htsang            #+#    #+#             */
-/*   Updated: 2023/02/14 16:32:41 by htsang           ###   ########.fr       */
+/*   Updated: 2023/02/14 16:53:46 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fractol/controls/translation.h"
+#include "FRACTOL/controls/translation.h"
 
 int	calculate_horizontal_translation(t_fractol_canvas *canvas, \
 int32_t left_movement)

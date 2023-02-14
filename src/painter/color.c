@@ -6,11 +6,11 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/04 00:06:59 by htsang            #+#    #+#             */
-/*   Updated: 2023/02/14 16:33:10 by htsang           ###   ########.fr       */
+/*   Updated: 2023/02/14 16:53:46 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fractol/painter.h"
+#include "FRACTOL/painter.h"
 
 uint32_t	get_rgba(int32_t r, int32_t g, int32_t b, int32_t a)
 {

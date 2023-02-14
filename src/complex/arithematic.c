@@ -6,11 +6,11 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 19:41:07 by htsang            #+#    #+#             */
-/*   Updated: 2023/02/14 16:14:12 by htsang           ###   ########.fr       */
+/*   Updated: 2023/02/14 16:53:46 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fractol/complex.h"
+#include "FRACTOL/complex.h"
 
 static void	complex_odd_pow(t_fractol_complex *complex, \
 int power)

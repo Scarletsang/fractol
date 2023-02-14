@@ -7,6 +7,7 @@
     "fractol_canvas.h": "c",
     "canvas.h": "c",
     "complex.h": "c",
-    "context.h": "c"
+    "context.h": "c",
+    "animation.h": "c"
 }
 }

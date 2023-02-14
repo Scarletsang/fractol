@@ -6,11 +6,11 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 20:40:16 by htsang            #+#    #+#             */
-/*   Updated: 2023/02/14 16:14:12 by htsang           ###   ########.fr       */
+/*   Updated: 2023/02/14 16:53:46 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fractol/complex.h"
+#include "FRACTOL/complex.h"
 
 double	complex_magnitude_square(t_fractol_complex *complex)
 {

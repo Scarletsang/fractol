@@ -6,11 +6,11 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 21:46:24 by htsang            #+#    #+#             */
-/*   Updated: 2023/02/14 16:18:50 by htsang           ###   ########.fr       */
+/*   Updated: 2023/02/14 16:53:47 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fractol/canvas.h"
+#include "FRACTOL/canvas.h"
 
 void	set_base_color(t_fractol_base_color *base_color, \
 uint8_t r, uint8_t g, uint8_t b)

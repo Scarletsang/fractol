@@ -6,11 +6,11 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 21:06:33 by htsang            #+#    #+#             */
-/*   Updated: 2023/02/14 16:32:04 by htsang           ###   ########.fr       */
+/*   Updated: 2023/02/14 16:53:46 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fractol/controls/animation.h"
+#include "FRACTOL/controls/animation.h"
 
 void	init_animation(t_fractol_canvas *canvas, t_fractol_painter *painter)
 {

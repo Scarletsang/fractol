@@ -6,11 +6,11 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 14:57:24 by htsang            #+#    #+#             */
-/*   Updated: 2023/02/14 16:33:35 by htsang           ###   ########.fr       */
+/*   Updated: 2023/02/14 16:53:46 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fractol/painter/border_tracer.h"
+#include "FRACTOL/painter/border_tracer.h"
 
 static void	paint_pixel_from_tracer(t_fractol_canvas *canvas, \
 t_fractol_painter *painter, t_fractol_func fractal)

@@ -6,11 +6,11 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 00:16:30 by htsang            #+#    #+#             */
-/*   Updated: 2023/02/14 16:31:53 by htsang           ###   ########.fr       */
+/*   Updated: 2023/02/14 16:53:46 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fractol/controls/animation.h"
+#include "FRACTOL/controls/animation.h"
 
 void	press_animation_lever(t_fractol_context *program)
 {

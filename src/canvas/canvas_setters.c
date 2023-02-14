@@ -6,11 +6,11 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/04 00:18:01 by htsang            #+#    #+#             */
-/*   Updated: 2023/02/14 16:18:45 by htsang           ###   ########.fr       */
+/*   Updated: 2023/02/14 16:53:46 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fractol/canvas.h"
+#include "FRACTOL/canvas.h"
 
 t_fractol_canvas	*set_canvas_end(t_fractol_canvas *canvas, \
 uint32_t end_x, uint32_t end_y)

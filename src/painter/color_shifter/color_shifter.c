@@ -6,9 +6,9 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 15:50:36 by htsang            #+#    #+#             */
-/*   Updated: 2023/02/13 22:14:41 by htsang           ###   ########.fr       */
+/*   Updated: 2023/02/14 16:53:46 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fractol_color_shifter.h"
+#include "FRACTOL_color_shifter.h"
 

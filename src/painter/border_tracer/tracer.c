@@ -6,11 +6,11 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 23:20:24 by htsang            #+#    #+#             */
-/*   Updated: 2023/02/14 16:33:34 by htsang           ###   ########.fr       */
+/*   Updated: 2023/02/14 16:53:46 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fractol/painter/border_tracer.h"
+#include "FRACTOL/painter/border_tracer.h"
 
 void	turn_tracer_clockwise(t_fractol_tracer *tracer)
 {
