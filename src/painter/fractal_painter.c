@@ -6,11 +6,11 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 23:31:24 by htsang            #+#    #+#             */
-/*   Updated: 2023/02/13 22:39:07 by htsang           ###   ########.fr       */
+/*   Updated: 2023/02/14 16:33:10 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fractol_painter.h"
+#include "fractol/painter.h"
 #include <time.h>
 #include <stdio.h>
 

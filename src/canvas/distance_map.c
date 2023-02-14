@@ -6,11 +6,11 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 16:07:28 by htsang            #+#    #+#             */
-/*   Updated: 2023/02/13 22:32:47 by htsang           ###   ########.fr       */
+/*   Updated: 2023/02/14 16:18:45 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fractol_canvas.h"
+#include "fractol/canvas.h"
 
 int	point_is_inset(t_fractol_distance *distance_point)
 {

@@ -6,11 +6,11 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 22:19:34 by htsang            #+#    #+#             */
-/*   Updated: 2023/02/10 13:25:08 by htsang           ###   ########.fr       */
+/*   Updated: 2023/02/14 16:21:56 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fractol_context.h"
+#include "fractol/context.h"
 
 t_fractol_context	*init_fractal(t_fractol_context *program, \
 t_fractol_func fractal, double viewport_real, double viewport_imaginary)

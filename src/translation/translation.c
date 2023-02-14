@@ -6,11 +6,11 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 23:28:11 by htsang            #+#    #+#             */
-/*   Updated: 2023/02/13 00:09:48 by htsang           ###   ########.fr       */
+/*   Updated: 2023/02/14 16:28:22 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fractol_context.h"
+#include "fractol/controls/translation.h"
 
 static int	set_translation_vector(unsigned int *controls, int32_t *left_movement, \
 int32_t *up_movement, int speed)

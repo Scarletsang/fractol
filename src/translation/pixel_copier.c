@@ -6,11 +6,11 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 15:56:56 by htsang            #+#    #+#             */
-/*   Updated: 2023/02/12 23:58:42 by htsang           ###   ########.fr       */
+/*   Updated: 2023/02/14 16:32:30 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fractol_painter.h"
+#include "fractol/controls/translation.h"
 
 static void	copy_pixels_from_start(mlx_image_t *image, \
 t_fractol_pixel_copier *copier)

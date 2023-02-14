@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fractol_canvas.h"
+#include "fractol/canvas.h"
 
 void	move_viewport_real(t_fractol_canvas *canvas, \
 int32_t pixel_amount)

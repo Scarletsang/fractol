@@ -6,11 +6,11 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 14:41:40 by htsang            #+#    #+#             */
-/*   Updated: 2023/02/13 21:33:38 by htsang           ###   ########.fr       */
+/*   Updated: 2023/02/14 16:21:53 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fractol_context.h"
+#include "fractol/context.h"
 
 void	convert_cursor_pos_to_complex(t_fractol_context *program, \
 t_fractol_complex *dest)

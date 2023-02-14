@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fractol_canvas.h                                   :+:      :+:    :+:   */
+/*   canvas.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 13:58:59 by htsang            #+#    #+#             */
-/*   Updated: 2023/02/13 22:29:44 by htsang           ###   ########.fr       */
+/*   Updated: 2023/02/14 16:24:35 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define FRACTOL_CANVAS_H
 
 # include "MLX42/MLX42.h"
-# include "fractol_complex.h"
+# include "fractol/complex.h"
 
 typedef struct s_fractol_base_color
 {
@@ -66,21 +66,6 @@ int32_t pixel_amount);
 
 void				move_viewport_imaginary(t_fractol_canvas *canvas, \
 int32_t pixel_amount);
-
-////////////////////////////////
-///////   translation   ////////
-////////////////////////////////
-
-int					calculate_horizontal_translation(t_fractol_canvas *canvas, \
-int32_t left_movement);	
-
-int					calculate_vertical_translation(t_fractol_canvas *canvas, \
-int32_t up_movement);
-void				adjust_vertical_translation(t_fractol_canvas *canvas, \
-int32_t left_movement);
-
-t_fractol_canvas	*calculate_canvas_resize(t_fractol_canvas *canvas, \
-int32_t width, int32_t height);
 
 /////////////////////////////////
 ///////   distance map   ////////

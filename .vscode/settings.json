@@ -1,0 +1,12 @@
+{
+  "files.associations": {
+    "complex": "c",
+    "fractol_context.h": "c",
+    "mlx42.h": "c",
+    "iterator": "c",
+    "fractol_canvas.h": "c",
+    "canvas.h": "c",
+    "complex.h": "c",
+    "context.h": "c"
+}
+}

@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fractol_border_tracer.h                            :+:      :+:    :+:   */
+/*   border_tracer.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 23:33:50 by htsang            #+#    #+#             */
-/*   Updated: 2023/02/09 15:57:06 by htsang           ###   ########.fr       */
+/*   Updated: 2023/02/14 16:23:43 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FRACTOL_BORDER_TRACER_H
-# define FRACTOL_BORDER_TRACER_H
+#ifndef FRACTOL_PAINTER_BORDER_TRACER_H
+# define FRACTOL_PAINTER_BORDER_TRACER_H
 
-# include "fractol_painter.h"
+# include "fractol/painter.h"
 
 void	turn_tracer_clockwise(t_fractol_tracer *tracer);
 

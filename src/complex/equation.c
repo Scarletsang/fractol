@@ -6,11 +6,11 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 16:16:54 by htsang            #+#    #+#             */
-/*   Updated: 2023/02/12 16:58:03 by htsang           ###   ########.fr       */
+/*   Updated: 2023/02/14 16:14:12 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fractol_complex.h"
+#include "fractol/complex.h"
 
 double	fractal_border(t_fractol_complex *complex, double border_size)
 {

@@ -48,6 +48,7 @@ SRC:= \
 	cli.c \
 	error_printer.c
 OBJS=${COMPLEX_SRC:.c=.o} ${CANVAS_SRC:.c=.o} ${BORDER_TRACER_SRC:.c=.o} ${PAINTER_SRC:.c=.o} ${CONTEXT_SRC:.c=.o} ${SRC:.c=.o}
+OBJS=${addprefix src/,${OBJS}}
 
 ########################
 ####   debug files  ####
@@ -59,8 +60,8 @@ OBJS+=${if ${findstring -g3,${CFLAGS}},${DEBUG_OBJS},}
 ####    libaries    ####
 ########################
 
-GLFW:=glfw-3.3.8/lib-universal/libglfw3.a
-MLX:=MLX42/libmlx42.a
+GLFW:=lib/glfw-3.3.8/lib-universal/libglfw3.a
+MLX:=lib/MLX42/libmlx42.a
 
 ########################
 ####  dependencies  ####
@@ -68,12 +69,8 @@ MLX:=MLX42/libmlx42.a
 
 DEPS:= ${GLFW} ${MLX} ${OBJS}
 INCLUDE:= \
-	MLX42/include \
-	complex \
-	canvas \
-	painter \
-	painter/border_tracer \
-	context \
+	lib/MLX42/include \
+	include \
 	${DEBUG_LIB}
 
 all: ${NAME}
@@ -83,7 +80,7 @@ ${NAME}: ${DEPS}
 		echo "Compilation successful"
 
 ${MLX}:
-	@make ${if ${findstring -g3,${CFLAGS}},DEBUG=1,} HEADERS='-I ../glfw-3.3.8/include/' -C MLX42/
+	@make ${if ${findstring -g3,${CFLAGS}},DEBUG=1,} HEADERS='-I ../glfw-3.3.8/include/' -C lib/MLX42/
 
 %.o: %.c
 	@${CC} ${CFLAGS} ${addprefix -I ,${INCLUDE}} -c $< -o $@

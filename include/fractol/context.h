@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fractol_context.h                                  :+:      :+:    :+:   */
+/*   context.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 22:16:49 by htsang            #+#    #+#             */
-/*   Updated: 2023/02/13 00:09:37 by htsang           ###   ########.fr       */
+/*   Updated: 2023/02/14 16:29:43 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FRACTOL_CONTEXT_H
 # define FRACTOL_CONTEXT_H
 
-# include "fractol_painter.h"
+# include "fractol/painter.h"
 
 typedef enum e_fractol_control
 {
@@ -59,25 +59,6 @@ void				convert_cursor_pos_to_complex(t_fractol_context *program, \
 t_fractol_complex *dest);
 
 bool				update_cursor_pos(t_fractol_context *program);
-
-/////////////////////////////////////////
-//////    Animation Controller    ///////
-/////////////////////////////////////////
-
-void				press_animation_lever(t_fractol_context *program);
-
-void				control_animation(t_fractol_context *program);
-
-void				change_animation_speed(t_fractol_context *program, \
-int increase);
-
-////////////////////////////////
-//////    translation    ///////
-////////////////////////////////
-
-int					translate(t_fractol_context *program);
-
-int					translate_viewport(t_fractol_context *program);
 
 ////////////////////////////////
 ///////       zoom       ///////

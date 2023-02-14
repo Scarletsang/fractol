@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fractol_painter.h                                  :+:      :+:    :+:   */
+/*   painter.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 16:14:19 by htsang            #+#    #+#             */
-/*   Updated: 2023/02/13 22:24:04 by htsang           ###   ########.fr       */
+/*   Updated: 2023/02/14 16:30:03 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FRACTOL_PAINTER_H
 # define FRACTOL_PAINTER_H
 
-# include "fractol_canvas.h"
+# include "fractol/canvas.h"
 
 typedef enum e_fractol_tracer_direction
 {
@@ -87,19 +87,6 @@ int			paint_fractal(t_fractol_canvas *canvas, t_fractol_painter *painter, \
 t_fractol_func fractal);
 
 ///////////////////////////////////
-///////      animation      ///////
-///////////////////////////////////
-
-int			animate_fractal(t_fractol_canvas *canvas, \
-t_fractol_painter *painter, t_fractol_func fractal);
-
-int			init_animate_fractal(t_fractol_canvas *canvas, \
-t_fractol_painter *painter, t_fractol_func fractal);
-
-void		init_animation(t_fractol_canvas *canvas, \
-t_fractol_painter *painter);
-
-///////////////////////////////////
 ///////   border tracing   ////////
 ///////////////////////////////////
 
@@ -118,11 +105,5 @@ t_fractol_painter *painter, t_fractol_func fractal);
 
 uint32_t	distance_to_color(t_fractol_distance *distance, \
 t_fractol_base_color *base_color);
-
-/////////////////////////////////
-///////    translation   ////////
-/////////////////////////////////
-
-void		copy_pixels(mlx_image_t *image, t_fractol_pixel_copier *copier);
 
 #endif

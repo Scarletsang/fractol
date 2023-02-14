@@ -6,11 +6,11 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/29 21:46:35 by htsang            #+#    #+#             */
-/*   Updated: 2023/02/11 14:51:47 by htsang           ###   ########.fr       */
+/*   Updated: 2023/02/14 16:21:53 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fractol_context.h"
+#include "fractol/context.h"
 
 t_fractol_context	*calculate_zoom(t_fractol_context *program, double ydelta)
 {
