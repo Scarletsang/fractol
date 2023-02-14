@@ -6,14 +6,14 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 16:28:53 by htsang            #+#    #+#             */
-/*   Updated: 2023/02/14 16:30:43 by htsang           ###   ########.fr       */
+/*   Updated: 2023/02/14 19:26:49 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FRACTOL_CONTROLS_ANIMATION_H
 # define FRACTOL_CONTROLS_ANIMATION_H
 
-# include "fractol/context.h"
+# include "FRACTOL/context.h"
 
 /////////////////////////////////////////
 //////    Animation Controller    ///////

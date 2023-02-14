@@ -20,12 +20,12 @@ COMPLEX_SRC:= \
 	complex/complex.c \
 	complex/arithematic.c \
 	complex/equation.c \
-	complex/distance_estimator.c
+	complex/distance_estimator.c \
+	complex/fractal_func.c
 CANVAS_SRC:= \
 	canvas/canvas.c \
 	canvas/canvas_setters.c \
 	canvas/viewport.c \
-	canvas/translation_calculator.c \
 	canvas/distance_map.c
 BORDER_TRACER_SRC:= \
 	painter/border_tracer/border_tracer.c \
@@ -33,22 +33,24 @@ BORDER_TRACER_SRC:= \
 PAINTER_SRC:= \
 	painter/painter.c \
 	painter/fractal_painter.c \
-	painter/animation.c \
-	painter/color.c \
-	painter/pixel_copier.c
+	painter/color.c
 CONTEXT_SRC:= \
 	context/context.c \
 	context/controls.c \
-	context/animation_controller.c \
-	context/translation.c \
 	context/zoom_calculator.c
+ANIMATION_SRC:= \
+	animation/animation.c \
+	animation/animation_controller.c
+TRANSLATION_SRC:= \
+	translation/pixel_copier.c \
+	translation/translation_calculator.c \
+	translation/translation.c
 SRC:= \
 	main.c \
 	hooks.c \
 	cli.c \
 	error_printer.c
-OBJS=${COMPLEX_SRC:.c=.o} ${CANVAS_SRC:.c=.o} ${BORDER_TRACER_SRC:.c=.o} ${PAINTER_SRC:.c=.o} ${CONTEXT_SRC:.c=.o} ${SRC:.c=.o}
-OBJS=${addprefix src/,${OBJS}}
+OBJS=${addprefix src/,${COMPLEX_SRC:.c=.o} ${CANVAS_SRC:.c=.o} ${BORDER_TRACER_SRC:.c=.o} ${PAINTER_SRC:.c=.o} ${CONTEXT_SRC:.c=.o} ${SRC:.c=.o}}
 
 ########################
 ####   debug files  ####
@@ -86,7 +88,7 @@ ${MLX}:
 	@${CC} ${CFLAGS} ${addprefix -I ,${INCLUDE}} -c $< -o $@
 
 clean:
-	@make clean -C MLX42/
+	@make clean -C lib/MLX42/
 	@rm -f ${OBJS}
 
 fclean: clean

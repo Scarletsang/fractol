@@ -6,19 +6,19 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 21:46:24 by htsang            #+#    #+#             */
-/*   Updated: 2023/02/14 16:53:47 by htsang           ###   ########.fr       */
+/*   Updated: 2023/02/14 18:55:47 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "FRACTOL/canvas.h"
 
-void	set_base_color(t_fractol_base_color *base_color, \
+void	set_base_color(t_fractol_color_controls *color_controls, \
 uint8_t r, uint8_t g, uint8_t b)
 {
-	base_color->r = r;
-	base_color->g = g;
-	base_color->b = b;
-	base_color->factor = 1000;
+	color_controls->r = r;
+	color_controls->g = g;
+	color_controls->b = b;
+	color_controls->potential_factor = 1000;
 }
 
 uint32_t	*get_pixel(t_fractol_canvas *canvas, uint32_t x, uint32_t y)

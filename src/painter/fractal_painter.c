@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 23:31:24 by htsang            #+#    #+#             */
-/*   Updated: 2023/02/14 16:53:46 by htsang           ###   ########.fr       */
+/*   Updated: 2023/02/14 20:02:08 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ t_fractol_func fractal)
 	t_fractol_distance	*current;
 	time_t				start = clock();
 
-	init_painter(canvas, painter);
+	init_painter(canvas);
 	painter->y = canvas->start_y;
 	while (painter->y < canvas->end_y)
 	{

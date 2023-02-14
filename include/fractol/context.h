@@ -6,14 +6,14 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 22:16:49 by htsang            #+#    #+#             */
-/*   Updated: 2023/02/14 16:29:43 by htsang           ###   ########.fr       */
+/*   Updated: 2023/02/14 19:26:15 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FRACTOL_CONTEXT_H
 # define FRACTOL_CONTEXT_H
 
-# include "fractol/painter.h"
+# include "FRACTOL/painter.h"
 
 typedef enum e_fractol_control
 {

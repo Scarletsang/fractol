@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 15:06:45 by htsang            #+#    #+#             */
-/*   Updated: 2023/02/14 16:53:46 by htsang           ###   ########.fr       */
+/*   Updated: 2023/02/14 19:57:26 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,20 +42,20 @@ int argc, const char **argv)
 	if (argc != 2)
 		return (print_program_usage(argv[0]));
 	else if (name_matches(argv[1], "mandelbrot"))
-		program->fractal = &mandelbrot_distance_estimator;
+		program->fractal = &mandelbrot_fractal_func;
 	else if (name_matches(argv[1], "newton"))
-		program->fractal = &newton_distance_estimator;
+		program->fractal = &newton_fractal_func;
 	else if (name_matches(argv[1], "julia"))
 	{
-		program->fractal = &julia_distance_estimator;
-		set_complex_number(&program->canvas.z, -0.73, 0.18);
+		program->fractal = &julia_fractal_func;
+		set_complex_number(&program->canvas.estimator.z, -0.73, 0.18);
 	}
 	else
 		return (print_invalid_option_msg(argv[0], argv[1]));
 	program->program_name = argv[0];
 	set_complex_number(&program->canvas.viewport, -1.5, 1);
 	set_canvas_settings(&program->canvas, 200, 0.0005);
-	program->canvas.settings.pixel_size = \
+	program->canvas.pixel_size = \
 		calculate_pixel_size(&program->canvas.viewport, 1.5);
 	return (EXIT_SUCCESS);
 }

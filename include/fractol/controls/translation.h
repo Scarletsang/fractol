@@ -6,14 +6,22 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 16:23:15 by htsang            #+#    #+#             */
-/*   Updated: 2023/02/14 16:27:55 by htsang           ###   ########.fr       */
+/*   Updated: 2023/02/14 19:50:56 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FRACTOL_CONTROLS_TRANSLATION_H
 # define FRACTOL_CONTROLS_TRANSLATION_H
 
-# include "fractol/context.h"
+# include "FRACTOL/context.h"
+
+typedef struct s_fractol_pixel_copier
+{
+	uint32_t	*dest;
+	uint32_t	*src;
+	int32_t		up_movement;
+	int32_t		left_movement;
+}				t_fractol_pixel_copier;
 
 ////////////////////////////
 ///////    public   ////////

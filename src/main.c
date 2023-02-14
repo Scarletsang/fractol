@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 23:47:55 by htsang            #+#    #+#             */
-/*   Updated: 2023/02/14 16:53:46 by htsang           ###   ########.fr       */
+/*   Updated: 2023/02/14 19:22:44 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	main(int argc, const char **argv)
 		exit(EXIT_FAILURE);
 	}
 	init_canvas(&program.canvas);
-	set_base_color(&program.canvas.base_color, 255, 127, 152);
+	set_base_color(&program.canvas.color_controls, 255, 127, 152);
 	mlx_image_to_window(program.mlx, program.canvas.image, 0, 0);
 	malloc_distance_map(program.canvas.distance_map);
 	program.controls = 0;
