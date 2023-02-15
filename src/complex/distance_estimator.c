@@ -6,11 +6,12 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 20:06:04 by htsang            #+#    #+#             */
-/*   Updated: 2023/02/14 16:53:46 by htsang           ###   ########.fr       */
+/*   Updated: 2023/02/15 22:34:47 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "FRACTOL/complex.h"
+#include <stdio.h>
 
 void	set_distance_estimator_zc(t_fractol_distance_estimator *estimator, \
 t_fractol_complex *z, t_fractol_complex *c)
@@ -27,14 +28,14 @@ t_fractol_distance_estimator *estimator, double border_size, int iteration)
 }
 
 t_fractol_distance	*set_distance(t_fractol_distance *distance, \
-t_fractol_distance_estimator *estimator)
+t_fractol_distance_estimator *estimator, int iteration)
 {
 	double	magnitude;
 
 	magnitude = sqrt(estimator->magnitude_square);
 	distance->distance = log(estimator->magnitude_square) * \
 				magnitude / complex_magnitude(&estimator->derivative);
-	distance->potential = log(log(magnitude) / pow(2, estimator->iteration));
+	distance->potential = log(log(magnitude) / pow(2, iteration));
 	return (distance);
 }
 
