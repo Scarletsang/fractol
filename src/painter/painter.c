@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 15:51:49 by htsang            #+#    #+#             */
-/*   Updated: 2023/02/14 19:39:09 by htsang           ###   ########.fr       */
+/*   Updated: 2023/02/15 23:59:48 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,5 +47,5 @@ void	init_painter(t_fractol_canvas *canvas)
 	canvas->estimator.border_size = \
 		canvas->pixel_size * canvas->pixel_size * \
 		canvas->border_thickness * canvas->border_thickness;
-	set_distance_map_empty(canvas);
+	set_canvas_empty(canvas);
 }
