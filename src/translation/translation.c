@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 23:28:11 by htsang            #+#    #+#             */
-/*   Updated: 2023/02/14 16:53:46 by htsang           ###   ########.fr       */
+/*   Updated: 2023/02/16 00:27:37 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,14 +30,15 @@ int32_t *up_movement, int speed)
 
 int	translate(t_fractol_context *program)
 {
-	t_fractol_pixel_copier	copier;
+	t_fractol_copier	copier;
 
 	if (set_translation_vector(\
 		&program->controls, &copier.left_movement, &copier.up_movement, 20))
 		return (EXIT_FAILURE);
 	move_viewport_real(&program->canvas, copier.left_movement * -1);
 	move_viewport_imaginary(&program->canvas, copier.up_movement);
-	copy_pixels(program->canvas.image, &copier);
+	copy_pixels(&program->canvas, &copier);
+	copy_distance_points(&program->canvas, &copier);
 	if (!calculate_vertical_translation(&program->canvas, \
 		copier.up_movement))
 	{
