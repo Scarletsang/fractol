@@ -6,11 +6,11 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 15:06:45 by htsang            #+#    #+#             */
-/*   Updated: 2023/02/14 19:57:26 by htsang           ###   ########.fr       */
+/*   Updated: 2023/02/15 23:58:43 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "FRACTOL.h"
+#include "fractol.h"
 
 int	name_matches(const char *fractal_name, char *expected)
 {
@@ -53,8 +53,11 @@ int argc, const char **argv)
 	else
 		return (print_invalid_option_msg(argv[0], argv[1]));
 	program->program_name = argv[0];
+	set_base_color(&program->canvas.color_controls, 255, 127, 152);
+	set_potential_factor(&program->canvas.color_controls, mlx_get_time());
+	set_color_factor(&program->canvas.color_controls, 1, 0.34004648219, 0.17965377284);
 	set_complex_number(&program->canvas.viewport, -1.5, 1);
-	set_canvas_settings(&program->canvas, 200, 0.0005);
+	set_distance_estimator_settings(&program->canvas.estimator, 0.0005, 200);
 	program->canvas.pixel_size = \
 		calculate_pixel_size(&program->canvas.viewport, 1.5);
 	return (EXIT_SUCCESS);

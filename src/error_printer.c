@@ -6,11 +6,11 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 20:37:02 by htsang            #+#    #+#             */
-/*   Updated: 2023/02/14 16:53:46 by htsang           ###   ########.fr       */
+/*   Updated: 2023/02/15 21:33:53 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "FRACTOL.h"
+#include "fractol.h"
 #include <unistd.h>
 
 /**

@@ -42,7 +42,8 @@ ANIMATION_SRC:= \
 	animation/animation.c \
 	animation/animation_controller.c
 TRANSLATION_SRC:= \
-	translation/pixel_copier.c \
+	translation/copier.c \
+	translation/copier_func.c \
 	translation/translation_calculator.c \
 	translation/translation.c
 SRC:= \
@@ -50,7 +51,7 @@ SRC:= \
 	hooks.c \
 	cli.c \
 	error_printer.c
-OBJS=${addprefix src/,${COMPLEX_SRC:.c=.o} ${CANVAS_SRC:.c=.o} ${BORDER_TRACER_SRC:.c=.o} ${PAINTER_SRC:.c=.o} ${CONTEXT_SRC:.c=.o} ${SRC:.c=.o}}
+OBJS=${addprefix src/,${COMPLEX_SRC:.c=.o} ${CANVAS_SRC:.c=.o} ${BORDER_TRACER_SRC:.c=.o} ${PAINTER_SRC:.c=.o} ${CONTEXT_SRC:.c=.o} ${TRANSLATION_SRC:.c=.o} ${ANIMATION_SRC:.c=.o} ${SRC:.c=.o}}
 
 ########################
 ####   debug files  ####

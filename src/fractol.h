@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 16:01:29 by htsang            #+#    #+#             */
-/*   Updated: 2023/02/14 16:35:00 by htsang           ###   ########.fr       */
+/*   Updated: 2023/02/15 21:34:29 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,10 @@
 # define WINDOW_WIDTH 1280
 # define WINDOW_HEIGHT 760
 
-# include "fractol/context.h"
-# include "fractol/controls/translation.h"
-# include "fractol/controls/animation.h"
-# include "fractol/controls/color_shift.h"
+# include "FRACTOL/context.h"
+# include "FRACTOL/controls/translation.h"
+# include "FRACTOL/controls/animation.h"
+// # include "FRACTOL/controls/color_shift.h"
 
 typedef void	(*t_mlx_loop_func)(void *param);
 
