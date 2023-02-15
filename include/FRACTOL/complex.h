@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fractol_complex.h                                  :+:      :+:    :+:   */
+/*   complex.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 19:41:10 by htsang            #+#    #+#             */
-/*   Updated: 2023/02/13 22:23:04 by htsang           ###   ########.fr       */
+/*   Updated: 2023/02/15 22:26:19 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,7 +126,7 @@ void				set_distance_estimator_settings(\
 t_fractol_distance_estimator *estimator, double border_size, int iteration);
 
 t_fractol_distance	*set_distance(t_fractol_distance *distance, \
-t_fractol_distance_estimator *estimator);
+t_fractol_distance_estimator *estimator, int iteration);
 
 t_fractol_distance	*set_constant_distance(t_fractol_distance *distance, \
 int value);

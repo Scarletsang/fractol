@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 16:23:15 by htsang            #+#    #+#             */
-/*   Updated: 2023/02/14 19:50:56 by htsang           ###   ########.fr       */
+/*   Updated: 2023/02/15 23:55:15 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,15 @@
 
 # include "FRACTOL/context.h"
 
-typedef struct s_fractol_pixel_copier
+typedef void	(*t_fractol_copier_func)(void *dest, void *src);
+
+typedef struct s_fractol_copier
 {
-	uint32_t	*dest;
-	uint32_t	*src;
-	int32_t		up_movement;
-	int32_t		left_movement;
-}				t_fractol_pixel_copier;
+	void	*dest;
+	void	*src;
+	int32_t	up_movement;
+	int32_t	left_movement;
+}				t_fractol_copier;
 
 ////////////////////////////
 ///////    public   ////////
@@ -31,7 +33,11 @@ int					translate(t_fractol_context *program);
 
 int					translate_viewport(t_fractol_context *program);
 
-void	        	copy_pixels(mlx_image_t *image, t_fractol_pixel_copier *copier);
+void				copy_pixels(t_fractol_canvas *canvas, \
+t_fractol_copier *copier);
+
+void				copy_distance_points(t_fractol_canvas *canvas, \
+t_fractol_copier *copier);
 
 /////////////////////////////
 ///////    private   ////////

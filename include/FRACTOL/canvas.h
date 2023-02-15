@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 13:58:59 by htsang            #+#    #+#             */
-/*   Updated: 2023/02/14 19:34:21 by htsang           ###   ########.fr       */
+/*   Updated: 2023/02/15 23:59:48 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,12 @@ uint32_t start_x, uint32_t start_y);
 void				set_base_color(t_fractol_color_controls *color_controls, \
 uint8_t r, uint8_t g, uint8_t b);
 
+void				set_color_factor(t_fractol_color_controls *color_controls, \
+double r_factor, double g_factor, double b_factor);
+
+void				set_potential_factor(t_fractol_color_controls *color_controls, \
+int32_t potential_factor);
+
 /////////////////////////////
 ///////   viewport   ////////
 /////////////////////////////
@@ -78,7 +84,7 @@ int					point_is_inset(t_fractol_distance *distance_point);
 
 int					point_is_empty(t_fractol_distance *distance_point);
 
-t_fractol_canvas	*set_distance_map_empty(t_fractol_canvas *canvas);
+t_fractol_canvas	*set_canvas_empty(t_fractol_canvas *canvas);
 
 t_fractol_distance	*get_distance_map_point(t_fractol_canvas *canvas, \
 uint32_t x, uint32_t y);
