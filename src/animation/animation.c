@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 21:06:33 by htsang            #+#    #+#             */
-/*   Updated: 2023/02/14 16:53:46 by htsang           ###   ########.fr       */
+/*   Updated: 2023/02/15 21:40:38 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	init_animation(t_fractol_canvas *canvas, t_fractol_painter *painter)
 {
-	init_painter(canvas, painter);
+	init_painter(canvas);
 	painter->y = canvas->start_y;
 	painter->x = canvas->start_x;
 	painter->animation.border_trace_started = 0;
@@ -23,16 +23,16 @@ void	init_animation(t_fractol_canvas *canvas, t_fractol_painter *painter)
 static void	animate_fractal_internal(t_fractol_canvas *canvas, \
 t_fractol_painter *painter, t_fractol_func fractal)
 {
-	uint32_t	*current;
+	t_fractol_distance	*current;
 
-	current = get_pixel(canvas, painter->x, painter->y);
-	if (pixel_is_empty(current))
+	current = get_distance_map_point(canvas, painter->x, painter->y);
+	if (point_is_empty(current))
 	{
 		paint_pixel(canvas, painter, fractal);
-		if (pixel_is_inset(current))
+		if (point_is_inset(current))
 			init_animate_border_trace(canvas, painter, fractal);
 	}
-	else if (pixel_is_inset(current))
+	else if (point_is_inset(current))
 		paint_inset_pixels(canvas, painter);
 }
 
