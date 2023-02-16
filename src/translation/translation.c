@@ -6,13 +6,13 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 23:28:11 by htsang            #+#    #+#             */
-/*   Updated: 2023/02/16 22:50:10 by htsang           ###   ########.fr       */
+/*   Updated: 2023/02/17 00:52:58 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "FRACTOL/controls/translation.h"
 
-static void	set_translation_vector(unsigned int *controls, int32_t *left_movement, \
+static int	set_translation_vector(unsigned int *controls, int32_t *left_movement, \
 int32_t *up_movement, int speed)
 {
 	*left_movement = \
@@ -21,6 +21,11 @@ int32_t *up_movement, int speed)
 	*up_movement = \
 		(speed * is_triggered(controls, TRANSLATE_UP)) \
 		+ (-speed * is_triggered(controls, TRANSLATE_DOWN));
+	if ((*up_movement == 0) && (*left_movement == 0))
+	{
+		return (EXIT_FAILURE);
+	}
+	return (EXIT_SUCCESS);
 }
 
 void	translate_distance_map(t_fractol_context *program)
@@ -68,13 +73,17 @@ void	translate(t_fractol_context *program)
 		paint_pixels_from_distance_map(&program->canvas);
 }
 
-void	translate_viewport(t_fractol_context *program)
+int	translate_viewport(t_fractol_context *program)
 {
 	int32_t	left_movement;
 	int32_t	up_movement;
 
-	set_translation_vector(\
-		&program->controls, &left_movement, &up_movement, 20);
+	if (set_translation_vector(\
+		&program->controls, &left_movement, &up_movement, 20))
+	{
+		return (EXIT_FAILURE);
+	}
 	move_viewport_real(&program->canvas, left_movement * -1);
 	move_viewport_imaginary(&program->canvas, up_movement);
+	return (EXIT_SUCCESS);
 }

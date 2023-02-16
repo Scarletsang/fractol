@@ -6,12 +6,11 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 20:53:19 by htsang            #+#    #+#             */
-/*   Updated: 2023/02/16 23:48:20 by htsang           ###   ########.fr       */
+/*   Updated: 2023/02/17 00:53:02 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
-#include <stdio.h>
 
 void	shift_color(t_fractol_context *program)
 {
@@ -31,9 +30,8 @@ int	prepare_draw(t_fractol_context *program)
 	{
 		shift_color(program);
 	}
-	if ((program->controls & 0b1111) && ((program->controls & 0b1111) % 5 != 0))
+	if (!translate_viewport(program))
 	{
-		translate_viewport(program);
 		return (1);
 	}
 	return (0);
