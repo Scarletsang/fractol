@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 20:06:04 by htsang            #+#    #+#             */
-/*   Updated: 2023/02/15 22:34:47 by htsang           ###   ########.fr       */
+/*   Updated: 2023/02/16 16:13:54 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,11 @@ t_fractol_distance_estimator *estimator, double border_size, int iteration)
 	estimator->iteration = iteration;
 }
 
+void	calculate_potential(t_fractol_distance *distance_point)
+{
+	distance_point->potential *= sqrt(sqrt(distance_point->distance));
+}
+
 t_fractol_distance	*set_distance(t_fractol_distance *distance, \
 t_fractol_distance_estimator *estimator, int iteration)
 {
@@ -36,6 +41,7 @@ t_fractol_distance_estimator *estimator, int iteration)
 	distance->distance = log(estimator->magnitude_square) * \
 				magnitude / complex_magnitude(&estimator->derivative);
 	distance->potential = log(log(magnitude) / pow(2, iteration));
+	calculate_potential(distance);
 	return (distance);
 }
 

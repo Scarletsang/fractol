@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 13:58:59 by htsang            #+#    #+#             */
-/*   Updated: 2023/02/15 23:59:48 by htsang           ###   ########.fr       */
+/*   Updated: 2023/02/16 16:07:53 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ typedef struct s_fractol_color_controls
 	uint8_t	r;
 	uint8_t	b;
 	uint8_t	g;
-	int32_t	potential_factor;
+	double	potential_factor;
 	double	r_factor;
 	double	g_factor;
 	double	b_factor;

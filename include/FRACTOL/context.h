@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 22:16:49 by htsang            #+#    #+#             */
-/*   Updated: 2023/02/14 19:26:15 by htsang           ###   ########.fr       */
+/*   Updated: 2023/02/16 15:11:56 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ typedef enum e_fractol_control
 	TRANSLATE_UP = 0b1000,
 	ZOOM = 0b10000,
 	CHANGE_Z = 0b100000,
-	ANIMATION = 0b1000000
+	ANIMATION = 0b1000000,
+	COLOR_SHIFT = 0b10000000
 }				t_fractol_control;
 
 typedef struct s_fractol_context

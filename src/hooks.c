@@ -6,11 +6,12 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 20:53:19 by htsang            #+#    #+#             */
-/*   Updated: 2023/02/16 15:01:33 by htsang           ###   ########.fr       */
+/*   Updated: 2023/02/16 16:10:32 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
+#include <stdio.h>
 
 static int	animate(t_fractol_context *program)
 {
@@ -22,6 +23,44 @@ static int	animate(t_fractol_context *program)
 		return (EXIT_SUCCESS);
 	}
 	return (EXIT_FAILURE);
+}
+
+t_fractol_canvas	*paint_pixels_from_distance_map(t_fractol_canvas *canvas)
+{
+	uint32_t			x;
+	uint32_t			y;
+	t_fractol_distance	*distance_point;
+
+	y = 0;
+	distance_point = canvas->distance_map;
+	while (y < canvas->image->height)
+	{
+		x = 0;
+		while (x < canvas->image->width)
+		{
+			mlx_put_pixel(canvas->image, x, y, \
+				distance_to_color(distance_point, &canvas->color_controls));
+			x++;
+			distance_point++;
+		}
+		y++;
+	}
+	return (canvas);
+}
+
+static int	color_shift(t_fractol_context *program)
+{
+	int	time;
+
+	time = mlx_get_time();
+	printf("%d\n", time);
+	set_potential_factor(&program->canvas.color_controls, time);
+	if (program->controls == COLOR_SHIFT)
+	{
+		paint_pixels_from_distance_map(&program->canvas);
+		return (EXIT_FAILURE);
+	}
+	return (EXIT_SUCCESS);
 }
 
 void	fractol_translation_hook(t_fractol_context *program)
@@ -38,6 +77,8 @@ void	fractol_translation_hook(t_fractol_context *program)
 	painted = 0;
 	if (is_triggered(&program->controls, ANIMATION))
 		painted = !animate(program);
+	if (!painted && is_triggered(&program->controls, COLOR_SHIFT))
+		painted = !color_shift(program);
 	if (!painted && ((program->controls & 0b1111) <= 0b1111))
 		painted = !translate(program);
 	if (!painted)
@@ -72,6 +113,8 @@ void	fractol_key_hook(mlx_key_data_t keydata, t_fractol_context *program)
 		change_animation_speed(program, keydata.modifier != MLX_SHIFT);
 	if ((keydata.key == MLX_KEY_A) && (keydata.action == MLX_PRESS))
 		press_animation_lever(program);
+	if ((keydata.key == MLX_KEY_C) && (keydata.action == MLX_PRESS))
+		press_lever(&program->controls, COLOR_SHIFT);
 }
 
 void	fractol_scroll_hook(double xdelta, double ydelta, \

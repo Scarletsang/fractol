@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 16:14:19 by htsang            #+#    #+#             */
-/*   Updated: 2023/02/14 19:50:49 by htsang           ###   ########.fr       */
+/*   Updated: 2023/02/16 15:55:28 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,9 +59,6 @@ t_fractol_painter *painter, t_fractol_func fractal);
 
 void		calculate_distance_estimator_c(t_fractol_canvas *canvas, \
 uint32_t x, uint32_t y);
-
-void		paint_on_distance_map(t_fractol_canvas *canvas, \
-t_fractol_painter *painter, t_fractol_func fractal);
 
 void		paint_pixel(t_fractol_canvas *canvas, t_fractol_painter *painter, \
 t_fractol_func fractal);
