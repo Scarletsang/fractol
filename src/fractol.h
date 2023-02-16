@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 16:01:29 by htsang            #+#    #+#             */
-/*   Updated: 2023/02/15 21:34:29 by htsang           ###   ########.fr       */
+/*   Updated: 2023/02/16 15:00:12 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,5 @@ int		print_program_usage(const char *program_name);
 
 int		print_invalid_option_msg(const char *program_name, \
 const char *fractal_name);
-
-int		print_unsupported_scroll_msg(const char *program_name);
 
 #endif

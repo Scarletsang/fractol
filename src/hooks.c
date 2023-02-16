@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 20:53:19 by htsang            #+#    #+#             */
-/*   Updated: 2023/02/15 21:34:00 by htsang           ###   ########.fr       */
+/*   Updated: 2023/02/16 15:01:33 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,13 +77,15 @@ void	fractol_key_hook(mlx_key_data_t keydata, t_fractol_context *program)
 void	fractol_scroll_hook(double xdelta, double ydelta, \
 t_fractol_context *program)
 {
-	if (xdelta)
+	if (ydelta)
 	{
-		print_unsupported_scroll_msg(program->program_name);
-		return ;
+		calculate_zoom(program, ydelta);
+	}
+	else
+	{
+		calculate_zoom(program, xdelta);
 	}
 	update_cursor_pos(program);
-	calculate_zoom(program, ydelta);
 	program->controls |= ZOOM;
 }
 

@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 20:37:02 by htsang            #+#    #+#             */
-/*   Updated: 2023/02/15 21:33:53 by htsang           ###   ########.fr       */
+/*   Updated: 2023/02/16 15:00:21 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,12 +45,5 @@ int	print_invalid_option_msg(const char *program_name, const char *fractal_name)
 	write(STDERR_FILENO, ": illegal argument: ", 21);
 	write(STDERR_FILENO, fractal_name, ft_strlen(fractal_name));
 	write(STDERR_FILENO, "\n", 1);
-	return (EXIT_FAILURE);
-}
-
-int	print_unsupported_scroll_msg(const char *program_name)
-{
-	write(STDERR_FILENO, program_name, ft_strlen(program_name));
-	write(STDERR_FILENO, ": horizontal scrolling is not supported.", 39);
 	return (EXIT_FAILURE);
 }
