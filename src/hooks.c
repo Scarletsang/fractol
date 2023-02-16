@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 20:53:19 by htsang            #+#    #+#             */
-/*   Updated: 2023/02/16 16:10:32 by htsang           ###   ########.fr       */
+/*   Updated: 2023/02/16 20:37:13 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,8 @@ static int	animate(t_fractol_context *program)
 {
 	if ((program->controls & 0b1111) <= 0b1111)
 		translate_viewport(program);
-	if (program->controls == ANIMATION)
-	{
-		control_animation(program);
-		return (EXIT_SUCCESS);
-	}
-	return (EXIT_FAILURE);
+	control_animation(program);
+	return (EXIT_SUCCESS);
 }
 
 t_fractol_canvas	*paint_pixels_from_distance_map(t_fractol_canvas *canvas)
@@ -50,20 +46,17 @@ t_fractol_canvas	*paint_pixels_from_distance_map(t_fractol_canvas *canvas)
 
 static int	color_shift(t_fractol_context *program)
 {
-	int	time;
-
-	time = mlx_get_time();
-	printf("%d\n", time);
-	set_potential_factor(&program->canvas.color_controls, time);
+	program->animation_time += program->mlx->delta_time;
+	set_potential_factor(&program->canvas.color_controls, program->animation_time);
 	if (program->controls == COLOR_SHIFT)
 	{
 		paint_pixels_from_distance_map(&program->canvas);
-		return (EXIT_FAILURE);
+		return (EXIT_SUCCESS);
 	}
-	return (EXIT_SUCCESS);
+	return (EXIT_FAILURE);
 }
 
-void	fractol_translation_hook(t_fractol_context *program)
+void	fractol_draw_hook(t_fractol_context *program)
 {
 	int	painted;
 

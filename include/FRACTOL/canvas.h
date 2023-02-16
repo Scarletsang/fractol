@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 13:58:59 by htsang            #+#    #+#             */
-/*   Updated: 2023/02/16 16:07:53 by htsang           ###   ########.fr       */
+/*   Updated: 2023/02/16 19:51:02 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void				set_color_factor(t_fractol_color_controls *color_controls, \
 double r_factor, double g_factor, double b_factor);
 
 void				set_potential_factor(t_fractol_color_controls *color_controls, \
-int32_t potential_factor);
+double potential_factor);
 
 /////////////////////////////
 ///////   viewport   ////////

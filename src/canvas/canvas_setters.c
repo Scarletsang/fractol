@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/04 00:18:01 by htsang            #+#    #+#             */
-/*   Updated: 2023/02/16 16:12:13 by htsang           ###   ########.fr       */
+/*   Updated: 2023/02/16 20:40:55 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,8 @@ double r_factor, double g_factor, double b_factor)
 }
 
 void	set_potential_factor(t_fractol_color_controls *color_controls, \
-int32_t potential_factor)
+double potential_factor)
 {
-	color_controls->potential_factor = potential_factor;
+	color_controls->potential_factor = cos(potential_factor * 0.5f);
+	color_controls->potential_factor *= color_controls->potential_factor;
 }

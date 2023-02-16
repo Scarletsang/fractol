@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 15:06:45 by htsang            #+#    #+#             */
-/*   Updated: 2023/02/15 23:58:43 by htsang           ###   ########.fr       */
+/*   Updated: 2023/02/16 19:51:13 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,8 @@ int argc, const char **argv)
 		return (print_invalid_option_msg(argv[0], argv[1]));
 	program->program_name = argv[0];
 	set_base_color(&program->canvas.color_controls, 255, 127, 152);
-	set_potential_factor(&program->canvas.color_controls, mlx_get_time());
+	program->animation_time = 0;
+	set_potential_factor(&program->canvas.color_controls, 0);
 	set_color_factor(&program->canvas.color_controls, 1, 0.34004648219, 0.17965377284);
 	set_complex_number(&program->canvas.viewport, -1.5, 1);
 	set_distance_estimator_settings(&program->canvas.estimator, 0.0005, 200);

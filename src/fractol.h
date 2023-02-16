@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 16:01:29 by htsang            #+#    #+#             */
-/*   Updated: 2023/02/16 15:00:12 by htsang           ###   ########.fr       */
+/*   Updated: 2023/02/16 20:17:32 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ typedef void	(*t_mlx_loop_func)(void *param);
 int		init_fractal_from_cli(t_fractol_context *program, \
 int argc, const char **argv);
 
-void	fractol_translation_hook(t_fractol_context *program);
+void	fractol_draw_hook(t_fractol_context *program);
 
 void	fractol_key_hook(mlx_key_data_t keydata, t_fractol_context *hook_ctx);
 

@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 23:39:47 by htsang            #+#    #+#             */
-/*   Updated: 2023/02/16 00:25:24 by htsang           ###   ########.fr       */
+/*   Updated: 2023/02/16 20:15:57 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,7 @@ void	copy_distance_points(t_fractol_canvas *canvas, t_fractol_copier *copier)
 			((canvas->image->width * canvas->image->height) - 1);
 		copier->src = (t_fractol_distance *) copier->dest - \
 			(canvas->image->width * copier->up_movement);
-		copy_pixels_from_bottom(canvas, copier, sizeof(t_fractol_distance *), \
+		copy_pixels_from_bottom(canvas, copier, sizeof(t_fractol_distance), \
 			(t_fractol_copier_func) copy_distance_point);
 	}
 	else
@@ -115,7 +115,7 @@ void	copy_distance_points(t_fractol_canvas *canvas, t_fractol_copier *copier)
 		copier->dest = canvas->distance_map;
 		copier->src = (t_fractol_distance *) copier->dest + \
 			(canvas->image->width * abs(copier->up_movement));
-		copy_pixels_from_start(canvas, copier, sizeof(t_fractol_distance *), \
+		copy_pixels_from_start(canvas, copier, sizeof(t_fractol_distance), \
 			(t_fractol_copier_func) copy_distance_point);
 	}
 }
