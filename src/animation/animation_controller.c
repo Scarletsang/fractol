@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 00:16:30 by htsang            #+#    #+#             */
-/*   Updated: 2023/02/14 16:53:46 by htsang           ###   ########.fr       */
+/*   Updated: 2023/02/16 23:34:32 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,13 @@ void	press_animation_lever(t_fractol_context *program)
 		program->fractal);
 }
 
-void	control_animation(t_fractol_context *program)
+void	animate(t_fractol_context *program)
 {
 	if (animate_fractal(&program->canvas, &program->painter, program->fractal))
 	{
 		press_lever(&program->controls, ANIMATION);
 		program->painter_func = &paint_fractal;
+		init_canvas(&program->canvas);
 		program->painter_func(&program->canvas, &program->painter, \
 			program->fractal);
 	}

@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 23:31:24 by htsang            #+#    #+#             */
-/*   Updated: 2023/02/15 17:18:30 by htsang           ###   ########.fr       */
+/*   Updated: 2023/02/16 22:47:34 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ t_fractol_painter *painter)
 		if (point_is_empty(current))
 		{
 			current->distance = INSET_VALUE;
-			mlx_put_pixel(canvas->image, painter->x, painter->y, INSET_COLOR);
 		}
 		else if (!point_is_inset(current))
 		{
@@ -40,7 +39,7 @@ t_fractol_func fractal)
 	t_fractol_distance	*current;
 	time_t				start = clock();
 
-	init_painter(canvas);
+	clear_canvas(canvas);
 	painter->y = canvas->start_y;
 	while (painter->y < canvas->end_y)
 	{

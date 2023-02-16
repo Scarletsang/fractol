@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 23:47:55 by htsang            #+#    #+#             */
-/*   Updated: 2023/02/16 20:17:32 by htsang           ###   ########.fr       */
+/*   Updated: 2023/02/16 23:35:58 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ int	main(int argc, const char **argv)
 	program.painter_func = &paint_fractal;
 	program.painter.animation.speed = 100;
 	program.painter_func(&program.canvas, &program.painter, program.fractal);
+	paint_pixels_from_distance_map(&program.canvas);
 	mlx_loop_hook(program.mlx, \
 		(t_mlx_loop_func) fractol_draw_hook, &program);
 	mlx_key_hook(program.mlx, (mlx_keyfunc) fractol_key_hook, &program);

@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 21:06:33 by htsang            #+#    #+#             */
-/*   Updated: 2023/02/15 21:40:38 by htsang           ###   ########.fr       */
+/*   Updated: 2023/02/16 23:13:07 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 void	init_animation(t_fractol_canvas *canvas, t_fractol_painter *painter)
 {
-	init_painter(canvas);
+	clear_canvas(canvas);
+	clear_image(canvas);
 	painter->y = canvas->start_y;
 	painter->x = canvas->start_x;
 	painter->animation.border_trace_started = 0;

@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/04 00:06:59 by htsang            #+#    #+#             */
-/*   Updated: 2023/02/16 16:13:48 by htsang           ###   ########.fr       */
+/*   Updated: 2023/02/16 23:37:16 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,10 @@ t_fractol_color_controls *color_controls)
 	if (distance_point->distance == INSET_VALUE)
 	{
 		return (INSET_COLOR);
+	}
+	if (distance_point->distance == EMPTY_VALUE)
+	{
+		return (0);
 	}
 	return (calculate_color(distance_point, color_controls));
 }

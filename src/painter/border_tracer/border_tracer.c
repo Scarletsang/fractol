@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 14:57:24 by htsang            #+#    #+#             */
-/*   Updated: 2023/02/15 22:18:16 by htsang           ###   ########.fr       */
+/*   Updated: 2023/02/16 22:34:09 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,10 @@
 static void	paint_pixel_from_tracer(t_fractol_canvas *canvas, \
 t_fractol_painter *painter, t_fractol_func fractal)
 {
-	t_fractol_distance	*distance_point;
-
 	calculate_distance_estimator_c(canvas, painter->tracer.x, \
 		painter->tracer.y);
-	distance_point = get_distance_map_point(canvas, painter->tracer.x, \
-		painter->tracer.y);
-	fractal(distance_point, &canvas->estimator);
-	mlx_put_pixel(canvas->image, painter->tracer.x, painter->tracer.y, \
-		distance_to_color(distance_point, &canvas->color_controls));
+	fractal(get_distance_map_point(canvas, painter->tracer.x, \
+		painter->tracer.y), &canvas->estimator);
 }
 
 void	almondbread_trace(t_fractol_canvas *canvas, t_fractol_painter *painter, \

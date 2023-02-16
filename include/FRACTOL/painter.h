@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 16:14:19 by htsang            #+#    #+#             */
-/*   Updated: 2023/02/16 15:55:28 by htsang           ###   ########.fr       */
+/*   Updated: 2023/02/16 22:47:45 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ uint32_t x, uint32_t y);
 void		paint_pixel(t_fractol_canvas *canvas, t_fractol_painter *painter, \
 t_fractol_func fractal);
 
-void		init_painter(t_fractol_canvas *canvas);
+void		paint_pixels_from_distance_map(t_fractol_canvas *canvas);
 
 ////////////////////////////////////
 ///////   fractal painter   ////////

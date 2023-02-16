@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 16:28:53 by htsang            #+#    #+#             */
-/*   Updated: 2023/02/14 19:26:49 by htsang           ###   ########.fr       */
+/*   Updated: 2023/02/16 22:18:19 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 
 void		press_animation_lever(t_fractol_context *program);
 
-void		control_animation(t_fractol_context *program);
+void		animate(t_fractol_context *program);
 
 void		change_animation_speed(t_fractol_context *program, int increase);
 

@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 15:51:49 by htsang            #+#    #+#             */
-/*   Updated: 2023/02/16 15:55:17 by htsang           ###   ########.fr       */
+/*   Updated: 2023/02/16 23:30:31 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,19 +25,28 @@ uint32_t x, uint32_t y)
 void	paint_pixel(t_fractol_canvas *canvas, \
 t_fractol_painter *painter, t_fractol_func fractal)
 {
-	t_fractol_distance	*distance_point;
-
 	calculate_distance_estimator_c(canvas, painter->x, painter->y);
-	distance_point = get_distance_map_point(canvas, painter->x, painter->y);
-	fractal(distance_point, &canvas->estimator);
-	mlx_put_pixel(canvas->image, painter->x, painter->y, \
-		distance_to_color(distance_point, &canvas->color_controls));
+	fractal(get_distance_map_point(canvas, painter->x, painter->y), \
+		&canvas->estimator);
 }
 
-void	init_painter(t_fractol_canvas *canvas)
+void	paint_pixels_from_distance_map(t_fractol_canvas *canvas)
 {
-	canvas->estimator.border_size = \
-		canvas->pixel_size * canvas->pixel_size * \
-		canvas->border_thickness * canvas->border_thickness;
-	set_canvas_empty(canvas);
+	uint32_t			x;
+	uint32_t			y;
+
+	y = canvas->start_y;
+	while (y < canvas->end_y)
+	{
+		x = canvas->start_x;
+		while (x < canvas->end_x)
+		{
+			mlx_put_pixel(canvas->image, x, y, \
+				distance_to_color( \
+					get_distance_map_point(canvas, x, y), \
+					&canvas->color_controls));
+			x++;
+		}
+		y++;
+	}
 }

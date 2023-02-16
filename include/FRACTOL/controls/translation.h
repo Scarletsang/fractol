@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 16:23:15 by htsang            #+#    #+#             */
-/*   Updated: 2023/02/15 23:55:15 by htsang           ###   ########.fr       */
+/*   Updated: 2023/02/16 22:50:42 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,11 @@ typedef struct s_fractol_copier
 ///////    public   ////////
 ////////////////////////////
 
-int					translate(t_fractol_context *program);
+void				translate(t_fractol_context *program);
 
-int					translate_viewport(t_fractol_context *program);
+void				translate_distance_map(t_fractol_context *program);
+
+void				translate_viewport(t_fractol_context *program);
 
 void				copy_pixels(t_fractol_canvas *canvas, \
 t_fractol_copier *copier);
