@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/29 21:46:35 by htsang            #+#    #+#             */
-/*   Updated: 2023/02/17 18:29:19 by htsang           ###   ########.fr       */
+/*   Updated: 2023/02/17 22:55:05 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@ static int	realloc_distance_map(t_fractol_canvas *canvas, \
 int32_t width, int32_t height)
 {
 	t_fractol_distance	*distance_map;
-	uint32_t	x;
-	uint32_t	y;
+	uint32_t			x;
+	uint32_t			y;
 
 	distance_map = malloc(sizeof(t_fractol_distance) * width * height);
 	if (!distance_map)

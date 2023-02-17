@@ -6,11 +6,12 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 23:47:55 by htsang            #+#    #+#             */
-/*   Updated: 2023/02/17 18:32:45 by htsang           ###   ########.fr       */
+/*   Updated: 2023/02/17 22:53:24 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "FRACTOL/fractol.h"
+#include <limits.h>
 
 t_fractol_context	*init_program(t_fractol_context *program)
 {
@@ -20,6 +21,8 @@ t_fractol_context	*init_program(t_fractol_context *program)
 	{
 		return (NULL);
 	}
+	mlx_set_window_limit(program->mlx, WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2, \
+		INT_MAX, INT_MAX);
 	program->canvas.image = mlx_new_image(program->mlx, WINDOW_WIDTH, \
 		WINDOW_HEIGHT);
 	if (!program->canvas.image)
