@@ -6,18 +6,11 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 20:53:19 by htsang            #+#    #+#             */
-/*   Updated: 2023/02/17 00:53:02 by htsang           ###   ########.fr       */
+/*   Updated: 2023/02/17 15:02:58 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fractol.h"
-
-void	shift_color(t_fractol_context *program)
-{
-	program->animation_time += program->mlx->delta_time;
-	set_potential_factor(&program->canvas.color_controls, \
-		program->animation_time);
-}
+#include "FRACTOL/fractol.h"
 
 int	prepare_draw(t_fractol_context *program)
 {
@@ -44,16 +37,9 @@ void	fractol_draw_hook(t_fractol_context *program)
 	if (!program->controls)
 		return ;
 	translated = prepare_draw(program);
+	default_canvas_bounds(&program->canvas);
 	if (is_triggered(&program->controls, ANIMATION))
-	{
-		if (program->controls == ANIMATION || \
-			program->controls == (ANIMATION + COLOR_SHIFT))
-			animate(program);
-		else
-			program->painter_func(\
-				&program->canvas, &program->painter, program->fractal);
-		paint_pixels_from_distance_map(&program->canvas);
-	}
+		animate(program);
 	else if ((program->controls <= 0b1111) && translated)
 		translate(program);
 	else if (program->controls == COLOR_SHIFT)
@@ -63,12 +49,9 @@ void	fractol_draw_hook(t_fractol_context *program)
 		if (translated)
 			translate_distance_map(program);
 		else
-		{
-			init_canvas(&program->canvas);
 			program->painter_func(\
 				&program->canvas, &program->painter, program->fractal);
-		}
-		init_canvas(&program->canvas);
+		default_canvas_bounds(&program->canvas);
 		paint_pixels_from_distance_map(&program->canvas);
 	}
 	if (is_triggered(&program->controls, ZOOM))

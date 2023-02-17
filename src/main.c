@@ -6,11 +6,11 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 23:47:55 by htsang            #+#    #+#             */
-/*   Updated: 2023/02/16 23:35:58 by htsang           ###   ########.fr       */
+/*   Updated: 2023/02/17 15:01:28 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fractol.h"
+#include "FRACTOL/fractol.h"
 
 t_fractol_context	*init_program(t_fractol_context *program)
 {
@@ -27,6 +27,9 @@ t_fractol_context	*init_program(t_fractol_context *program)
 		mlx_terminate(program->mlx);
 		return (NULL);
 	}
+	program->controls = 0;
+	program->painter_func = &paint_fractal;
+	program->painter.animation.speed = 100;
 	return (program);
 }
 
@@ -39,12 +42,9 @@ int	main(int argc, const char **argv)
 	{
 		exit(EXIT_FAILURE);
 	}
-	init_canvas(&program.canvas);
+	default_canvas_bounds(&program.canvas);
 	mlx_image_to_window(program.mlx, program.canvas.image, 0, 0);
 	malloc_distance_map(&program.canvas);
-	program.controls = 0;
-	program.painter_func = &paint_fractal;
-	program.painter.animation.speed = 100;
 	program.painter_func(&program.canvas, &program.painter, program.fractal);
 	paint_pixels_from_distance_map(&program.canvas);
 	mlx_loop_hook(program.mlx, \

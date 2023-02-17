@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 23:28:11 by htsang            #+#    #+#             */
-/*   Updated: 2023/02/17 00:52:58 by htsang           ###   ########.fr       */
+/*   Updated: 2023/02/17 14:45:37 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	translate_distance_map(t_fractol_context *program)
 	set_translation_vector(\
 		&program->controls, &copier.left_movement, &copier.up_movement, 20);
 	copy_distance_points(&program->canvas, &copier);
-	if (!calculate_vertical_translation(&program->canvas, \
+	if (!vertical_translate_canvas_bounds(&program->canvas, \
 		copier.up_movement))
 	{
 		adjust_vertical_translation(&program->canvas, \
@@ -43,7 +43,7 @@ void	translate_distance_map(t_fractol_context *program)
 		program->painter_func(\
 			&program->canvas, &program->painter, program->fractal);
 	}
-	if (!calculate_horizontal_translation(&program->canvas, \
+	if (!horizontal_translate_canvas_bounds(&program->canvas, \
 		copier.left_movement))
 		program->painter_func(\
 			&program->canvas, &program->painter, program->fractal);
@@ -57,7 +57,7 @@ void	translate(t_fractol_context *program)
 		&program->controls, &copier.left_movement, &copier.up_movement, 20);
 	copy_pixels(&program->canvas, &copier);
 	copy_distance_points(&program->canvas, &copier);
-	if (!calculate_vertical_translation(&program->canvas, \
+	if (!vertical_translate_canvas_bounds(&program->canvas, \
 		copier.up_movement))
 	{
 		adjust_vertical_translation(&program->canvas, \
@@ -66,7 +66,7 @@ void	translate(t_fractol_context *program)
 			&program->canvas, &program->painter, program->fractal);
 		paint_pixels_from_distance_map(&program->canvas);
 	}
-	if (!calculate_horizontal_translation(&program->canvas, \
+	if (!horizontal_translate_canvas_bounds(&program->canvas, \
 		copier.left_movement))
 		program->painter_func(\
 			&program->canvas, &program->painter, program->fractal);

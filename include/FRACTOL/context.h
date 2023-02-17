@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 22:16:49 by htsang            #+#    #+#             */
-/*   Updated: 2023/02/16 19:49:51 by htsang           ###   ########.fr       */
+/*   Updated: 2023/02/17 14:51:37 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,11 +38,7 @@ typedef struct s_fractol_context
 	int32_t					mouse_x;
 	int32_t					mouse_y;
 	double					animation_time;
-	const char				*program_name;
 }				t_fractol_context;
-
-t_fractol_context	*init_fractal(t_fractol_context *program, \
-t_fractol_func fractal, double center_real, double center_complex);
 
 ////////////////////////////////
 ///////     Controls     ///////
@@ -63,9 +59,11 @@ t_fractol_complex *dest);
 bool				update_cursor_pos(t_fractol_context *program);
 
 ////////////////////////////////
-///////       zoom       ///////
+///////     effects      ///////
 ////////////////////////////////
 
 t_fractol_context	*calculate_zoom(t_fractol_context *program, double ydelta);
+
+void				shift_color(t_fractol_context *program);
 
 #endif

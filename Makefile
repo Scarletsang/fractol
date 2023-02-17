@@ -24,7 +24,7 @@ COMPLEX_SRC:= \
 	complex/fractal_func.c
 CANVAS_SRC:= \
 	canvas/canvas.c \
-	canvas/canvas_setters.c \
+	canvas/color_controls.c \
 	canvas/viewport.c \
 	canvas/distance_map.c
 BORDER_TRACER_SRC:= \
@@ -35,9 +35,8 @@ PAINTER_SRC:= \
 	painter/fractal_painter.c \
 	painter/color.c
 CONTEXT_SRC:= \
-	context/context.c \
 	context/controls.c \
-	context/zoom_calculator.c
+	context/effects.c
 ANIMATION_SRC:= \
 	animation/animation.c \
 	animation/animation_controller.c

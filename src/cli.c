@@ -6,11 +6,11 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 15:06:45 by htsang            #+#    #+#             */
-/*   Updated: 2023/02/16 19:51:13 by htsang           ###   ########.fr       */
+/*   Updated: 2023/02/17 15:01:14 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fractol.h"
+#include "FRACTOL/fractol.h"
 
 int	name_matches(const char *fractal_name, char *expected)
 {
@@ -52,7 +52,6 @@ int argc, const char **argv)
 	}
 	else
 		return (print_invalid_option_msg(argv[0], argv[1]));
-	program->program_name = argv[0];
 	set_base_color(&program->canvas.color_controls, 255, 127, 152);
 	program->animation_time = 0;
 	set_potential_factor(&program->canvas.color_controls, 0);

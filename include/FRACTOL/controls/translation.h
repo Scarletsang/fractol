@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 16:23:15 by htsang            #+#    #+#             */
-/*   Updated: 2023/02/17 00:50:51 by htsang           ###   ########.fr       */
+/*   Updated: 2023/02/17 14:45:37 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,10 @@ t_fractol_copier *copier);
 ///////    private   ////////
 /////////////////////////////
 
-int					calculate_horizontal_translation(t_fractol_canvas *canvas, \
+int					horizontal_translate_canvas_bounds(t_fractol_canvas *canvas, \
 int32_t left_movement);	
 
-int					calculate_vertical_translation(t_fractol_canvas *canvas, \
+int					vertical_translate_canvas_bounds(t_fractol_canvas *canvas, \
 int32_t up_movement);
 void				adjust_vertical_translation(t_fractol_canvas *canvas, \
 int32_t left_movement);

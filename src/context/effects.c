@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/29 21:46:35 by htsang            #+#    #+#             */
-/*   Updated: 2023/02/15 21:33:18 by htsang           ###   ########.fr       */
+/*   Updated: 2023/02/17 14:48:23 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,4 +27,11 @@ t_fractol_context	*calculate_zoom(t_fractol_context *program, double ydelta)
 		mouse.imaginary + \
 			(program->mouse_y * program->canvas.pixel_size));
 	return (program);
+}
+
+void	shift_color(t_fractol_context *program)
+{
+	program->animation_time += program->mlx->delta_time;
+	set_potential_factor(&program->canvas.color_controls, \
+		program->animation_time);
 }

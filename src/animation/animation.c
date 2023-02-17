@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 21:06:33 by htsang            #+#    #+#             */
-/*   Updated: 2023/02/16 23:13:07 by htsang           ###   ########.fr       */
+/*   Updated: 2023/02/17 14:47:35 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	init_animation(t_fractol_canvas *canvas, t_fractol_painter *painter)
 {
-	clear_canvas(canvas);
+	init_canvas_before_paint(canvas);
 	clear_image(canvas);
 	painter->y = canvas->start_y;
 	painter->x = canvas->start_x;
@@ -67,7 +67,7 @@ t_fractol_painter *painter, t_fractol_func fractal)
 int	init_animate_fractal(t_fractol_canvas *canvas, \
 t_fractol_painter *painter, t_fractol_func fractal)
 {
-	init_canvas(canvas);
+	default_canvas_bounds(canvas);
 	init_animation(canvas, painter);
 	return (animate_fractal(canvas, painter, fractal));
 }

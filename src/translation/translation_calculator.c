@@ -6,13 +6,13 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 18:10:43 by htsang            #+#    #+#             */
-/*   Updated: 2023/02/14 16:53:46 by htsang           ###   ########.fr       */
+/*   Updated: 2023/02/17 14:45:37 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "FRACTOL/controls/translation.h"
 
-int	calculate_horizontal_translation(t_fractol_canvas *canvas, \
+int	horizontal_translate_canvas_bounds(t_fractol_canvas *canvas, \
 int32_t left_movement)
 {
 	if (left_movement == 0)
@@ -30,7 +30,7 @@ int32_t left_movement)
 	return (EXIT_SUCCESS);
 }
 
-int	calculate_vertical_translation(t_fractol_canvas *canvas, \
+int	vertical_translate_canvas_bounds(t_fractol_canvas *canvas, \
 int32_t up_movement)
 {
 	if (up_movement == 0)

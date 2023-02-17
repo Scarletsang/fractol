@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 13:58:59 by htsang            #+#    #+#             */
-/*   Updated: 2023/02/16 23:12:57 by htsang           ###   ########.fr       */
+/*   Updated: 2023/02/17 14:47:35 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,20 +46,21 @@ typedef struct s_fractol_canvas
 ///////   canvas   ////////
 ///////////////////////////
 
-t_fractol_canvas	*init_canvas(t_fractol_canvas *canvas);
+void				init_canvas_before_paint(t_fractol_canvas *canvas);
 
-void				clear_canvas(t_fractol_canvas *canvas);
+void				default_canvas_bounds(t_fractol_canvas *canvas);
 
 void				clear_image(t_fractol_canvas *canvas);
 
-uint32_t			*get_pixel(t_fractol_canvas *canvas, \
-uint32_t x, uint32_t y);
-
-t_fractol_canvas	*set_canvas_end(t_fractol_canvas *canvas, \
+void				set_canvas_end(t_fractol_canvas *canvas, \
 uint32_t end_x, uint32_t end_y);
 
-t_fractol_canvas	*set_canvas_start(t_fractol_canvas *canvas, \
+void				set_canvas_start(t_fractol_canvas *canvas, \
 uint32_t start_x, uint32_t start_y);
+
+///////////////////////////////////
+///////   color controls   ////////
+///////////////////////////////////
 
 void				set_base_color(t_fractol_color_controls *color_controls, \
 uint8_t r, uint8_t g, uint8_t b);
@@ -88,7 +89,7 @@ int					point_is_inset(t_fractol_distance *distance_point);
 
 int					point_is_empty(t_fractol_distance *distance_point);
 
-t_fractol_canvas	*set_distance_map_empty(t_fractol_canvas *canvas);
+t_fractol_canvas	*clear_distance_map(t_fractol_canvas *canvas);
 
 t_fractol_distance	*get_distance_map_point(t_fractol_canvas *canvas, \
 uint32_t x, uint32_t y);

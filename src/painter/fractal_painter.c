@@ -6,13 +6,11 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 23:31:24 by htsang            #+#    #+#             */
-/*   Updated: 2023/02/16 22:47:34 by htsang           ###   ########.fr       */
+/*   Updated: 2023/02/17 14:56:27 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "FRACTOL/painter.h"
-#include <time.h>
-#include <stdio.h>
 
 void	paint_inset_pixels(t_fractol_canvas *canvas, \
 t_fractol_painter *painter)
@@ -37,9 +35,8 @@ int	paint_fractal(t_fractol_canvas *canvas, t_fractol_painter *painter, \
 t_fractol_func fractal)
 {
 	t_fractol_distance	*current;
-	time_t				start = clock();
 
-	clear_canvas(canvas);
+	init_canvas_before_paint(canvas);
 	painter->y = canvas->start_y;
 	while (painter->y < canvas->end_y)
 	{
@@ -59,6 +56,5 @@ t_fractol_func fractal)
 		}
 		painter->y++;
 	}
-	printf("%f\n", ((double) clock() - start) / CLOCKS_PER_SEC);
 	return (EXIT_SUCCESS);
 }
