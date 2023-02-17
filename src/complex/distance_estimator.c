@@ -6,12 +6,11 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 20:06:04 by htsang            #+#    #+#             */
-/*   Updated: 2023/02/16 16:13:54 by htsang           ###   ########.fr       */
+/*   Updated: 2023/02/17 15:35:28 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "FRACTOL/complex.h"
-#include <stdio.h>
 
 void	set_distance_estimator_zc(t_fractol_distance_estimator *estimator, \
 t_fractol_complex *z, t_fractol_complex *c)
