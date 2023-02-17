@@ -6,12 +6,12 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 16:23:15 by htsang            #+#    #+#             */
-/*   Updated: 2023/02/17 14:45:37 by htsang           ###   ########.fr       */
+/*   Updated: 2023/02/17 15:10:44 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FRACTOL_CONTROLS_TRANSLATION_H
-# define FRACTOL_CONTROLS_TRANSLATION_H
+#ifndef TRANSLATION_H
+# define TRANSLATION_H
 
 # include "FRACTOL/context.h"
 
@@ -45,8 +45,8 @@ t_fractol_copier *copier);
 ///////    private   ////////
 /////////////////////////////
 
-int					horizontal_translate_canvas_bounds(t_fractol_canvas *canvas, \
-int32_t left_movement);	
+int					horizontal_translate_canvas_bounds(\
+t_fractol_canvas *canvas, int32_t left_movement);	
 
 int					vertical_translate_canvas_bounds(t_fractol_canvas *canvas, \
 int32_t up_movement);

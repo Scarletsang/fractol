@@ -6,12 +6,12 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 13:58:59 by htsang            #+#    #+#             */
-/*   Updated: 2023/02/17 14:47:35 by htsang           ###   ########.fr       */
+/*   Updated: 2023/02/17 15:12:38 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FRACTOL_CANVAS_H
-# define FRACTOL_CANVAS_H
+#ifndef CANVAS_H
+# define CANVAS_H
 
 # include "MLX42/MLX42.h"
 # include "FRACTOL/complex.h"
@@ -68,8 +68,8 @@ uint8_t r, uint8_t g, uint8_t b);
 void				set_color_factor(t_fractol_color_controls *color_controls, \
 double r_factor, double g_factor, double b_factor);
 
-void				set_potential_factor(t_fractol_color_controls *color_controls, \
-double potential_factor);
+void				set_potential_factor(\
+t_fractol_color_controls *color_controls, double potential_factor);
 
 /////////////////////////////
 ///////   viewport   ////////

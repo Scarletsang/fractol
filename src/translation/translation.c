@@ -6,14 +6,14 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 23:28:11 by htsang            #+#    #+#             */
-/*   Updated: 2023/02/17 14:45:37 by htsang           ###   ########.fr       */
+/*   Updated: 2023/02/17 15:06:09 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "FRACTOL/controls/translation.h"
 
-static int	set_translation_vector(unsigned int *controls, int32_t *left_movement, \
-int32_t *up_movement, int speed)
+static int	set_translation_vector(unsigned int *controls, \
+int32_t *left_movement, int32_t *up_movement, int speed)
 {
 	*left_movement = \
 		(speed * is_triggered(controls, TRANSLATE_LEFT)) \
@@ -68,9 +68,11 @@ void	translate(t_fractol_context *program)
 	}
 	if (!horizontal_translate_canvas_bounds(&program->canvas, \
 		copier.left_movement))
+	{
 		program->painter_func(\
 			&program->canvas, &program->painter, program->fractal);
 		paint_pixels_from_distance_map(&program->canvas);
+	}
 }
 
 int	translate_viewport(t_fractol_context *program)

@@ -6,12 +6,12 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 16:14:19 by htsang            #+#    #+#             */
-/*   Updated: 2023/02/16 22:47:45 by htsang           ###   ########.fr       */
+/*   Updated: 2023/02/17 15:12:07 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FRACTOL_PAINTER_H
-# define FRACTOL_PAINTER_H
+#ifndef PAINTER_H
+# define PAINTER_H
 
 # include "FRACTOL/canvas.h"
 

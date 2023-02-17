@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 00:16:30 by htsang            #+#    #+#             */
-/*   Updated: 2023/02/17 14:39:35 by htsang           ###   ########.fr       */
+/*   Updated: 2023/02/17 15:04:53 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,8 @@ void	animate(t_fractol_context *program)
 	if (program->controls == ANIMATION || \
 		program->controls == (ANIMATION + COLOR_SHIFT))
 	{
-		if (animate_fractal(&program->canvas, &program->painter, program->fractal))
+		if (animate_fractal(&program->canvas, &program->painter, \
+		program->fractal))
 		{
 			press_lever(&program->controls, ANIMATION);
 			program->painter_func = &paint_fractal;

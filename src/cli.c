@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 15:06:45 by htsang            #+#    #+#             */
-/*   Updated: 2023/02/17 15:01:14 by htsang           ###   ########.fr       */
+/*   Updated: 2023/02/17 15:08:49 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,8 @@ int argc, const char **argv)
 	set_base_color(&program->canvas.color_controls, 255, 127, 152);
 	program->animation_time = 0;
 	set_potential_factor(&program->canvas.color_controls, 0);
-	set_color_factor(&program->canvas.color_controls, 1, 0.34004648219, 0.17965377284);
+	set_color_factor(&program->canvas.color_controls, 1, \
+		0.34004648219, 0.17965377284);
 	set_complex_number(&program->canvas.viewport, -1.5, 1);
 	set_distance_estimator_settings(&program->canvas.estimator, 0.0005, 200);
 	program->canvas.pixel_size = \

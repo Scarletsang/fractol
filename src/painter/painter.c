@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 15:51:49 by htsang            #+#    #+#             */
-/*   Updated: 2023/02/16 23:30:31 by htsang           ###   ########.fr       */
+/*   Updated: 2023/02/17 15:09:09 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	paint_pixels_from_distance_map(t_fractol_canvas *canvas)
 		while (x < canvas->end_x)
 		{
 			mlx_put_pixel(canvas->image, x, y, \
-				distance_to_color( \
+				distance_to_color(\
 					get_distance_map_point(canvas, x, y), \
 					&canvas->color_controls));
 			x++;

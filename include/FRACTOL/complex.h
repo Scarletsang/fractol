@@ -6,12 +6,12 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 19:41:10 by htsang            #+#    #+#             */
-/*   Updated: 2023/02/15 22:26:19 by htsang           ###   ########.fr       */
+/*   Updated: 2023/02/17 15:11:23 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FRACTOL_COMPLEX_H
-# define FRACTOL_COMPLEX_H
+#ifndef COMPLEX_H
+# define COMPLEX_H
 
 # include <stdlib.h>
 # include <math.h>

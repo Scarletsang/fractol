@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 13:02:33 by htsang            #+#    #+#             */
-/*   Updated: 2023/02/16 00:11:59 by htsang           ###   ########.fr       */
+/*   Updated: 2023/02/17 15:07:05 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,8 @@ t_fractol_distance_estimator *estimator)
 			set_distance(distance, estimator, iteration);
 			return ;
 		}
-		mandelbrot_equation_derivative(&estimator->derivative, &estimator->z, 1);
+		mandelbrot_equation_derivative(&estimator->derivative, \
+			&estimator->z, 1);
 		mandelbrot_equation(&estimator->z, &estimator->c);
 		iteration++;
 	}
@@ -90,7 +91,8 @@ t_fractol_distance_estimator *estimator)
 			set_distance(distance, estimator, iteration);
 			return ;
 		}
-		mandelbrot_equation_derivative(&estimator->derivative, &estimator->c, 1);
+		mandelbrot_equation_derivative(&estimator->derivative, \
+			&estimator->c, 1);
 		mandelbrot_equation(&estimator->c, &estimator->z);
 		iteration++;
 	}

@@ -6,12 +6,12 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 23:33:50 by htsang            #+#    #+#             */
-/*   Updated: 2023/02/14 20:00:10 by htsang           ###   ########.fr       */
+/*   Updated: 2023/02/17 15:11:03 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FRACTOL_PAINTER_BORDER_TRACER_H
-# define FRACTOL_PAINTER_BORDER_TRACER_H
+#ifndef BORDER_TRACER_H
+# define BORDER_TRACER_H
 
 # include "FRACTOL/painter.h"
 

@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/04 00:06:59 by htsang            #+#    #+#             */
-/*   Updated: 2023/02/16 23:37:16 by htsang           ###   ########.fr       */
+/*   Updated: 2023/02/17 15:08:34 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,13 @@ uint32_t	get_rgba(int32_t r, int32_t g, int32_t b, int32_t a)
 uint32_t	calculate_color(t_fractol_distance *distance_point, \
 t_fractol_color_controls *color_controls)
 {
-	double potential;
+	double	potential;
 
 	potential = distance_point->potential / \
 		(color_controls->potential_factor + 0.1);
 	return (get_rgba(\
 		((1 - cos(color_controls->r_factor * potential)) \
-		/ 2)  * color_controls->r, \
+		/ 2) * color_controls->r, \
 		((1 - cos(color_controls->g_factor * potential)) \
 		/ 2) * color_controls->g, \
 		((1 - cos(color_controls->b_factor * potential)) \

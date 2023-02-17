@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 14:57:24 by htsang            #+#    #+#             */
-/*   Updated: 2023/02/16 22:34:09 by htsang           ###   ########.fr       */
+/*   Updated: 2023/02/17 15:07:58 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,8 @@ t_fractol_func fractal)
 	}
 	if (!move_tracer(canvas, tracer))
 		flip_tracer_direction(tracer);
-	else if (!point_is_inset(get_distance_map_point(canvas, tracer->x, tracer->y)))
+	else if (!point_is_inset(\
+		get_distance_map_point(canvas, tracer->x, tracer->y)))
 		move_tracer_backwards(tracer);
 }
 

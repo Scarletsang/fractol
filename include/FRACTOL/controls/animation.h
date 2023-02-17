@@ -6,12 +6,12 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 16:28:53 by htsang            #+#    #+#             */
-/*   Updated: 2023/02/16 22:18:19 by htsang           ###   ########.fr       */
+/*   Updated: 2023/02/17 15:12:24 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FRACTOL_CONTROLS_ANIMATION_H
-# define FRACTOL_CONTROLS_ANIMATION_H
+#ifndef ANIMATION_H
+# define ANIMATION_H
 
 # include "FRACTOL/context.h"
 
@@ -24,7 +24,6 @@ void		press_animation_lever(t_fractol_context *program);
 void		animate(t_fractol_context *program);
 
 void		change_animation_speed(t_fractol_context *program, int increase);
-
 
 ///////////////////////////////////
 ///////      animation      ///////

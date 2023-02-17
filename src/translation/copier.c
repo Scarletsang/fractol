@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 23:39:47 by htsang            #+#    #+#             */
-/*   Updated: 2023/02/16 20:15:57 by htsang           ###   ########.fr       */
+/*   Updated: 2023/02/17 15:07:32 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,11 @@ t_fractol_copier_func copier_func)
 	uint32_t	i;
 	uint32_t	xdelta;
 
-    if (copier->left_movement < 0)
-        copier->src = (char *)copier->src - \
+	if (copier->left_movement < 0)
+		copier->src = (char *)copier->src - \
 			(copier->left_movement * element_size);
-    else if (copier->left_movement > 0)
-        copier->dest = (char *)copier->dest + \
+	else if (copier->left_movement > 0)
+		copier->dest = (char *)copier->dest + \
 			(copier->left_movement * element_size);
 	xdelta = abs(copier->left_movement);
 	y = canvas->image->height - abs(copier->up_movement);
@@ -55,11 +55,11 @@ t_fractol_copier_func copier_func)
 	uint32_t	i;
 	uint32_t	xdelta;
 
-    if (copier->left_movement < 0)
-        copier->dest = (char *)copier->dest + \
+	if (copier->left_movement < 0)
+		copier->dest = (char *)copier->dest + \
 			(copier->left_movement * element_size);
-    else if (copier->left_movement > 0)
-        copier->src = (char *)copier->src - \
+	else if (copier->left_movement > 0)
+		copier->src = (char *)copier->src - \
 			(copier->left_movement * element_size);
 	xdelta = abs(copier->left_movement);
 	y = canvas->image->height - copier->up_movement;
