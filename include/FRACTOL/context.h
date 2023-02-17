@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 22:16:49 by htsang            #+#    #+#             */
-/*   Updated: 2023/02/17 15:11:29 by htsang           ###   ########.fr       */
+/*   Updated: 2023/02/17 18:14:31 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,26 +44,30 @@ typedef struct s_fractol_context
 ///////     Controls     ///////
 ////////////////////////////////
 
-void				press_switch(action_t *key_action, unsigned int *controls, \
+void	press_switch(action_t *key_action, unsigned int *controls, \
 t_fractol_control control);
 
-int					is_triggered(unsigned int *controls, \
+int		is_triggered(unsigned int *controls, \
 t_fractol_control control);
 
-int					press_lever(unsigned int *controls, \
+int		press_lever(unsigned int *controls, \
 t_fractol_control control);
 
-void				convert_cursor_pos_to_complex(t_fractol_context *program, \
+void	convert_cursor_pos_to_complex(t_fractol_context *program, \
 t_fractol_complex *dest);
 
-bool				update_cursor_pos(t_fractol_context *program);
+bool	update_cursor_pos(t_fractol_context *program);
 
 ////////////////////////////////
 ///////     effects      ///////
 ////////////////////////////////
 
-t_fractol_context	*calculate_zoom(t_fractol_context *program, double ydelta);
+void	calculate_zoom(t_fractol_context *program, double ydelta);
 
-void				shift_color(t_fractol_context *program);
+
+int		calculate_canvas_resize(t_fractol_canvas *canvas, \
+int32_t width, int32_t height);
+
+void	shift_color(t_fractol_context *program);
 
 #endif

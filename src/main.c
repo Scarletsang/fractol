@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 23:47:55 by htsang            #+#    #+#             */
-/*   Updated: 2023/02/17 15:01:28 by htsang           ###   ########.fr       */
+/*   Updated: 2023/02/17 18:32:45 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,13 +38,12 @@ int	main(int argc, const char **argv)
 	t_fractol_context	program;
 
 	if (!(!init_fractal_from_cli(&program, argc, argv) \
-		&& init_program(&program)))
+		&& init_program(&program) && !malloc_distance_map(&program.canvas)))
 	{
 		exit(EXIT_FAILURE);
 	}
 	default_canvas_bounds(&program.canvas);
 	mlx_image_to_window(program.mlx, program.canvas.image, 0, 0);
-	malloc_distance_map(&program.canvas);
 	program.painter_func(&program.canvas, &program.painter, program.fractal);
 	paint_pixels_from_distance_map(&program.canvas);
 	mlx_loop_hook(program.mlx, \

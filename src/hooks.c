@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 20:53:19 by htsang            #+#    #+#             */
-/*   Updated: 2023/02/17 15:02:58 by htsang           ###   ########.fr       */
+/*   Updated: 2023/02/17 18:20:59 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,12 @@ t_fractol_context *program)
 void	fractol_resize_hook(int32_t width, int32_t height, \
 t_fractol_context *program)
 {
-	calculate_canvas_resize(&program->canvas, width, height);
+	if (calculate_canvas_resize(&program->canvas, width, height))
+	{
+		mlx_close_window(program->mlx);
+		return ;
+	}
 	program->painter_func(&program->canvas, &program->painter, \
 		program->fractal);
+	paint_pixels_from_distance_map(&program->canvas);
 }
