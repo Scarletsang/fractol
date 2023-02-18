@@ -6,19 +6,22 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 19:43:46 by htsang            #+#    #+#             */
-/*   Updated: 2023/02/18 20:44:43 by htsang           ###   ########.fr       */
+/*   Updated: 2023/02/18 20:58:24 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "FRACTOL/cli.h"
 
-static int	parse_julia_param(t_fractol_context *program, int argc, \
+static int	parse_z_values(t_fractol_context *program, int argc, \
 const char **argv)
 {
 	t_fractol_complex	estimator_z;
 
 	if (move_parser(&argc, &argv))
+	{
+		set_complex_number(&program->canvas.estimator.z, -0.73, 0.18);
 		return (--argc);
+	}
 	if (!is_valid_number(*argv))
 		return (argc);
 	estimator_z.real = ft_strtod(*argv);
@@ -45,12 +48,12 @@ int	parse_input(t_fractol_context *program, int argc, const char **argv)
 	else if (string_matches(*argv, "newton"))
 	{
 		program->fractal = &newton_fractal_func;
-		argc--;
+		argc = parse_z_values(program, argc, argv);
 	}
 	else if (string_matches(*argv, "julia"))
 	{
 		program->fractal = &julia_fractal_func;
-		argc = parse_julia_param(program, argc, argv);
+		argc = parse_z_values(program, argc, argv);
 	}
 	return (argc);
 }
