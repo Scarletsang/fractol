@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 20:37:02 by htsang            #+#    #+#             */
-/*   Updated: 2023/02/18 19:47:47 by htsang           ###   ########.fr       */
+/*   Updated: 2023/02/18 20:39:29 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	print_program_usage(const char *program_name)
 	write(STDERR_FILENO, "Usage:\t", 8);
 	write(STDERR_FILENO, program_name, ft_strlen(program_name));
 	write(STDERR_FILENO, \
-		" [mandelbrot|julia|newton]\n", 28);
+		" [mandelbrot|newton] | julia <real> <imaginary>\n", 49);
 	return (EXIT_FAILURE);
 }
 

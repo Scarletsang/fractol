@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 23:47:55 by htsang            #+#    #+#             */
-/*   Updated: 2023/02/18 20:36:36 by htsang           ###   ########.fr       */
+/*   Updated: 2023/02/18 20:47:41 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,20 +21,20 @@ int argc, const char **argv)
 	error_argc = parse_input(program, argc, argv);
 	if (error_argc)
 	{
-		if ((argc - error_argc) == 1)
+		if ((argc - error_argc) == 0)
 			return (print_program_usage(argv[0]));
 		return (print_invalid_option_msg(argv[0], \
 			argv[argc - error_argc]));
 	}
-	set_base_color(&program->canvas.color_controls, 255, 127, 152);
-	program->animation_time = 0;
 	set_potential_factor(&program->canvas.color_controls, 0);
-	set_color_factor(&program->canvas.color_controls, 1, \
-		0.34004648219, 0.17965377284);
 	set_complex_number(&program->canvas.viewport, -1.5, 1);
-	set_distance_estimator_settings(&program->canvas.estimator, 0.0005, 200);
 	program->canvas.pixel_size = \
 		calculate_pixel_size(&program->canvas.viewport, 1.5, WINDOW_WIDTH);
+	program->animation_time = 0;
+	set_base_color(&program->canvas.color_controls, 255, 127, 152);
+	set_color_factor(&program->canvas.color_controls, 1, \
+		0.34004648219, 0.17965377284);
+	set_distance_estimator_settings(&program->canvas.estimator, 0.0005, 200);
 	return (EXIT_SUCCESS);
 }
 

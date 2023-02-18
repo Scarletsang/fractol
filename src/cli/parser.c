@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 19:43:46 by htsang            #+#    #+#             */
-/*   Updated: 2023/02/18 20:36:24 by htsang           ###   ########.fr       */
+/*   Updated: 2023/02/18 20:44:43 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ const char **argv)
 	t_fractol_complex	estimator_z;
 
 	if (move_parser(&argc, &argv))
-		return (argc);
+		return (--argc);
 	if (!is_valid_number(*argv))
 		return (argc);
 	estimator_z.real = ft_strtod(*argv);
@@ -33,7 +33,10 @@ const char **argv)
 
 int	parse_input(t_fractol_context *program, int argc, const char **argv)
 {
-	move_parser(&argc, &argv);
+	if (move_parser(&argc, &argv))
+	{
+		return (1);
+	}
 	if (string_matches(*argv, "mandelbrot"))
 	{
 		program->fractal = &mandelbrot_fractal_func;
