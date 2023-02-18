@@ -6,12 +6,37 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 23:47:55 by htsang            #+#    #+#             */
-/*   Updated: 2023/02/17 22:53:24 by htsang           ###   ########.fr       */
+/*   Updated: 2023/02/18 20:36:36 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "FRACTOL/fractol.h"
 #include <limits.h>
+
+int	init_fractal_from_cli(t_fractol_context *program, \
+int argc, const char **argv)
+{
+	int	error_argc;
+
+	error_argc = parse_input(program, argc, argv);
+	if (error_argc)
+	{
+		if ((argc - error_argc) == 1)
+			return (print_program_usage(argv[0]));
+		return (print_invalid_option_msg(argv[0], \
+			argv[argc - error_argc]));
+	}
+	set_base_color(&program->canvas.color_controls, 255, 127, 152);
+	program->animation_time = 0;
+	set_potential_factor(&program->canvas.color_controls, 0);
+	set_color_factor(&program->canvas.color_controls, 1, \
+		0.34004648219, 0.17965377284);
+	set_complex_number(&program->canvas.viewport, -1.5, 1);
+	set_distance_estimator_settings(&program->canvas.estimator, 0.0005, 200);
+	program->canvas.pixel_size = \
+		calculate_pixel_size(&program->canvas.viewport, 1.5, WINDOW_WIDTH);
+	return (EXIT_SUCCESS);
+}
 
 t_fractol_context	*init_program(t_fractol_context *program)
 {

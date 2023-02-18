@@ -37,6 +37,10 @@ PAINTER_SRC:= \
 CONTEXT_SRC:= \
 	context/controls.c \
 	context/effects.c
+CLI_SRC:= \
+	cli/parser.c \
+	cli/parser_utils.c \
+	cli/error_printer.c
 ANIMATION_SRC:= \
 	animation/animation.c \
 	animation/animation_controller.c
@@ -47,10 +51,8 @@ TRANSLATION_SRC:= \
 	translation/translation.c
 SRC:= \
 	main.c \
-	hooks.c \
-	cli.c \
-	error_printer.c
-OBJS=${addprefix src/,${COMPLEX_SRC:.c=.o} ${CANVAS_SRC:.c=.o} ${BORDER_TRACER_SRC:.c=.o} ${PAINTER_SRC:.c=.o} ${CONTEXT_SRC:.c=.o} ${TRANSLATION_SRC:.c=.o} ${ANIMATION_SRC:.c=.o} ${SRC:.c=.o}}
+	hooks.c
+OBJS=${addprefix src/,${COMPLEX_SRC:.c=.o} ${CANVAS_SRC:.c=.o} ${BORDER_TRACER_SRC:.c=.o} ${PAINTER_SRC:.c=.o} ${CONTEXT_SRC:.c=.o} ${TRANSLATION_SRC:.c=.o} ${ANIMATION_SRC:.c=.o} ${CLI_SRC:.c=.o} ${SRC:.c=.o}}
 
 ########################
 ####   debug files  ####

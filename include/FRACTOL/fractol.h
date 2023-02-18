@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 16:01:29 by htsang            #+#    #+#             */
-/*   Updated: 2023/02/17 15:00:39 by htsang           ###   ########.fr       */
+/*   Updated: 2023/02/18 19:47:21 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,11 @@
 # define WINDOW_HEIGHT 760
 
 # include "FRACTOL/context.h"
+# include "FRACTOL/cli.h"
 # include "FRACTOL/controls/translation.h"
 # include "FRACTOL/controls/animation.h"
 
 typedef void	(*t_mlx_loop_func)(void *param);
-
-int		init_fractal_from_cli(t_fractol_context *program, \
-int argc, const char **argv);
 
 void	fractol_draw_hook(t_fractol_context *program);
 
@@ -34,10 +32,5 @@ t_fractol_context *program);
 
 void	fractol_resize_hook(int32_t width, int32_t height, \
 t_fractol_context *program);
-
-int		print_program_usage(const char *program_name);
-
-int		print_invalid_option_msg(const char *program_name, \
-const char *fractal_name);
 
 #endif

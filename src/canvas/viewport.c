@@ -23,3 +23,9 @@ int32_t pixel_amount)
 {
 	canvas->viewport.imaginary += canvas->pixel_size * pixel_amount;
 }
+
+double	calculate_pixel_size(t_fractol_complex *viewport, \
+double end_real, double window_width)
+{
+	return (fabs(viewport->real - end_real) / window_width);
+}

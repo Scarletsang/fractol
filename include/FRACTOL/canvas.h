@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 13:58:59 by htsang            #+#    #+#             */
-/*   Updated: 2023/02/17 18:32:17 by htsang           ###   ########.fr       */
+/*   Updated: 2023/02/18 19:50:53 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,9 @@ int32_t pixel_amount);
 
 void				move_viewport_imaginary(t_fractol_canvas *canvas, \
 int32_t pixel_amount);
+
+double				calculate_pixel_size(t_fractol_complex *viewport, \
+double end_real, double window_width);
 
 /////////////////////////////////
 ///////   distance map   ////////

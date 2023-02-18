@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 22:16:49 by htsang            #+#    #+#             */
-/*   Updated: 2023/02/17 18:14:31 by htsang           ###   ########.fr       */
+/*   Updated: 2023/02/18 19:54:17 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,6 @@ bool	update_cursor_pos(t_fractol_context *program);
 ////////////////////////////////
 
 void	calculate_zoom(t_fractol_context *program, double ydelta);
-
 
 int		calculate_canvas_resize(t_fractol_canvas *canvas, \
 int32_t width, int32_t height);
