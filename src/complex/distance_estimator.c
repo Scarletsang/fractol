@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 20:06:04 by htsang            #+#    #+#             */
-/*   Updated: 2023/02/17 15:35:28 by htsang           ###   ########.fr       */
+/*   Updated: 2023/02/19 00:49:55 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ t_fractol_distance_estimator *estimator, int iteration)
 	double	magnitude;
 
 	magnitude = sqrt(estimator->magnitude_square);
-	distance->distance = log(estimator->magnitude_square) * \
+	distance->distance = log(magnitude) * \
 				magnitude / complex_magnitude(&estimator->derivative);
 	distance->potential = log(log(magnitude) / pow(2, iteration));
 	calculate_potential(distance);
