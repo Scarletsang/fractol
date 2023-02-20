@@ -94,7 +94,6 @@ else
 endif
 
 clean:
-	@make clean -C lib/MLX42/
 	@rm -f ${OBJS}
 
 fclean: clean
