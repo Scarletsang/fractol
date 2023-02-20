@@ -6,6 +6,7 @@ NAME:=fractol
 
 CC=cc
 CFLAGS= -Wall -Wextra -Werror
+LDFLAGS=-lm
 ifdef FSANITIZE
 	CFLAGS+= -g3 -fsanitize=address
 else
@@ -64,26 +65,29 @@ OBJS+=${if ${findstring -g3,${CFLAGS}},${DEBUG_OBJS},}
 ####    libaries    ####
 ########################
 
-GLFW:=lib/glfw-3.3.8/lib-universal/libglfw3.a
-MLX:=lib/MLX42/libmlx42.a
+ifeq (${shell uname}, Darwin)
+	LDFLAGS+= -L ./lib/glfw-3.3.8/lib-universal/ -lglfw3 -framework Cocoa -framework OpenGL -framework IOKit
+else
+	LDFLAGS+= -L ./lib/glfw-3.3.8/lib-x86_64/ -lglfw3 -ldl
+endif
+LDFLAGS+= -L ./lib/MLX42/ -lmlx42
 
 ########################
 ####  dependencies  ####
 ########################
 
-DEPS:= ${GLFW} ${MLX} ${OBJS}
+DEPS:= ${OBJS}
 INCLUDE:= \
 	lib/MLX42/include \
-	include \
-	${DEBUG_LIB}
+	include
 
 all: ${NAME}
 
-${NAME}: ${DEPS}
-	@${CC} ${CFLAGS} ${DEPS} -framework Cocoa -framework OpenGL -framework IOKit -o ${NAME} && \
+${NAME}: MLX ${DEPS}
+	@${CC} ${DEPS} -o ${NAME} ${LDFLAGS} && \
 		echo "Compilation successful"
 
-${MLX}:
+MLX:
 	@make ${if ${findstring -g3,${CFLAGS}},DEBUG=1,} HEADERS='-I ../glfw-3.3.8/include/' -C lib/MLX42/
 
 %.o: %.c
@@ -94,8 +98,11 @@ clean:
 	@rm -f ${OBJS}
 
 fclean: clean
-	@rm -f ${NAME} ${MLX}
+	@make fclean -C lib/MLX42/
+	@rm -f ${NAME}
 
 re: fclean all
 
 bonus: re
+
+.PHONY: clean fclean re bonus
