@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 20:06:04 by htsang            #+#    #+#             */
-/*   Updated: 2023/02/19 00:49:55 by htsang           ###   ########.fr       */
+/*   Updated: 2023/02/20 16:58:32 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,6 @@ t_fractol_distance_estimator *estimator, double border_size, int iteration)
 	estimator->iteration = iteration;
 }
 
-void	calculate_potential(t_fractol_distance *distance_point)
-{
-	distance_point->potential *= sqrt(sqrt(distance_point->distance));
-}
-
 t_fractol_distance	*set_distance(t_fractol_distance *distance, \
 t_fractol_distance_estimator *estimator, int iteration)
 {
@@ -40,7 +35,21 @@ t_fractol_distance_estimator *estimator, int iteration)
 	distance->distance = log(magnitude) * \
 				magnitude / complex_magnitude(&estimator->derivative);
 	distance->potential = log(log(magnitude) / pow(2, iteration));
-	calculate_potential(distance);
+	distance->potential *= sqrt(sqrt(distance->distance));
+	return (distance);
+}
+
+t_fractol_distance	*set_burningship_distance(t_fractol_distance *distance, \
+t_fractol_distance_estimator *estimator)
+{
+	double	magnitude;
+
+	magnitude = sqrt(estimator->magnitude_square);
+	distance->distance = 0.5 * log(magnitude) * magnitude \
+		/ fabs(estimator->c.real * estimator->c.imaginary);
+	distance->potential = distance->distance \
+		- log(log(fabs(estimator->derivative.real) + \
+		fabs(estimator->derivative.imaginary))) - log(2.0);
 	return (distance);
 }
 

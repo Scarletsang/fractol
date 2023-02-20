@@ -6,37 +6,24 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 19:41:07 by htsang            #+#    #+#             */
-/*   Updated: 2023/02/14 16:53:46 by htsang           ###   ########.fr       */
+/*   Updated: 2023/02/20 01:27:18 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "FRACTOL/complex.h"
 
-static void	complex_odd_pow(t_fractol_complex *complex, \
-int power)
+void	complex_divide(t_fractol_complex *complex, \
+double real, double imaginary)
 {
-	t_fractol_complex	square;
+	double	denominator;
+	double	original_real;
 
-	copy_complex_number(&square, complex);
-	complex_pow(&square, power / 2);
-	complex_multiply(&square, square.real, square.imaginary);
-	complex_multiply(complex, square.real, square.imaginary);
-}
-
-void	complex_pow(t_fractol_complex *complex, \
-int power)
-{
-	if (power == 1)
-	{
-		return ;
-	}
-	if (power % 2 == 0)
-	{
-		complex_pow(complex, power / 2);
-		complex_multiply(complex, complex->real, complex->imaginary);
-		return ;
-	}
-	complex_odd_pow(complex, power);
+	denominator = (real * real) + (imaginary * imaginary);
+	original_real = complex->real;
+	complex->real = ((complex->real * real) + \
+		(complex->imaginary * imaginary)) / denominator;
+	complex->imaginary = ((complex->imaginary * real) - \
+		(original_real * imaginary)) / denominator;
 }
 
 void	complex_multiply(t_fractol_complex *complex, \

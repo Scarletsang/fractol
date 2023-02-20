@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 20:37:02 by htsang            #+#    #+#             */
-/*   Updated: 2023/02/18 20:39:29 by htsang           ###   ########.fr       */
+/*   Updated: 2023/02/20 17:04:12 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,16 @@ static size_t	ft_strlen(const char *str)
 
 int	print_program_usage(const char *program_name)
 {
-	write(STDERR_FILENO, "Usage:\t", 8);
-	write(STDERR_FILENO, program_name, ft_strlen(program_name));
-	write(STDERR_FILENO, \
-		" [mandelbrot|newton] | julia <real> <imaginary>\n", 49);
+	size_t	program_name_len;
+
+	program_name_len = ft_strlen(program_name);
+	write(STDERR_FILENO, "Usage:\n   ", 11);
+	write(STDERR_FILENO, program_name, program_name_len);
+	write(STDERR_FILENO, " mandelbrot\nor ", 16);
+	write(STDERR_FILENO, program_name, program_name_len);
+	write(STDERR_FILENO, " julia <z_value real> <z_value imaginary>\nor ", 46);
+	write(STDERR_FILENO, program_name, program_name_len);
+	write(STDERR_FILENO, " burningship <factor real> <factor imaginary>\n", 47);
 	return (EXIT_FAILURE);
 }
 

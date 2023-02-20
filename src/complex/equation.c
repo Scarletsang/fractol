@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 16:16:54 by htsang            #+#    #+#             */
-/*   Updated: 2023/02/14 16:53:46 by htsang           ###   ########.fr       */
+/*   Updated: 2023/02/20 16:53:10 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,18 +32,22 @@ t_fractol_complex *z, double dc)
 	complex_add(dz, dc, 0);
 }
 
-void	newton_equation(t_fractol_complex *z, t_fractol_complex *c)
+void	burningship_equation(t_fractol_complex *c, \
+t_fractol_complex *original_c, t_fractol_complex *factor)
 {
-	complex_multiply(z, z->real, z->imaginary);
-	complex_multiply(z, z->real, z->imaginary);
-	complex_add(z, -c->real, -c->imaginary);
+	t_fractol_complex	temp;
+
+	copy_complex_number(&temp, c);
+	c->real = (temp.real * temp.real) - (temp.imaginary * temp.imaginary) \
+		+ factor->real;
+	c->imaginary = 2.0 * fabs(temp.real * temp.imaginary) + factor->imaginary;
+	complex_add(c, original_c->real, original_c->imaginary);
 }
 
-void	newton_equation_derivative(t_fractol_complex *dz, \
-t_fractol_complex *z, double dc)
+void	burningship_distance_equation(t_fractol_complex *dz, \
+t_fractol_complex *z)
 {
-	complex_multiply(dz, z->real, z->imaginary);
-	complex_multiply(dz, z->real, z->imaginary);
-	complex_multiply(dz, 3, 0);
-	complex_add(dz, -dc, 0);
+	complex_add(dz, \
+		log(fabs(z->real)) - log(2.0), \
+		log(fabs(z->imaginary)) - log(2.0));
 }

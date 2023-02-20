@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 19:41:10 by htsang            #+#    #+#             */
-/*   Updated: 2023/02/17 15:11:23 by htsang           ###   ########.fr       */
+/*   Updated: 2023/02/20 16:55:31 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,8 +71,8 @@ double				complex_magnitude_square(t_fractol_complex *complex);
 ///////   Complex Arithematic   ////////
 ////////////////////////////////////////
 
-void				complex_pow(t_fractol_complex *complex, \
-int power);
+void				complex_divide(t_fractol_complex *complex, \
+double real, double imaginary);
 
 void				complex_multiply(t_fractol_complex *complex, \
 double real, double imaginary);
@@ -96,16 +96,17 @@ t_fractol_complex *c);
 void				mandelbrot_equation_derivative(t_fractol_complex *dz, \
 t_fractol_complex *z, double dc);
 
-void				newton_equation(t_fractol_complex *z, t_fractol_complex *c);
+void				burningship_equation(t_fractol_complex *c, \
+t_fractol_complex *original_c, t_fractol_complex *factor);
 
-void				newton_equation_derivative(t_fractol_complex *dz, \
-t_fractol_complex *z, double dc);
+void				burningship_distance_equation(t_fractol_complex *dz, \
+t_fractol_complex *z);
 
 ///////////////////////////////////////////////
 ///////        Fractal function        ////////
 ///////////////////////////////////////////////
 
-void				newton_fractal_func(t_fractol_distance *distance, \
+void				burningship_fractal_func(t_fractol_distance *distance, \
 t_fractol_distance_estimator *estimator);
 
 void				mandelbrot_fractal_func(t_fractol_distance *distance, \
@@ -127,6 +128,9 @@ t_fractol_distance_estimator *estimator, double border_size, int iteration);
 
 t_fractol_distance	*set_distance(t_fractol_distance *distance, \
 t_fractol_distance_estimator *estimator, int iteration);
+
+t_fractol_distance	*set_burningship_distance(t_fractol_distance *distance, \
+t_fractol_distance_estimator *estimator);
 
 t_fractol_distance	*set_constant_distance(t_fractol_distance *distance, \
 int value);
