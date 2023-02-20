@@ -65,3 +65,34 @@ If I placed particles equally distanced on a plain, and they are very light in w
 Meanwhile, the potential can also be used to color the outset values that reflects their potential, thus distance from the fractal.
 
 Reference: [distance_estimation_method_for_fractals](docs/distance_estimation_method_for_fractals.pdf)
+
+# How to read my code?
+
+The program can be splitted into 3 parts:
+
+1. The fractal calculation that determines whether the pixel on the screen is inside the fractal set.
+2. A border tracing algorithm that uses the fractal calculation to color the whole screen strategically.
+3. Controllers to map user controls to changing different parameters in the program, such as translation, color shifting and animating the border tracing process.
+
+## 1. Fractal calculation
+
+The **complex** module encapsulates all the intensive complex number calculations required to make fractal. The complex/fractal_func.c is the main logic of how each pixel of a certain fractal is drawn. Each fractal_func calculates 2 things:
+
+1. the distance of that value (represented by the pixel) to the nearest in-set value.
+2. the potential of the value (represented by the pixel)
+
+These two things are saved inside a distance map, which is a buffer to store these 2 data of each pixel of the window.
+
+## 2. Border tracing
+
+The **canvas** module provides a struct that contains all the states needed to paint fractals.
+
+The **painter** module uses the canvas interface to draw fractals strategically. The file painter/fractal_painter.c contains the main logic of the painting process.
+
+The **border_tracer** module lives inside the **painter** module, and it is used to trace to boundaries of the in-set values of fractals, to increase program performance.
+
+## 3. Controllers
+
+The **context** module creates a wrapper over all states needed in the entire program, it is conviniently use to pass all program states to MLX42 hooks, which allow the user to control the fractal painting process in real time.
+
+The main logic of the controls lives inside hooks.c, and it uses the **animation** module to switch rendering to partial rendering so that user can see the actual process of border tracing. It also uses the **translation** module when user press the arrow keys to move around the fractal space. Diagonal translation is also supported.
