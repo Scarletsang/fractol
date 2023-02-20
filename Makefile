@@ -6,7 +6,6 @@ NAME:=fractol
 
 CC=cc
 CFLAGS= -Wall -Wextra -Werror
-LDFLAGS=-lm
 ifdef FSANITIZE
 	CFLAGS+= -g3 -fsanitize=address
 else
@@ -65,12 +64,12 @@ OBJS+=${if ${findstring -g3,${CFLAGS}},${DEBUG_OBJS},}
 ####    libaries    ####
 ########################
 
+LDFLAGS+= -lmlx42 -L ./lib/MLX42/
 ifeq (${shell uname}, Darwin)
-	LDFLAGS+= -L ./lib/glfw-3.3.8/lib-universal/ -lglfw3 -framework Cocoa -framework OpenGL -framework IOKit
+	LDFLAGS+= -lglfw3 -L ./lib/glfw-3.3.8/lib-universal/ -framework Cocoa -framework OpenGL -framework IOKit -lm
 else
-	LDFLAGS+= -L ./lib/glfw-3.3.8/lib-x86_64/ -lglfw3 -ldl
+	LDFLAGS+= -lglfw3 -L ./lib/glfw-3.3.8/lib-x86_64/ -ldl -pthread -lm
 endif
-LDFLAGS+= -L ./lib/MLX42/ -lmlx42
 
 ########################
 ####  dependencies  ####
@@ -84,7 +83,7 @@ INCLUDE:= \
 all: ${NAME}
 
 ${NAME}: MLX ${DEPS}
-	@${CC} ${DEPS} -o ${NAME} ${LDFLAGS} && \
+	${CC} ${DEPS} -o ${NAME} ${LDFLAGS} && \
 		echo "Compilation successful"
 
 MLX:
