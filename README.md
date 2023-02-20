@@ -2,6 +2,38 @@
 
 This project aims to draw fractals efficiently without using cpu threads nor the parallel power of GPU. The MLX42 library does use shaders but only for putting pixels on the screen. All calculations in this project is done on CPU.
 
+# Compilation
+
+This project is only compatible for macOS and Linux. For Linux user, you have to download glfw library locally on your machine. For macOS users, by default it is using the precompiled glfw library that is located inside the respository, so you don't have to install anything by yourself, for the reason that this is meant to be a school project, and including the precompiled binaries is the fastest way to let this project be evaluted smoothly.
+
+After you cloned this project, run the following commands:
+
+```bash
+cd fractol
+git submodule update --init
+make
+```
+
+Run the program like the following:
+
+```bash
+./fractol julia
+./fractol julia -0.13 1.34
+./fractol mandelbrot
+```
+
+# Controls
+
+Scrolling will zoom in to or zoom out from your cursor position.
+
+Arrow keys to navigate around the space.
+
+Press C to start color shifting animation. Press again to stop.
+
+Press A to start animation to see border tracing in action. Press A again to stop. Meanwhile, press S to increase rendering speed, and Shift + S to decrease animation speed.
+
+Some fractals allow you to press Z to change the a constant in the fractal equaltion. While pressing Z, the constant will be set to a value based on your cursor position.
+
 # How are fractals drawn?
 
 The definition of fractals are not always clear. But it often refers to systems that have infinitely recursive patterns. In this project, fractals are generated using complex dynamics - running an equation that takes complex number as input and produces new complex number result, and use the new complex number to pass into the same equation as input. Eventually what we are interested is the behavior of the generated complex number after a certain iteration of applying the same equation. Each pixel on the screen represents a complex number to pass into the same equation. The color of each pixel represents the behavior of the iterated equation when it starts iterating at that value.
@@ -27,25 +59,3 @@ If I placed particles equally distanced on a plain, and they are very light in w
 Meanwhile, the potential can also be used to color the outset values that reflects their potential, thus distance from the fractal.
 
 Reference: [distance_estimation_method_for_fractals](docs/distance_estimation_method_for_fractals.pdf)
-
-# Compilation
-
-After you cloned this project, run the following commands:
-
-```bash
-cd fractol
-git submodule update --init
-make
-```
-
-# Controls
-
-Scrolling will zoom in to or zoom out from your cursor position.
-
-Arrow keys to navigate around the space.
-
-Press C to start color shifting animation. Press again to stop.
-
-Press A to start animation to see border tracing in action. Press A again to stop. Meanwhile, press S to increase rendering speed, and Shift + S to decrease animation speed.
-
-Some fractals allow you to press Z to change the a constant in the fractal equaltion. While pressing Z, the constant will be set to a value based on your cursor position.

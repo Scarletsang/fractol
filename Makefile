@@ -6,6 +6,10 @@ NAME:=fractol
 
 CC=cc
 CFLAGS= -Wall -Wextra -Werror
+USE_PRECOMPILED_GLFW_FOR_MACOS=yes
+ifneq (${shell uname},Darwin)
+	USE_PRECOMPILED_GLFW_FOR_MACOS=no
+endif
 ifdef FSANITIZE
 	CFLAGS+= -g3 -fsanitize=address
 else
@@ -55,17 +59,11 @@ SRC:= \
 OBJS=${addprefix src/,${COMPLEX_SRC:.c=.o} ${CANVAS_SRC:.c=.o} ${BORDER_TRACER_SRC:.c=.o} ${PAINTER_SRC:.c=.o} ${CONTEXT_SRC:.c=.o} ${TRANSLATION_SRC:.c=.o} ${ANIMATION_SRC:.c=.o} ${CLI_SRC:.c=.o} ${SRC:.c=.o}}
 
 ########################
-####   debug files  ####
-########################
-
-OBJS+=${if ${findstring -g3,${CFLAGS}},${DEBUG_OBJS},}
-
-########################
 ####    libaries    ####
 ########################
 
 LDFLAGS= -lmlx42 -L ./lib/MLX42/
-ifeq (${shell uname}, Darwin)
+ifeq (${USE_PRECOMPILED_GLFW_FOR_MACOS},yes)
 	LDFLAGS+= -lglfw3 -L ./lib/glfw-3.3.8/lib-universal/ -framework Cocoa -framework OpenGL -framework IOKit -lm
 else
 	LDFLAGS+= -lglfw -ldl -pthread -lm
@@ -89,7 +87,7 @@ ${NAME}: MLX ${DEPS}
 	@${CC} ${CFLAGS} ${addprefix -I ,${INCLUDE}} -c $< -o $@
 
 MLX:
-ifeq (${shell uname}, Darwin)
+ifeq (${USE_PRECOMPILED_GLFW_FOR_MACOS},yes)
 	@make ${if ${findstring -g3,${CFLAGS}},DEBUG=1,} HEADERS='-I ../glfw-3.3.8/include/' -C lib/MLX42/
 else
 	@make ${if ${findstring -g3,${CFLAGS}},DEBUG=1,} -C lib/MLX42/
