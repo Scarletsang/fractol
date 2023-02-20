@@ -17,10 +17,16 @@ make
 Run the program like the following:
 
 ```bash
+./fractol mandelbrot
+./fractol burningship
+./fractol burningship .13 1.2
 ./fractol julia
 ./fractol julia -0.13 1.34
-./fractol mandelbrot
 ```
+
+For Julia fractal, if not specified through the command line, the default value for z is -0.73 (real component) and 0.18 (imaginary component).
+
+For burningship fractal, the numerical parameter is used to add a factor in the burningship equation. By default, the factor is 0 (real component) and 0 (imaginary component).
 
 # Controls
 
