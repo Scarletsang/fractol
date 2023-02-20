@@ -67,14 +67,8 @@ OBJS+=${if ${findstring -g3,${CFLAGS}},${DEBUG_OBJS},}
 LDFLAGS= -lmlx42 -L ./lib/MLX42/
 ifeq (${shell uname}, Darwin)
 	LDFLAGS+= -lglfw3 -L ./lib/glfw-3.3.8/lib-universal/ -framework Cocoa -framework OpenGL -framework IOKit -lm
-
-MLX:
-	@make ${if ${findstring -g3,${CFLAGS}},DEBUG=1,} HEADERS='-I ../glfw-3.3.8/include/' -C lib/MLX42/
 else
 	LDFLAGS+= -lglfw -ldl -pthread -lm
-
-MLX:
-	@make ${if ${findstring -g3,${CFLAGS}},DEBUG=1,} -C lib/MLX42/
 endif
 
 ########################
@@ -89,11 +83,17 @@ INCLUDE:= \
 all: ${NAME}
 
 ${NAME}: MLX ${DEPS}
-	${CC} ${DEPS} -o ${NAME} ${LDFLAGS} && \
-		echo "Compilation successful"
+	@${CC} ${DEPS} -o ${NAME} ${LDFLAGS} && echo "Compilation successful"
 
 %.o: %.c
 	@${CC} ${CFLAGS} ${addprefix -I ,${INCLUDE}} -c $< -o $@
+
+MLX:
+ifeq (${shell uname}, Darwin)
+	@make ${if ${findstring -g3,${CFLAGS}},DEBUG=1,} HEADERS='-I ../glfw-3.3.8/include/' -C lib/MLX42/
+else
+	@make ${if ${findstring -g3,${CFLAGS}},DEBUG=1,} -C lib/MLX42/
+endif
 
 clean:
 	@make clean -C lib/MLX42/
